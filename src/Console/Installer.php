@@ -51,6 +51,8 @@ class Installer extends Command{
 	        $this->info('Creating basic user and Roles');
 	        $installer = new AdminInstaller;
 	        $installer->install($email, $password);
+            $this->info('Publishing Package stuff');
+            $this->call('vendor:publish', ['--provider' => 'Joselfonseca\LaravelAdmin\LaravelAdminServiceProvider', '--force' => '', '--tag' => 'public']);
 	        \DB::commit();
 	        $this->info('Thanks! we are done!');
     	}catch(\Exception $e){

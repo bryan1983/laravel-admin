@@ -37,7 +37,8 @@ class LaravelAdminServiceProvider extends ServiceProvider
     {
         $this->loadViewsConfiguration()
              ->loadRoutes()
-             ->publishesConfiguration();
+             ->publishesConfiguration()
+             ->publishesAssets();
     }
 
     private function registerOtherProviders()
@@ -70,7 +71,15 @@ class LaravelAdminServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Config/laravel-admin.php' => config_path('laravel-admin.php'),
         ]);
+        return $this;
+    }
 
+    private function publishesAssets()
+    {
+        $this->publishes([
+            __DIR__ . '/../../public' => public_path('vendor/laravelAdmin'),
+        ], 'public');
+        return $this;
     }
 
     private function loadRoutes()
