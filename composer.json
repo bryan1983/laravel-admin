@@ -1,0 +1,41 @@
+{
+    "name": "joselfonseca/laravel-admin",
+    "description": ":package_description",
+    "keywords": [
+        "laravel-admin",
+        "laravel Administrator",
+        "ACL",
+        "CMS"
+    ],
+    "homepage": "https://github.com/joselfonseca/laravel-admin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jose Luis Fonseca",
+            "email": "jose@ditecnologia.com",
+            "homepage": "htts://josefonseca.me",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : ">=5.5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Joselfonseca\\LaravelAdmin\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Joselfonseca\\LaravelAdmin\\Test\\": "tests"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
