@@ -29,7 +29,7 @@
     },
     "require-dev": {
         "orchestra/testbench": "3.0.*",
-        "phpunit/phpunit": "4.2.0",
+        "phpunit/phpunit" : "4.*",
         "scrutinizer/ocular": "~1.1"
     },
     "autoload": {
