@@ -53,6 +53,7 @@ class Installer extends Command{
 	        $installer->install($email, $password);
             $this->info('Publishing Package stuff');
             $this->call('vendor:publish', ['--provider' => 'Joselfonseca\LaravelAdmin\LaravelAdminServiceProvider', '--force' => '', '--tag' => 'public']);
+            $this->call('vendor:publish', ['--provider' => 'Joselfonseca\LaravelAdmin\LaravelAdminServiceProvider', '--force' => '', '--tag' => 'LAconfig']);
 	        \DB::commit();
 	        $this->info('Thanks! we are done!');
     	}catch(\Exception $e){

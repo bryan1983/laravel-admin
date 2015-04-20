@@ -3,6 +3,7 @@
 namespace Joselfonseca\LaravelAdmin\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\AliasLoader;
 
 class LaravelAdminServiceProvider extends ServiceProvider
 {
@@ -16,9 +17,11 @@ class LaravelAdminServiceProvider extends ServiceProvider
 
     protected $providers = [
         'Kodeine\Acl\AclServiceProvider',
+        'Collective\Html\HtmlServiceProvider',
     ];
     protected $aliases = [
-
+        'Form' => 'Collective\Html\FormFacade',
+        'Html' => 'Collective\Html\HtmlFacade',
     ];
 
     /**
@@ -38,7 +41,8 @@ class LaravelAdminServiceProvider extends ServiceProvider
         $this->loadViewsConfiguration()
              ->loadRoutes()
              ->publishesConfiguration()
-             ->publishesAssets();
+             ->publishesAssets()
+             ->registerTranslations();
     }
 
     private function registerOtherProviders()
@@ -69,8 +73,8 @@ class LaravelAdminServiceProvider extends ServiceProvider
     private function publishesConfiguration()
     {
         $this->publishes([
-            __DIR__ . '/../Config/laravel-admin.php' => config_path('laravel-admin.php'),
-        ]);
+            __DIR__ . '/../config/laravel-admin.php' => config_path('laravel-admin.php'),
+        ], 'LAconfig');
         return $this;
     }
 
@@ -92,6 +96,14 @@ class LaravelAdminServiceProvider extends ServiceProvider
     {
         $this->app->bind('command.laravel-admin.install', 'Joselfonseca\LaravelAdmin\Console\Installer');
         $this->commands('command.laravel-admin.install');
+        return $this;
+    }
+
+    private function registerTranslations(){
+        $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'LaravelAdmin');
+        $this->publishes([
+            __DIR__ . '/../../resources/lang' => base_path('resources/lang'),
+        ], 'LALang');
         return $this;
     }
 

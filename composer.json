@@ -25,7 +25,8 @@
     ],
     "require": {
         "php" : ">=5.5.0",
-        "kodeine/laravel-acl" : "dev-master"
+        "kodeine/laravel-acl" : "dev-master",
+        "laravelcollective/html": "~5.0"
     },
     "require-dev": {
         "orchestra/testbench": "3.0.*",
