@@ -4,6 +4,8 @@ namespace Joselfonseca\LaravelAdmin\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
+use View;
+use Joselfonseca\LaravelAdmin\Services\Menu\MenuBuilder;
 
 class LaravelAdminServiceProvider extends ServiceProvider
 {
@@ -30,15 +32,18 @@ class LaravelAdminServiceProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    {
+    {   
+        $this->app->singleton('Joselfonseca\LaravelAdmin\Services\Menu\MenuBuilder', 'Joselfonseca\LaravelAdmin\Services\Menu\MenuBuilder');
         $this->registerCommands()
              ->registerOtherProviders()
              ->registerAliases();
     }
 
-    public function boot()
+    public function boot(MenuBuilder $menu)
     {
-        $this->loadViewsConfiguration()
+
+        $this->setMenuComposer($menu)
+            ->loadViewsConfiguration()
              ->loadRoutes()
              ->publishesConfiguration()
              ->publishesAssets()
@@ -104,6 +109,13 @@ class LaravelAdminServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../resources/lang' => base_path('resources/lang'),
         ], 'LALang');
+        return $this;
+    }
+    private function setMenuComposer($menu){
+        View::composer('*', function($view) use($menu) {
+            $menu->setMenu(config('laravel-admin.menu'));
+            $view->with('menu', $menu);
+        });
         return $this;
     }
 

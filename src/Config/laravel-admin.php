@@ -8,5 +8,19 @@ return [
     /**
      * The route prefix or the administrator
     **/
-    'routePrefix' => 'backend'
+    'routePrefix' => 'backend',
+    /**
+     * Menu Items
+    **/ 
+    'menu' => [
+    	'sidebar' => [
+            'Dashboard' => [
+                'link' => [
+                    'link' => '#',
+                    'text' => '<i class="fa fa-dashboard fa-lg"></i> Dashboard',
+                ],
+                'permissions' => []
+            ],
+        ]
+    ]
 ];
