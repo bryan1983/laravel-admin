@@ -77,7 +77,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
     private function publishesConfiguration()
     {
         $this->publishes([
-            __DIR__ . '/../config/laravel-admin.php' => config_path('laravel-admin.php'),
+            __DIR__ . '/../Config/laravel-admin.php' => config_path('laravel-admin.php'),
         ], 'LAconfig');
         return $this;
     }
