@@ -2,7 +2,7 @@
 
 namespace Joselfonseca\LaravelAdmin\Http\Controllers;
 
-use CsdMarket\Http\Controllers\Controller;
+use Joselfonseca\LaravelAdmin\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Joselfonseca\LaravelAdmin\Services\Menu\MenuBuilder;
 

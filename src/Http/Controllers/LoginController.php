@@ -2,7 +2,7 @@
 
 namespace Joselfonseca\LaravelAdmin\Http\Controllers;
 
-use CsdMarket\Http\Controllers\Controller;
+use Joselfonseca\LaravelAdmin\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
