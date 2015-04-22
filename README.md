@@ -5,6 +5,7 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/joselfonseca/laravel-admin/master.svg?style=flat-square)](https://travis-ci.org/joselfonseca/laravel-admin)
 [![Total Downloads](https://img.shields.io/packagist/dt/joselfonseca/laravel-admin.svg?style=flat-square)](https://packagist.org/packages/joselfonseca/laravel-admin)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/026eae5c-8fdd-47c8-b657-b0896a6b5284/big.png)](https://insight.sensiolabs.com/projects/026eae5c-8fdd-47c8-b657-b0896a6b5284)
 
 Laravel Admin. A work in progress package
 
