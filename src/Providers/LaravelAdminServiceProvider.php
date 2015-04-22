@@ -2,13 +2,15 @@
 
 namespace Joselfonseca\LaravelAdmin\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
-use View;
+use Illuminate\Support\ServiceProvider;
 use Joselfonseca\LaravelAdmin\Services\Menu\MenuBuilder;
+use View;
 
 class LaravelAdminServiceProvider extends ServiceProvider
 {
+
+    private $menu;
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -32,22 +34,22 @@ class LaravelAdminServiceProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    {   
-        $this->app->singleton('Joselfonseca\LaravelAdmin\Services\Menu\MenuBuilder', 'Joselfonseca\LaravelAdmin\Services\Menu\MenuBuilder');
+    {
         $this->registerCommands()
              ->registerOtherProviders()
              ->registerAliases();
     }
 
-    public function boot(MenuBuilder $menu)
+    public function boot()
     {
-
-        $this->setMenuComposer($menu)
-            ->loadViewsConfiguration()
+        $this->app->singleton('Joselfonseca\LaravelAdmin\Services\Menu\MenuBuilder', 'Joselfonseca\LaravelAdmin\Services\Menu\MenuBuilder');
+        $menu = $this->app->make('Joselfonseca\LaravelAdmin\Services\Menu\MenuBuilder');
+        $this->loadViewsConfiguration()
              ->loadRoutes()
              ->publishesConfiguration()
              ->publishesAssets()
-             ->registerTranslations();
+             ->registerTranslations()
+             ->setMenuComposer($menu);
     }
 
     private function registerOtherProviders()
@@ -104,15 +106,17 @@ class LaravelAdminServiceProvider extends ServiceProvider
         return $this;
     }
 
-    private function registerTranslations(){
-        $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'LaravelAdmin');
+    private function registerTranslations()
+    {
+        $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'LaravelAdmin');
         $this->publishes([
             __DIR__ . '/../../resources/lang' => base_path('resources/lang'),
         ], 'LALang');
         return $this;
     }
-    private function setMenuComposer($menu){
-        View::composer('*', function($view) use($menu) {
+    private function setMenuComposer($menu)
+    {
+        View::composer('*', function ($view) use ($menu) {
             $menu->setMenu(config('laravel-admin.menu'));
             $view->with('menu', $menu);
         });
