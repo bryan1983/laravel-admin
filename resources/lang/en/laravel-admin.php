@@ -8,6 +8,7 @@ return [
 	'LoginPasswordLabel' => 'Password',
 	'LoginRememberMe' => 'Remember me',
 	'LoginSignIn' => 'Sign in',
-	'LoginErrorHeader' => '<strong>Whoops!</strong> There were some problems with your input.'
+	'LoginErrorHeader' => '<strong>Whoops!</strong> There were some problems with your input.',
+	'LogoutText' => 'Logout'
 
 ];
