@@ -17,5 +17,4 @@ class HomeController extends Controller{
 	public function index(){
 		return view('LaravelAdmin::home.home')->with('activeMenu', 'sidebar.Dashboard');
 	}
-
 }

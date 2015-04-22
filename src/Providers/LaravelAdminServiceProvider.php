@@ -4,13 +4,10 @@ namespace Joselfonseca\LaravelAdmin\Providers;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
-use Joselfonseca\LaravelAdmin\Services\Menu\MenuBuilder;
 use View;
 
 class LaravelAdminServiceProvider extends ServiceProvider
 {
-
-    private $menu;
 
     /**
      * Indicates if loading of the provider is deferred.
