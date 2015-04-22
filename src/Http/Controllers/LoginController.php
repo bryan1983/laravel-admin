@@ -29,7 +29,7 @@ class LoginController extends Controller
 
     public function getLogin()
     {
-        return view('LaravelAdmin::auth.login');
+        return view('LaravelAdmin::Auth.login');
     }
 
     /**
