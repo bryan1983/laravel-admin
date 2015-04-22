@@ -1,6 +1,6 @@
 {
     "name": "joselfonseca/laravel-admin",
-    "description": ":package_description",
+    "description": "Admin panel for laravel 5 apps. work in progress!",
     "keywords": [
         "laravel-admin",
         "laravel Administrator",
