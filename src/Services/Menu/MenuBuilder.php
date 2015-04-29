@@ -40,9 +40,9 @@ class MenuBuilder {
 
     protected function parseMenu($menu) {
         $tree = [];
-        foreach ($menu as $item) {
+        foreach ($menu as $key => $item) {
             if ($this->checkPermission($item)) {
-                $tree[] = $this->parseMenuItem($item);
+                $tree[] = $this->parseMenuItem($item, $key);
             }
         }
         return $tree;
@@ -62,17 +62,18 @@ class MenuBuilder {
         return $can_see;
     }
 
-    protected function parseMenuItem($item) {
+    protected function parseMenuItem($item, $key) {
         $hrefClass = isset($item['link']['class']) ? $item['link']['class'] : '';
         $hrefExtra = isset($item['link']['extra']) ? $item['link']['extra'] : '';
         $liclass = isset($item['li']['class']) ? $item['li']['class'] : '';
-        $return = '<li class="' . $liclass . '"><a href="' . $item['link']['link'] . '" class="' . $hrefClass . '" ' . $hrefExtra . '>' . $item['link']['text'] . '</a>';
+        $sub = isset($item['submenus']) ? ' data-toggle="collapse" data-target="#'.$key.'"' : '';
+        $return = '<li class="' . $liclass . '"'.$sub.'><a href="' . $item['link']['link'] . '" class="' . $hrefClass . '" ' . $hrefExtra . '>' . $item['link']['text'] . '</a>';
         if (isset($item['submenus'])) {
             $ulClass = isset($item['ul_submenu_class']) ? $item['ul_submenu_class'] : '';
-            $return .= '<ul class="' . $ulClass . '">';
-            foreach ($item['submenus'] as $submenu) {
+            $return .= '<ul class="sub-menu collapse ' . $ulClass . '" id="'.$key.'">';
+            foreach ($item['submenus'] as $key => $submenu) {
                 if ($this->checkPermission($submenu)) {
-                    $return .= $this->parseMenuItem($submenu);
+                    $return .= $this->parseMenuItem($submenu, $key);
                 }
             }
             $return .= "</ul>";
@@ -116,15 +117,15 @@ class MenuBuilder {
         if (isset($this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]])) {
             if ($submenu === true) {
                 if (isset($this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'])) {
-                    $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'] = $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'] . ' expanded';
+                    $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'] = $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'] . ' ';
                 } else {
-                    $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'] = ' expanded';
+                    $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'] = ' ';
                 }
             } else {
-                if (isset($this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['link']['class'])) {
-                    $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['link']['class'] = $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['link']['class'] . ' active';
+                if (isset($this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'])) {
+                    $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'] = $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['link']['class'] . ' active';
                 } else {
-                    $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['link']['class'] = 'active';
+                    $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'] = 'active';
                 }
             }
         }
@@ -135,9 +136,9 @@ class MenuBuilder {
         $this->setSubMenuActive($menu, true);
         if (isset($this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['submenus'][$menu[3]])) {
             if (isset($this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['submenus'][$menu[3]]['li']['class'])) {
-                $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['submenus'][$menu[3]]['link']['class'] = $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['submenus'][$menu[3]]['link']['class'] . ' active';
+                $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['submenus'][$menu[3]]['li']['class'] = $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['submenus'][$menu[3]]['link']['class'] . ' active';
             } else {
-                $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['submenus'][$menu[3]]['link']['class'] = 'active';
+                $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['submenus'][$menu[3]]['li']['class'] = 'active';
             }
         }
     }
