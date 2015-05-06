@@ -1,5 +1,5 @@
 <?php
-Route::group(['prefix' => config('laravel-admin.routePrefix')], function () {
+Route::group(['prefix' => 'backend'], function () {
 	Route::get('/login', [
 		'as' => 'LaravelAdminLogin',
 		'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\LoginController@getLogin'
@@ -12,4 +12,10 @@ Route::group(['prefix' => config('laravel-admin.routePrefix')], function () {
 		'as' => 'LaravelAdminHome',
 		'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\HomeController@index'
 	]);
+        Route::group(['prefix' => 'users'], function(){
+            Route::get('/', [
+                    'as' => 'LaravelAdminUsers',
+                    'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@index'
+            ]);
+        });
 });

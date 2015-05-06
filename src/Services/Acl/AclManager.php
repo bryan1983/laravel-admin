@@ -2,13 +2,15 @@
 
 namespace Joselfonseca\LaravelAdmin\Services\Acl;
 
-class AclManager{
+class AclManager {
 
-	public function canSee($permission){
-		/**
-		 * TO DO
-		**/
-		return true;
-	}
+    public function canSee($permission)
+    {
+        $user = \Auth::user();
+        if(!empty($permission)){
+            return $user->can($permission);
+        }
+        return false;
+    }
 
 }
