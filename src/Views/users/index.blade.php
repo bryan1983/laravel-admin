@@ -6,6 +6,7 @@
 
 <div class="container-fluid admin">
 	<h1>{{trans('LaravelAdmin::laravel-admin.usersListTitle')}}</h1>
+	
 </div>
 	
 @endsection
