@@ -2,8 +2,6 @@
 
 namespace Joselfonseca\LaravelAdmin\Services\Menu;
 
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Session;
 use Joselfonseca\LaravelAdmin\Services\Acl\AclManager;
 
 /**
@@ -11,22 +9,25 @@ use Joselfonseca\LaravelAdmin\Services\Acl\AclManager;
  *
  * @author desarrollo
  */
-class MenuBuilder {
+class MenuBuilder
+{
 
     public $items;
     public $acl;
     public $frontMenu;
 
-    public function __construct(AclManager $acl) {
+    public function __construct(AclManager $acl)
+    {
         $this->acl = $acl;
         $this->items = [
             'sidebar' => [],
             'topnav' => [],
-            'user' => []
+            'user' => [],
         ];
     }
 
-    protected function setItems() {
+    protected function setItems()
+    {
         if (isset($this->frontMenu['sidebar'])) {
             $this->setMenuItem($this->frontMenu['sidebar'], 'sidebar');
         }
@@ -38,7 +39,8 @@ class MenuBuilder {
         }
     }
 
-    protected function parseMenu($menu) {
+    protected function parseMenu($menu)
+    {
         $tree = [];
         foreach ($menu as $key => $item) {
             if ($this->checkPermission($item)) {
@@ -48,7 +50,8 @@ class MenuBuilder {
         return $tree;
     }
 
-    protected function checkPermission($item) {
+    protected function checkPermission($item)
+    {
         $can_see = true;
         if (isset($item['permissions']) && is_array($item['permissions'])) {
             foreach ($item['permissions'] as $permission) {
@@ -62,15 +65,16 @@ class MenuBuilder {
         return $can_see;
     }
 
-    protected function parseMenuItem($item, $key) {
+    protected function parseMenuItem($item, $key)
+    {
         $hrefClass = isset($item['link']['class']) ? $item['link']['class'] : '';
         $hrefExtra = isset($item['link']['extra']) ? $item['link']['extra'] : '';
         $liclass = isset($item['li']['class']) ? $item['li']['class'] : '';
-        $sub = isset($item['submenus']) ? ' data-toggle="collapse" data-target="#'.$key.'"' : '';
-        $return = '<li class="' . $liclass . '"'.$sub.'><a href="' . $item['link']['link'] . '" class="' . $hrefClass . '" ' . $hrefExtra . '>' . $item['link']['text'] . '</a>';
+        $sub = isset($item['submenus']) ? ' data-toggle="collapse" data-target="#' . $key . '"' : '';
+        $return = '<li class="' . $liclass . '"' . $sub . '><a href="' . $item['link']['link'] . '" class="' . $hrefClass . '" ' . $hrefExtra . '>' . $item['link']['text'] . '</a>';
         if (isset($item['submenus'])) {
-            $ulClass = isset($item['ul_submenu_class']) ? $item['ul_submenu_class'] : '';
-            $return .= '<ul class="sub-menu collapse ' . $ulClass . '" id="'.$key.'">';
+            $ulClass = isset($item['ul_submenu_class']) ? $item['ul_submenu_class'] : 'collapse';
+            $return .= '<ul class="sub-menu ' . $ulClass . '" id="' . $key . '">';
             foreach ($item['submenus'] as $key => $submenu) {
                 if ($this->checkPermission($submenu)) {
                     $return .= $this->parseMenuItem($submenu, $key);
@@ -82,27 +86,30 @@ class MenuBuilder {
         return $return;
     }
 
-    public function setMenuItem(array $items = [], $group = 'sidebar') {
+    public function setMenuItem(array $items = [], $group = 'sidebar')
+    {
         if (!isset($this->items[$group])) {
             throw new \Exception("The group especified does not exists");
         }
         $this->items[$group] = array_merge($this->items[$group], $items);
     }
 
-    public function render($group = 'sidebar', $active = null) {
+    public function render($group = 'sidebar', $active = null)
+    {
         $this->setActiveMenu($active);
         if (!isset($this->items[$group])) {
             throw new \Exception("The group especified does not exists");
         }
         $menu = $this->items[$group];
         $string = "";
-        foreach($this->parseMenu($menu) as $m){
+        foreach ($this->parseMenu($menu) as $m) {
             $string .= $m;
         }
         return $string;
     }
 
-    protected function setSingleMenuActive($menu) {
+    protected function setSingleMenuActive($menu)
+    {
         if (isset($this->items[$menu[0]][$menu[1]])) {
             if (isset($this->items[$menu[0]][$menu[1]]['li']['class'])) {
                 $this->items[$menu[0]][$menu[1]]['li']['class'] = $this->items[$menu[0]][$menu[1]]['li']['class'] . ' active expanded';
@@ -112,39 +119,23 @@ class MenuBuilder {
         }
     }
 
-    protected function setSubMenuActive($menu, $submenu = false) {
+    protected function setSubMenuActive($menu, $submenu = false)
+    {
         $this->setSingleMenuActive($menu);
         if (isset($this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]])) {
-            if ($submenu === true) {
-                if (isset($this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'])) {
-                    $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'] = $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'] . ' ';
-                } else {
-                    $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'] = ' ';
-                }
+            if (isset($this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'])) {
+                $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'] = $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['link']['class'] . ' active';
+                $this->items[$menu[0]][$menu[1]]['ul_submenu_class'] = ' collapsed in';
             } else {
-                if (isset($this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'])) {
-                    $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'] = $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['link']['class'] . ' active';
-                } else {
-                    $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'] = 'active';
-                }
+                $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'] = 'active';
+                $this->items[$menu[0]][$menu[1]]['ul_submenu_class'] = ' collapsed in';
             }
         }
     }
 
-    protected function setSubSubMenuActive($menu) {
-        $this->setSingleMenuActive($menu);
-        $this->setSubMenuActive($menu, true);
-        if (isset($this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['submenus'][$menu[3]])) {
-            if (isset($this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['submenus'][$menu[3]]['li']['class'])) {
-                $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['submenus'][$menu[3]]['li']['class'] = $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['submenus'][$menu[3]]['link']['class'] . ' active';
-            } else {
-                $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['submenus'][$menu[3]]['li']['class'] = 'active';
-            }
-        }
-    }
-
-    public function setActiveMenu($name) {
-        if(!empty($name)){
+    public function setActiveMenu($name)
+    {
+        if (!empty($name)) {
             $menu = explode('.', $name);
             if (count($menu) === 2) {
                 $this->setSingleMenuActive($menu);
@@ -152,13 +143,11 @@ class MenuBuilder {
             if (count($menu) === 3) {
                 $this->setSubMenuActive($menu);
             }
-            if (count($menu) === 4) {
-                $this->setSubSubMenuActive($menu);
-            }
         }
     }
-    
-    public function setMenu($menu){
+
+    public function setMenu($menu)
+    {
         $this->frontMenu = $menu;
         $this->setItems();
 

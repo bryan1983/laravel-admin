@@ -12,10 +12,10 @@ Route::group(['prefix' => 'backend'], function () {
 		'as' => 'LaravelAdminHome',
 		'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\HomeController@index'
 	]);
-        Route::group(['prefix' => 'users'], function(){
-            Route::get('/', [
-                    'as' => 'LaravelAdminUsers',
-                    'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@index'
-            ]);
-        });
+    Route::group(['prefix' => 'users'], function(){
+        Route::get('/', [
+                'as' => 'LaravelAdminUsers',
+                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@index'
+        ]);
+    });
 });
