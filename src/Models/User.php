@@ -3,13 +3,12 @@
 namespace Joselfonseca\LaravelAdmin\Models;
 
 use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Kodeine\Acl\Traits\HasRole;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract{
+class User extends BaseModel implements AuthenticatableContract, CanResetPasswordContract{
 
 	use Authenticatable,
         CanResetPassword,
@@ -35,5 +34,23 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function getFields() {
+        return [
+            'ID', 'Name', 'Email'
+        ];
+    }
+
+    public function getRows() {
+        $data = [];
+        $this->get()->each(function($row) use(&$data) {
+            $data[] = [
+                'id' => $row->id,
+                'name' => $row->name,
+                'email' => $row->email,
+            ];
+        });
+        return $data;
+    }
 
 }

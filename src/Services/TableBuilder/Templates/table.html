@@ -1,0 +1,30 @@
+<table class="table table-condensed table-hover dataTable">
+    <thead>
+        <tr>
+            {% for item in fields %}
+            <th>{{ item }}</th>
+            {% endfor %}
+            {% if actions %}
+            <th>Acciones</th>
+            {% endif %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in rows %}
+        <tr>
+            {% for rowItem in row %}
+            <td>{{ rowItem }}</td>
+            {% endfor %}
+            {% if actions %}
+            <td>
+                {% for action in actions %}
+                <a href="{{ replace_id(action.link, row['id']) }}" class="{{ action.class }}" {% if action.confirm %} data-value="row['id']" {% endif %}>
+                    {{ action.text|raw }}
+                </a>
+                {% endfor %}
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

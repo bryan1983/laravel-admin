@@ -19,10 +19,12 @@ class LaravelAdminServiceProvider extends ServiceProvider
     protected $providers = [
         'Kodeine\Acl\AclServiceProvider',
         'Collective\Html\HtmlServiceProvider',
+        'TwigBridge\ServiceProvider'
     ];
     protected $aliases = [
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
+        'Twig' => 'TwigBridge\Facade\Twig',
     ];
 
     /**
