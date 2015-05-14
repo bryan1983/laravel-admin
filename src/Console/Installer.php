@@ -46,6 +46,7 @@ class Installer extends Command{
 	        $this->info('Please give us a minute while we install everything');
 	        $this->info('Working on ACL');
 	        $this->call('vendor:publish', ['--provider' => 'Kodeine\Acl\AclServiceProvider', '--force' => '']);
+            $this->call('vendor:publish', ['--provider' => 'Joselfonseca\LaravelAdmin\LaravelAdminServiceProvider', '--force' => '', '--tag' => 'LAmigrations']);
 	        $this->info('Migrating Database');
 	        $this->call('migrate');
 	        $this->info('Creating basic user and Roles');

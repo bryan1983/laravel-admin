@@ -42,7 +42,7 @@ class UsersController extends Controller
             'delete' => [
                 'link' => url('backend/users/-id-/delete'),
                 'text' => '<i class="fa fa-times"></i> ' . trans('LaravelAdmin::laravel-admin.delete'),
-                'class' => 'btn btn-danger btn-sm logic-delete',
+                'class' => 'btn btn-danger btn-sm confirm',
                 'confirm' => true,
             ],
         ]);
@@ -56,6 +56,20 @@ class UsersController extends Controller
             ->with('user', $user)
             ->with('roles', $aclManager->getRolesForSelect())
             ->with('activeMenu', 'sidebar.Users');
+    }
+
+    public function create(AclManager $aclManager)
+    {
+        return view('LaravelAdmin::users.create')
+            ->with('roles', $aclManager->getRolesForSelect())
+            ->with('activeMenu', 'sidebar.Users');       
+    }
+
+    public function store(Requests\CreateUserRequest $request)
+    {
+        $this->userRepository->create($request->all());
+        flash()->success(trans('LaravelAdmin::laravel-admin.userCreated'));
+        return Redirect::to('backend/users');
     }
 
     public function update(Requests\UpdateUserRequest $request, $id)
@@ -79,6 +93,28 @@ class UsersController extends Controller
         $this->userRepository->updatePassword($user->id, $request->all());
         flash()->success(trans('LaravelAdmin::laravel-admin.passwordUpdated'));
         return Redirect::back();
+    }
+
+    public function destroy($id)
+    {
+        $user = $user = User::findOrFail($id);
+        $this->userRepository->deleteUser($user);
+        flash()->success(trans('LaravelAdmin::laravel-admin.userDeleted'));
+        return Redirect::back();    
+    }
+
+    public function me(AclManager $aclManager)
+    {
+        $user = User::findOrFail(\Auth::user()->id);
+        return view('LaravelAdmin::users.edit')
+            ->with('user', $user)
+            ->with('roles', $aclManager->getRolesForSelect())
+            ->with('activeMenu', 'sidebar.Users');
+    }
+
+    public function meEdit(Requests\UpdateUserRequest $request)
+    {
+        return $this->update($request, \Auth::user()->id);
     }
 
 }

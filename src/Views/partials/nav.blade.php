@@ -1,4 +1,4 @@
-<div class="navbar navbar-default navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
       <a href="#" class="navbar-brand">{{config('laravel-admin.appName')}}</a>
@@ -17,6 +17,7 @@
           <li class="dropdown">
               <a href="#" class="navbar-profile dropdown-toggle text-bold" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }}<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
+                  <li><a href="{{ route('LaravelAdminUpdateMe') }}">{{trans('LaravelAdmin::laravel-admin.editMyProfile')}}</a></li>
                   <li><a href="/auth/logout">{{trans('LaravelAdmin::laravel-admin.LogoutText')}}</a></li>
               </ul>
           </li>

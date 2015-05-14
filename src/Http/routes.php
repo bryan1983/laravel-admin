@@ -17,6 +17,22 @@ Route::group(['prefix' => 'backend'], function () {
                 'as' => 'LaravelAdminUsers',
                 'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@index'
         ]);
+        Route::get('/me/edit', [
+                'as' => 'LaravelAdminUpdateMe',
+                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@me'
+        ]);
+        Route::post('/me/edit', [
+                'as' => 'LaravelAdminUpdateMePost',
+                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@meEdit'
+        ]);
+        Route::get('/create', [
+                'as' => 'LaravelAdminUsersCreate',
+                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@create'
+        ]);
+        Route::post('/create', [
+                'as' => 'LaravelAdminUsersCreatePost',
+                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@store'
+        ]);
         Route::get('/{id}/edit', [
                 'as' => 'LaravelAdminUsersEdit',
                 'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@edit'
@@ -29,6 +45,9 @@ Route::group(['prefix' => 'backend'], function () {
                 'as' => 'updatePassword',
                 'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@updatePassword'
         ]);
-        
+        Route::get('/{id}/delete', [
+                'as' => 'deleteUser',
+                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@destroy'
+        ]);
     });
 });

@@ -49,6 +49,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
              ->loadRoutes()
              ->publishesConfiguration()
              ->publishesAssets()
+             ->publishesMigrations()
              ->registerTranslations()
              ->setMenuComposer($menu);
     }
@@ -90,8 +91,16 @@ class LaravelAdminServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../../public' => public_path('vendor/laravelAdmin'),
-        ], 'public');
+        ], 'LApublic');
         return $this;
+    }
+
+    private function publishesMigrations()
+    {
+        $this->publishes([
+            __DIR__ . '/../Migrations' => base_path('database/migrations'),
+        ], 'LAmigrations');
+        return $this;    
     }
 
     private function loadRoutes()
@@ -115,6 +124,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
         ], 'LALang');
         return $this;
     }
+
     private function setMenuComposer($menu)
     {
         View::composer('*', function ($view) use ($menu) {

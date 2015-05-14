@@ -7,7 +7,7 @@
 <div class="container-fluid admin">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-			{{trans('LaravelAdmin::laravel-admin.editUserTitle').' '.$user->name}}
+			{{trans('LaravelAdmin::laravel-admin.createUserTitle')}} 
 		</div>
 		<div class="panel-body">
 			<div class="row">
@@ -18,7 +18,7 @@
                 		</div>
                 	</div>
                 	<div class="row">
-                		{!! Form::model($user, []) !!}
+                		{!! Form::open(['route' => 'LaravelAdminUsersCreatePost']) !!}
 	                        <div class="col-md-6">
 	                            <div class="form-group">
 	                                {!! Form::label('name', trans('LaravelAdmin::laravel-admin.userName')) !!}
@@ -35,46 +35,34 @@
 	                                @endif
 	                            </div>
 	                            <div class="form-group">
+	                                {!! Form::label('password', trans('LaravelAdmin::laravel-admin.password')) !!}
+	                                {!! Form::password('password', ['class' => 'form-control']) !!}
+	                                @if($errors->has('password'))
+	                                    <span class="text-danger">{{$errors->first('password')}}</span>
+	                                @endif
+	                            </div>
+	                            <div class="form-group">
+	                                {!! Form::label('password_confirmation', trans('LaravelAdmin::laravel-admin.passwordConfirmation')) !!}
+	                                {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
+	                                @if($errors->has('password_confirmation'))
+	                                    <span class="text-danger">{{$errors->first('password_confirmation')}}</span>
+	                                @endif
+	                            </div>
+	                            <div class="form-group">
 	                                {!! Form::submit(trans('LaravelAdmin::laravel-admin.save'), ['class' => 'btn btn-primary']) !!}
 	                            </div>
 	                        </div>
 	                        <div class="col-md-6">
 	                            <div class="form-group">
 	                                {!! Form::label('name', trans('LaravelAdmin::laravel-admin.userRoles')) !!}
-	                                {!! Form::select('roles[]', $roles, $user->getRolesForSelect(), ['class' => 'form-control selectBootstrap', 'multiple' => 'multiple']) !!}
+	                                {!! Form::select('roles[]', $roles, null, ['class' => 'form-control selectBootstrap', 'multiple' => 'multiple']) !!}
 	                            </div>
 	                        </div>
                         {!! Form::close() !!}
                     </div>
-                    <hr />
-                    <div class="row">
-                    	<div class="col-lg-6">
-                    		<h2>{{ trans('LaravelAdmin::laravel-admin.resetPasswordTitle') }}</h2>
-                    		{!! Form::open(['route' => ['updatePassword', $user->id]]) !!}
-                            <div class="form-group">
-                                {!! Form::label('password', trans('LaravelAdmin::laravel-admin.newPassword')) !!}
-                                {!! Form::password('password', ['class' => 'form-control']) !!}
-                                @if($errors->has('password'))
-                                    <span class="text-danger">{{$errors->first('password')}}</span>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('password_confirmation', trans('LaravelAdmin::laravel-admin.passwordConfirmation')) !!}
-                                {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
-                                @if($errors->has('password_confirmation'))
-                                    <span class="text-danger">{{$errors->first('password_confirmation')}}</span>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                {!! Form::submit(trans('LaravelAdmin::laravel-admin.update'), ['class' => 'btn btn-primary']) !!}
-                            </div>
-                            {!! Form::close() !!}
-                    	</div>
-                    </div>
 	            </div>
-	        </div>		
+	        </div>	
 		</div>
 	</div>
 </div>
-
 @endsection

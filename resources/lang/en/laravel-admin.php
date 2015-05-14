@@ -11,7 +11,7 @@ return [
 	'LoginErrorHeader' => '<strong>Whoops!</strong> There were some problems with your input.',
 	'LogoutText' => 'Logout',
 	'usersTitle' => 'Users',
-	'usersListTitle' => 'Administrar Usuarios',
+	'usersListTitle' => 'Users Management',
 	'userName' => 'Name',
 	'userEmail' => 'Email',
 	'edit' => 'Edit',
@@ -26,5 +26,12 @@ return [
 	'userRoles' => 'Roles',
 	'emailTaken' => 'The email is already taken',
 	'userUpdated' => 'The user has been updated!',
-	'passwordUpdated' => 'The password has been updated'
+	'passwordUpdated' => 'The password has been updated',
+	'createUserTitle' => 'Create User',
+	'password' => 'Password',
+	'passwordConfirmation' => 'Password Confirmation',
+	'newPassword' => 'New Password',
+	'userCreated' => 'The user has been created',
+	'userDeleted' => 'The user has been deleted',
+	'editMyProfile' => 'Edit my profile'
 ];

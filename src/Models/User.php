@@ -7,11 +7,13 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Kodeine\Acl\Traits\HasRole;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends BaseModel implements AuthenticatableContract, CanResetPasswordContract{
 
 	use Authenticatable,
         CanResetPassword,
+        SoftDeletes,
         HasRole;
 
     /**
@@ -59,7 +61,6 @@ class User extends BaseModel implements AuthenticatableContract, CanResetPasswor
         $this->roles->each(function($role) use (&$data){
             $data[] = $role->id;
         });
-        //dd($data);
         return $data;
     }
 

@@ -10,7 +10,7 @@ class UserRepository {
      * @param $user
      * @return static
      */
-    public function create($user){
+    public function create($data){
         $data['password'] = bcrypt($data['password']);
         $u = User::create($data);
         $roles = (!isset($data['roles'])) ? [] : $data['roles'];
@@ -56,6 +56,11 @@ class UserRepository {
         $u->password = bcrypt($data['password']);
         $u->save();
         return $u;
+    }
+
+    public function deleteUser($user)
+    {
+        return $user->delete();
     }
 
 }
