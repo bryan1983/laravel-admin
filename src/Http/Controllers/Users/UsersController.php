@@ -3,37 +3,82 @@
 namespace Joselfonseca\LaravelAdmin\Http\Controllers\Users;
 
 use Joselfonseca\LaravelAdmin\Http\Controllers\Controller;
+use Joselfonseca\LaravelAdmin\Http\Requests;
 use Joselfonseca\LaravelAdmin\Models\User;
+use Joselfonseca\LaravelAdmin\Services\Acl\AclManager;
 use Joselfonseca\LaravelAdmin\Services\TableBuilder\TableBuilder;
+use Joselfonseca\LaravelAdmin\Services\Users\UserRepository;
+use Illuminate\Support\Facades\Redirect;
+use Exception;
 
 /**
  * Description of UsersController
  *
  * @author jfonseca
  */
-class UsersController extends Controller {
+class UsersController extends Controller
+{
+
+    private $userRepository;
+
+    public function __construct(UserRepository $r)
+    {
+        $this->userRepository = $r;
+    }
 
     public function index(TableBuilder $table)
     {
-    	$table->setActions([
+        $table->setActions([
             'edit' => [
-                'link' => url('AclManager/role/edit/-id-'),
-                'text' => '<i class="fa fa-pencil"></i> Editar',
-                'class' => 'btn btn-primary btn-sm'
+                'link' => url('backend/users/-id-/edit/'),
+                'text' => '<i class="fa fa-pencil"></i> ' . trans('LaravelAdmin::laravel-admin.edit'),
+                'class' => 'btn btn-primary btn-sm',
             ],
             'permissions' => [
-                'link' => url('AclManager/role/edit/-id-'),
-                'text' => '<i class="fa fa-lock"></i> Permisos',
-                'class' => 'btn btn-default btn-sm'
+                'link' => url('backend/users/-id-/permissions'),
+                'text' => '<i class="fa fa-lock"></i> ' . trans('LaravelAdmin::laravel-admin.permissions'),
+                'class' => 'btn btn-default btn-sm',
             ],
             'delete' => [
-                'link' => url('AclManager/role/delete/-id-'),
-                'text' => '<i class="fa fa-times"></i> Eliminar',
+                'link' => url('backend/users/-id-/delete'),
+                'text' => '<i class="fa fa-times"></i> ' . trans('LaravelAdmin::laravel-admin.delete'),
                 'class' => 'btn btn-danger btn-sm logic-delete',
-                'confirm' => true
-            ]
+                'confirm' => true,
+            ],
         ]);
-		return view('LaravelAdmin::users.index')->with('table', $table->setModel(new User())->render())->with('activeMenu', 'sidebar.Users.List');    	    
+        return view('LaravelAdmin::users.index')->with('table', $table->setModel(new User())->render())->with('activeMenu', 'sidebar.Users.List');
+    }
+
+    public function edit(AclManager $aclManager, $id)
+    {
+        $user = User::findOrFail($id);
+        return view('LaravelAdmin::users.edit')
+            ->with('user', $user)
+            ->with('roles', $aclManager->getRolesForSelect())
+            ->with('activeMenu', 'sidebar.Users');
+    }
+
+    public function update(Requests\UpdateUserRequest $request, $id)
+    {
+        $user = User::findOrFail($id);
+        if ($request->get('email') !== $user->email) {
+            try {
+                $this->userRepository->updateWithEmail($user->id, $request->all());
+            } catch (Exception $e) {
+                return Redirect::back()->withErrors(['email' => trans('LaravelAdmin::laravel-admin.emailTaken')]);
+            }
+        }
+        $this->userRepository->update($user->id, $request->all());
+        flash()->success(trans('LaravelAdmin::laravel-admin.userUpdated'));
+        return Redirect::back();
+    }
+
+    public function updatePassword(Requests\UpdatePasswordRequest $request, $id)
+    {
+        $user = $user = User::findOrFail($id);
+        $this->userRepository->updatePassword($user->id, $request->all());
+        flash()->success(trans('LaravelAdmin::laravel-admin.passwordUpdated'));
+        return Redirect::back();
     }
 
 }

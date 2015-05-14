@@ -17,5 +17,18 @@ Route::group(['prefix' => 'backend'], function () {
                 'as' => 'LaravelAdminUsers',
                 'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@index'
         ]);
+        Route::get('/{id}/edit', [
+                'as' => 'LaravelAdminUsersEdit',
+                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@edit'
+        ]);
+        Route::post('/{id}/edit', [
+                'as' => 'updateUser',
+                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@update'
+        ]);
+        Route::post('/{id}/edit/password', [
+                'as' => 'updatePassword',
+                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@updatePassword'
+        ]);
+        
     });
 });

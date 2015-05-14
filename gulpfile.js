@@ -9,6 +9,8 @@ elixir(function(mix) {
     mix.scripts([
     	"vendor/dataTables/media/js/jquery.dataTables.min.js",
     	"vendor/dataTables/media/js/datatablesBootstrap.js",
+    	"vendor/bootstrapSelect/dist/js/bootstrap-select.js",
+    	"vendor/bootstrapSelect/dist/js/i18n/defaults-es_CL.js",
         "app.js"
     ]);
 });

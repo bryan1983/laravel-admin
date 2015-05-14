@@ -71,7 +71,8 @@ class MenuBuilder
         $hrefExtra = isset($item['link']['extra']) ? $item['link']['extra'] : '';
         $liclass = isset($item['li']['class']) ? $item['li']['class'] : '';
         $sub = isset($item['submenus']) ? ' data-toggle="collapse" data-target="#' . $key . '"' : '';
-        $return = '<li class="' . $liclass . '"' . $sub . '><a href="' . $item['link']['link'] . '" class="' . $hrefClass . '" ' . $hrefExtra . '>' . $item['link']['text'] . '</a>';
+        $link = ($item['link']['link'] == '#') ? '#' : url($item['link']['link']);
+        $return = '<li class="' . $liclass . '"' . $sub . '><a href="' . $link . '" class="' . $hrefClass . '" ' . $hrefExtra . '>' . $item['link']['text'] . '</a>';
         if (isset($item['submenus'])) {
             $ulClass = isset($item['ul_submenu_class']) ? $item['ul_submenu_class'] : 'collapse';
             $return .= '<ul class="sub-menu ' . $ulClass . '" id="' . $key . '">';

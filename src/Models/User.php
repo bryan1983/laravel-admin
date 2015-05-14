@@ -37,7 +37,7 @@ class User extends BaseModel implements AuthenticatableContract, CanResetPasswor
 
     public function getFields() {
         return [
-            'ID', 'Name', 'Email'
+            'ID', trans('LaravelAdmin::laravel-admin.userName'), trans('LaravelAdmin::laravel-admin.userEmail')
         ];
     }
 
@@ -50,6 +50,16 @@ class User extends BaseModel implements AuthenticatableContract, CanResetPasswor
                 'email' => $row->email,
             ];
         });
+        return $data;
+    }
+
+    public function getRolesForSelect()
+    {
+        $data = [];
+        $this->roles->each(function($role) use (&$data){
+            $data[] = $role->id;
+        });
+        //dd($data);
         return $data;
     }
 

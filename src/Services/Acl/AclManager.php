@@ -13,4 +13,16 @@ class AclManager {
         return false;
     }
 
+    public function getRolesForSelect()
+    {
+    	$modelRoles = config('acl.role', 'Kodeine\Acl\Models\Eloquent\Role');
+        $roles = new $modelRoles;
+        $rolesSelect = [];
+        foreach($roles->all() as $role)
+        {
+            $rolesSelect[$role->id] = $role->name;
+        }
+        return $rolesSelect;
+    }
+
 }

@@ -12,7 +12,7 @@ return [
         'sidebar' => [
             'Dashboard' => [
                 'link' => [
-                    'link' => url('backend/home'),
+                    'link' => 'backend/home',
                     'text' => '<i class="fa fa-dashboard fa-lg"></i> Dashboard',
                 ],
                 'permissions' => []
@@ -26,7 +26,7 @@ return [
                 'submenus' => [
                     'List' => [
                         'link' => [
-                            'link' => url('backend/users'),
+                            'link' => 'backend/users',
                             'text' => 'Listado',
                         ],
                         'permissions' => [],
