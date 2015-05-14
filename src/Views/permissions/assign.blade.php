@@ -7,7 +7,7 @@
 <div class="container-fluid admin">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-			{{trans('LaravelAdmin::laravel-admin.managePermissions')}}
+			{{trans('LaravelAdmin::laravel-admin.managePermissions'). ' - '.$model->name}}
 		</div>
 		<div class="panel-body">
 			<div class="row">
@@ -18,7 +18,16 @@
                 		</div>
                 	</div>
                 	<div class="row">
-                		
+						@foreach($permissions as $permission) 
+						<div class="col-lg-4">
+							<div class="form-group">
+								<label>
+									<h4>{{ $permission['model']->name }}</h4>
+									<small>{{ $permission['model']->description }}</small><br />
+								</label>
+							</div>
+						</div>
+						@endforeach
                     </div>
 	            </div>
 	        </div>		

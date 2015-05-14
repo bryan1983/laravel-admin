@@ -44,5 +44,5 @@ return [
 	'slugAlreadyExisits' => 'The slug already exisist, please use another title',
 	'rolEditionSuccess' => 'The role has been updated',
 	'rolDeleteSuccess' => 'The role has been deleted',
-	'managePermissions' => 'Magane permissions'
+	'managePermissions' => 'Manage permissions'
 ];
