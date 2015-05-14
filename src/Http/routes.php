@@ -50,4 +50,35 @@ Route::group(['prefix' => 'backend'], function () {
                 'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@destroy'
         ]);
     });
+    /** Roles Routes **/
+    Route::group(['prefix' => 'roles'], function(){
+        Route::get('/', [
+            'as' => 'LaravelAdminRoles',
+            'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\RolesController@index'
+        ]);
+        Route::get('/create', [
+            'as' => 'LaravelAdminRolesCreate',
+            'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\RolesController@create'
+        ]);
+        Route::post('/create', [
+            'as' => 'LaravelAdminRolesCreatePost',
+            'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\RolesController@store'
+        ]);
+        Route::get('/{id}/edit', [
+            'as' => 'LaravelAdminRolesEdit',
+            'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\RolesController@edit'
+        ]);
+        Route::post('/{id}/edit', [
+            'as' => 'LaravelAdminRolesEditPost',
+            'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\RolesController@update'
+        ]);
+        Route::get('/{id}/delete', [
+            'as' => 'LaravelAdminRolesDelete',
+            'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\RolesController@destroy'
+        ]);
+        Route::get('/{id}/permissions', [
+            'as' => 'LaravelAdminRolesPermissions',
+            'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\RolesController@permissions'
+        ]);
+    });
 });

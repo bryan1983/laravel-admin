@@ -12,6 +12,8 @@ elixir(function(mix) {
     	"vendor/bootstrapSelect/dist/js/bootstrap-select.js",
     	"vendor/bootstrapSelect/dist/js/i18n/defaults-es_CL.js",
     	"vendor/bootbox/bootbox.min.js",
+    	"vendor/sluglify/speakingurl/speakingurl.min.js",
+    	"vendor/sluglify/sluglify.js",
         "app.js"
     ]);
 });

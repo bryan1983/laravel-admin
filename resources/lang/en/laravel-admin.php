@@ -33,5 +33,16 @@ return [
 	'newPassword' => 'New Password',
 	'userCreated' => 'The user has been created',
 	'userDeleted' => 'The user has been deleted',
-	'editMyProfile' => 'Edit my profile'
+	'editMyProfile' => 'Edit my profile',
+	'rolesListTitle' => 'Roles',
+	'createRoleTitle' => 'Create Role',
+	'roleName' => 'Name',
+	'roleSlug' => 'Slug',
+	'roleDescription' => 'Description',
+	'rolCreationSuccess' => 'The role has been created',
+	'editRoleTitle' => 'Edit role',
+	'slugAlreadyExisits' => 'The slug already exisist, please use another title',
+	'rolEditionSuccess' => 'The role has been updated',
+	'rolDeleteSuccess' => 'The role has been deleted',
+	'managePermissions' => 'Magane permissions'
 ];

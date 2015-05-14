@@ -27,7 +27,14 @@ return [
                     'List' => [
                         'link' => [
                             'link' => 'backend/users',
-                            'text' => 'Listado',
+                            'text' => 'List',
+                        ],
+                        'permissions' => [],
+                    ],
+                    'Roles' => [
+                        'link' => [
+                            'link' => 'backend/roles',
+                            'text' => 'Roles',
                         ],
                         'permissions' => [],
                     ]
