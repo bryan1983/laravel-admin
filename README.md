@@ -5,27 +5,12 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/joselfonseca/laravel-admin/master.svg?style=flat-square)](https://travis-ci.org/joselfonseca/laravel-admin)
 [![Total Downloads](https://img.shields.io/packagist/dt/joselfonseca/laravel-admin.svg?style=flat-square)](https://packagist.org/packages/joselfonseca/laravel-admin)
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/026eae5c-8fdd-47c8-b657-b0896a6b5284/big.png)](https://insight.sensiolabs.com/projects/026eae5c-8fdd-47c8-b657-b0896a6b5284)
 
-Laravel Admin. A work in progress package
+Have a Laravel 5 admin panel with users and permissions ready to go!
 
-## Install
+## Documentation
 
-Via Composer
-
-``` bash
-$ composer require joselfonseca/laravel-admin
-```
-
-## Usage
-
-Comming soon...
-
-## Testing
-
-``` bash
-$ phpunit
-```
+I am still working on the documentation for this package, please visit [https://joselfonseca.atlassian.net/wiki/x/FwAY](https://joselfonseca.atlassian.net/wiki/x/FwAY)
 
 ## Contributing
 
@@ -33,7 +18,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email :author_email instead of using the issue tracker.
+If you discover any security related issues, please email jose at ditecnologia dot com instead of using the issue tracker.
 
 ## Credits
 
