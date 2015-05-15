@@ -60,6 +60,12 @@ class Installer
         $deleteUser->display_name = 'Delete Users';
         $deleteUser->description  = 'Delete Users';
         $deleteUser->save();
+        /** list Users **/
+        $listUser = new Permission();
+        $listUser->name = 'list-users';
+        $listUser->display_name = 'List Users';
+        $listUser->description  = 'List Users and Manage them';
+        $listUser->save();
 		return [
             $editUser, $createUser, $deleteUser
         ];
@@ -67,27 +73,21 @@ class Installer
 
     private function createAclPermissions()
     {
-        /** Edit User **/
-        $editUserPermissions = new Permission();
-        $editUserPermissions->name = 'edit-user-permissions';
-        $editUserPermissions->display_name = 'Edit User Permissions';
-        $editUserPermissions->description  = 'Edit existing users permissions';
-        $editUserPermissions->save();
-        /** Create User **/
+        /** Permissions crud **/
         $permissionsCrud = new Permission();
         $permissionsCrud->name = 'permissions-crud';
         $permissionsCrud->display_name = 'Permissions Crud';
         $permissionsCrud->description  = 'Create, update and delete Permissions';
         $permissionsCrud->save();
-        /** Delete User **/
+        /** roles crud **/
         $rolesCrud = new Permission();
         $rolesCrud->name = 'roles-crud';
         $rolesCrud->display_name = 'Roles Crud';
         $rolesCrud->description  = 'Create, update and delete roles';
         $rolesCrud->save();
         return [
-            $editUserPermissions, $permissionsCrud, $rolesCrud
-        ];    
+            $permissionsCrud, $rolesCrud
+        ];
     }
 
 }

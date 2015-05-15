@@ -1654,7 +1654,7 @@ $(function(){
 		var $this = $(this);
 		/** get the permissions Model **/
 		$.ajax({
-			url: '/backend/permissions/get',
+			url: '/backend/roles/permissions/get',
 			type: 'GET',
 			dataType: 'json',
 			data : {

@@ -15,11 +15,11 @@ class AclManager {
         $this->user = new $model;
     }
 
-    public function canSee($permission)
+    public function canSee($permissions)
     {
         $user = \Auth::user();
-        if(!empty($permission)){
-            return $user->can($permission);
+        if(!empty($permissions)){
+            return $user->can($permissions);
         }
         return false;
     }

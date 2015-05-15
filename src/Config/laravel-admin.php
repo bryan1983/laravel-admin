@@ -6,6 +6,10 @@ return [
      * */
     'appName' => "Laravel Admin Panel",
     /**
+     * Route to go after login
+    **/ 
+    'afterLoginRoute' => 'backend/users',
+    /**
      * Menu Items
      * */
     'menu' => [
@@ -22,28 +26,28 @@ return [
                     'link' => '#',
                     'text' => '<i class="fa fa-user fa-lg"></i> Users',
                 ],
-                'permissions' => [],
+                'permissions' => ['list-users'],
                 'submenus' => [
                     'List' => [
                         'link' => [
                             'link' => 'backend/users',
                             'text' => 'List',
                         ],
-                        'permissions' => [],
+                        'permissions' => ['list-users'],
                     ],
                     'Roles' => [
                         'link' => [
                             'link' => 'backend/roles',
                             'text' => 'Roles',
                         ],
-                        'permissions' => [],
+                        'permissions' => ['roles-crud'],
                     ],
                     'Permissions' => [
                         'link' => [
                             'link' => 'backend/permissions',
                             'text' => 'Permissions',
                         ],
-                        'permissions' => [],
+                        'permissions' => ['permissions-crud'],
                     ]
 
                 ]

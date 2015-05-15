@@ -60,5 +60,7 @@ return [
 	'permissionCreationSuccess' => 'The permission has been created',
 	'permissionEditionSuccess' => 'The permission has been updated',
 	'permissionsEditTitle' => 'Edit permission',
-	'permissionDeleteSuccess' => 'The permission has been deleted'
+	'permissionDeleteSuccess' => 'The permission has been deleted',
+	'unauthoricedTitle' => 'Unauthoriced Access',
+	'unauthoricedText' => 'The resource you are trying to access in not available for your profile'
 ];
