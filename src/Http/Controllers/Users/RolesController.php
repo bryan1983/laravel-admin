@@ -78,7 +78,7 @@ class RolesController extends Controller
     	$role->fill($request->all());
     	$role->save();
     	flash()->success(trans('LaravelAdmin::laravel-admin.rolEditionSuccess'));
-    	return Redirect::back();
+    	return Redirect::to('backend/roles');
     }
 
     public function destroy($id)
@@ -87,7 +87,6 @@ class RolesController extends Controller
     	$role->delete();
     	flash()->success(trans('LaravelAdmin::laravel-admin.rolDeleteSuccess'));
     	return Redirect::to('backend/roles');
-
     }
 
     public function permissions($id)

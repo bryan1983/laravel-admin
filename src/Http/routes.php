@@ -87,6 +87,30 @@ Route::group(['prefix' => 'backend'], function () {
     });
     /** Permissions Routes **/ 
     Route::group(['prefix' => 'permissions'], function(){
+        Route::get('/', [
+                'as' => 'LaravelAdminPermissions',
+                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@index'
+        ]);
+        Route::get('/create', [
+                'as' => 'LaravelAdminPermissionsCreate',
+                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@create'
+        ]);
+        Route::post('/create', [
+                'as' => 'LaravelAdminPermissionsCreatePost',
+                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@store'
+        ]);
+        Route::get('/{id}/edit', [
+            'as' => 'LaravelAdminPermissionsEdit',
+            'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@edit'
+        ]);
+        Route::post('/{id}/edit', [
+            'as' => 'LaravelAdminPermissionsEditPost',
+            'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@update'
+        ]);
+        Route::get('/{id}/delete', [
+            'as' => 'LaravelAdminPermissionsDelete',
+            'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@destroy'
+        ]);
         Route::get('/get', [
             'as' => 'LaravelAdminPermissionsForSelect',
             'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@getForSelect'

@@ -54,5 +54,11 @@ return [
 	'permissionsAttachSuccess' => 'The permissions have been assigned.',
 	'AssignPermission' => 'Assign Permission',
 	'loadingText' => 'Loading',
-	'AssignPermissionModalText' => 'Please select the permissions you want to assign'
+	'AssignPermissionModalText' => 'Please select the permissions you want to assign',
+	'permissionsListTitle' => 'Permissions',
+	'createPermissionTitle' => 'Create Permission',
+	'permissionCreationSuccess' => 'The permission has been created',
+	'permissionEditionSuccess' => 'The permission has been updated',
+	'permissionsEditTitle' => 'Edit permission',
+	'permissionDeleteSuccess' => 'The permission has been deleted'
 ];

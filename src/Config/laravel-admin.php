@@ -37,7 +37,15 @@ return [
                             'text' => 'Roles',
                         ],
                         'permissions' => [],
+                    ],
+                    'Permissions' => [
+                        'link' => [
+                            'link' => 'backend/permissions',
+                            'text' => 'Permissions',
+                        ],
+                        'permissions' => [],
                     ]
+
                 ]
             ],
         ]
