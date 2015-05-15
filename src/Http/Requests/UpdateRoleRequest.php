@@ -24,8 +24,8 @@ class UpdateRoleRequest extends FormRequest {
 	public function rules()
 	{
 		return [
+			'display_name' => 'required',
 			'name' => 'required',
-			'slug' => 'required',
 			'description' => 'required'
 		];
 	}

@@ -23,6 +23,7 @@ return [
 	'update' => 'Update',
 	'cancel' => 'Cancel',
 	'reset' => 'Reset',
+	'assign' => 'Assign',
 	'userRoles' => 'Roles',
 	'emailTaken' => 'The email is already taken',
 	'userUpdated' => 'The user has been updated!',
@@ -44,5 +45,14 @@ return [
 	'slugAlreadyExisits' => 'The slug already exisist, please use another title',
 	'rolEditionSuccess' => 'The role has been updated',
 	'rolDeleteSuccess' => 'The role has been deleted',
-	'managePermissions' => 'Manage permissions'
+	'managePermissions' => 'Manage permissions',
+	'permissionName' => 'Permission Name',
+	'permissionslug' => 'Permission Slug',
+	'permissiondescription' => 'Permission Description',
+	'removePermission' => 'Remove Permission',
+	'permissionsDetachedSuccess' => 'The permission has been removed.',
+	'permissionsAttachSuccess' => 'The permissions have been assigned.',
+	'AssignPermission' => 'Assign Permission',
+	'loadingText' => 'Loading',
+	'AssignPermissionModalText' => 'Please select the permissions you want to assign'
 ];

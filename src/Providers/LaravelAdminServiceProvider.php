@@ -17,12 +17,13 @@ class LaravelAdminServiceProvider extends ServiceProvider
     protected $defer = false;
 
     protected $providers = [
-        'Kodeine\Acl\AclServiceProvider',
+        'Zizaco\Entrust\EntrustServiceProvider',
         'Collective\Html\HtmlServiceProvider',
         'TwigBridge\ServiceProvider',
         'Laracasts\Flash\FlashServiceProvider'
     ];
     protected $aliases = [
+        'Entrust' => 'Zizaco\Entrust\EntrustFacade',
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
         'Twig' => 'TwigBridge\Facade\Twig',
@@ -52,6 +53,8 @@ class LaravelAdminServiceProvider extends ServiceProvider
              ->publishesMigrations()
              ->registerTranslations()
              ->setMenuComposer($menu);
+        \Config::set('entrust.role', 'Joselfonseca\LaravelAdmin\Services\Users\Role');     
+        \Config::set('entrust.permission', 'Joselfonseca\LaravelAdmin\Services\Users\Permission');     
     }
 
     private function registerOtherProviders()

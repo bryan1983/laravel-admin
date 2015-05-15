@@ -80,5 +80,20 @@ Route::group(['prefix' => 'backend'], function () {
             'as' => 'LaravelAdminRolesPermissions',
             'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\RolesController@permissions'
         ]);
+        Route::get('/{id}/permissions/{permission}/delete', [
+            'as' => 'LaravelAdminRolesPermissionsDelete',
+            'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\RolesController@permissionsDelete'
+        ]);
+    });
+    /** Permissions Routes **/ 
+    Route::group(['prefix' => 'permissions'], function(){
+        Route::get('/get', [
+            'as' => 'LaravelAdminPermissionsForSelect',
+            'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@getForSelect'
+        ]);
+        Route::post('/assign/', [
+            'as' => 'LaravelAdminAssignPermission',
+            'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@permissionsAssign'
+        ]);
     });
 });

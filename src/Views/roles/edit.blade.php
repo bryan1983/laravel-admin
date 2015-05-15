@@ -21,17 +21,17 @@
                 		{!! Form::model($role, []) !!}
 	                        <div class="col-md-6 slugable">
 	                            <div class="form-group">
-	                                {!! Form::label('name', trans('LaravelAdmin::laravel-admin.roleName')) !!}
-	                                {!! Form::text('name', null, ['class' => 'form-control slug-source']) !!}
-	                                @if($errors->has('name'))
-	                                    <span class="text-danger">{{$errors->first('name')}}</span>
+	                                {!! Form::label('display_name', trans('LaravelAdmin::laravel-admin.roleName')) !!}
+	                                {!! Form::text('display_name', null, ['class' => 'form-control slug-source']) !!}
+	                                @if($errors->has('display_name'))
+	                                    <span class="text-danger">{{$errors->first('display_name')}}</span>
 	                                @endif
 	                            </div>
 	                            <div class="form-group">
-	                                {!! Form::label('slug', trans('LaravelAdmin::laravel-admin.roleSlug')) !!}
-	                                {!! Form::text('slug', null, ['class' => 'form-control slug-target', 'readonly' => 'readonly']) !!}
-	                                @if($errors->has('slug'))
-	                                    <span class="text-danger">{{$errors->first('slug')}}</span>
+	                                {!! Form::label('name', trans('LaravelAdmin::laravel-admin.roleSlug')) !!}
+	                                {!! Form::text('name', null, ['class' => 'form-control slug-target', 'readonly' => 'readonly']) !!}
+	                                @if($errors->has('display_name'))
+	                                    <span class="text-danger">{{$errors->first('display_name')}}</span>
 	                                @endif
 	                            </div>
 	                            <div class="form-group">

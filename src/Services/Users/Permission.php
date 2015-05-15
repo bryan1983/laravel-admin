@@ -2,10 +2,12 @@
 
 namespace Joselfonseca\LaravelAdmin\Services\Users;
 
-use Kodeine\Acl\Models\Eloquent\Permission as Model;
+use Zizaco\Entrust\EntrustPermission as Model;
 
 class Permission extends Model
 {
+
+    protected $fillable = ['display_name', 'name', 'description'];
 
 	public function getFields(){
         return [
@@ -18,8 +20,8 @@ class Permission extends Model
     	$this->get()->each(function($rol) use (&$data){
     		$data[] = [
     			'id' => $rol->id,
-    			'name' => $rol->name,
-    			'slug' => $rol->slug,
+    			'name' => $rol->display_name,
+    			'slug' => $rol->name,
     			'description' => $rol->description
     		];
     	});

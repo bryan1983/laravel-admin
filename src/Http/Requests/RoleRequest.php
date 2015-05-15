@@ -24,8 +24,8 @@ class RoleRequest extends FormRequest {
 	public function rules()
 	{
 		return [
-			'name' => 'required',
-			'slug' => 'required|unique:roles,slug',
+			'display_name' => 'required',
+			'name' => 'required|unique:roles,name',
 			'description' => 'required'
 		];
 	}

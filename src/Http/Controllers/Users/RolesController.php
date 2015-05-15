@@ -68,11 +68,11 @@ class RolesController extends Controller
     public function update(UpdateRoleRequest $request, $id)
     {
     	$role = $this->model->findOrFail($id);
-    	if($role->slug !== $request->get('slug'))
+    	if($role->name !== $request->get('name'))
     	{
-    		if($this->model->where('slug', $request->get('slug'))->count() > 0)
+    		if($this->model->where('name', $request->get('name'))->count() > 0)
     		{
-    			return Redirect::back()->withInput()->withErrors(['slug' => trans('LaravelAdmin::laravel-admin.slugAlreadyExisits')]);
+    			return Redirect::back()->withInput()->withErrors(['name' => trans('LaravelAdmin::laravel-admin.slugAlreadyExisits')]);
     		}
     	}
     	$role->fill($request->all());
@@ -96,7 +96,15 @@ class RolesController extends Controller
     	return view('LaravelAdmin::permissions.assign')
     			->with('type', 'role')
     			->with('model', $role)
-    			->with('permissions', $role->getPermissionsForAssign())
+    			->with('permissions', $role->perms)
     			->with('activeMenu', 'sidebar.Users.Roles');
+    }
+
+    public function permissionsDelete($id, $permission)
+    {
+        $role = $this->model->findOrFail($id);
+        $role->perms()->detach($permission);
+        flash()->success(trans('LaravelAdmin::laravel-admin.permissionsDetachedSuccess'));
+        return Redirect::back();
     }
 }

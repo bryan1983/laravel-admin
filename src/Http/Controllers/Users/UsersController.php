@@ -4,7 +4,6 @@ namespace Joselfonseca\LaravelAdmin\Http\Controllers\Users;
 
 use Joselfonseca\LaravelAdmin\Http\Controllers\Controller;
 use Joselfonseca\LaravelAdmin\Http\Requests;
-use Joselfonseca\LaravelAdmin\Models\User;
 use Joselfonseca\LaravelAdmin\Services\Acl\AclManager;
 use Joselfonseca\LaravelAdmin\Services\TableBuilder\TableBuilder;
 use Joselfonseca\LaravelAdmin\Services\Users\UserRepository;
@@ -20,10 +19,13 @@ class UsersController extends Controller
 {
 
     private $userRepository;
+    private $model;
 
     public function __construct(UserRepository $r)
     {
         $this->userRepository = $r;
+        $model = \Config::get('auth.model');
+        $this->model = new $model;
     }
 
     public function index(TableBuilder $table)
@@ -34,11 +36,6 @@ class UsersController extends Controller
                 'text' => '<i class="fa fa-pencil"></i> ' . trans('LaravelAdmin::laravel-admin.edit'),
                 'class' => 'btn btn-primary btn-sm',
             ],
-            'permissions' => [
-                'link' => url('backend/users/-id-/permissions'),
-                'text' => '<i class="fa fa-lock"></i> ' . trans('LaravelAdmin::laravel-admin.permissions'),
-                'class' => 'btn btn-default btn-sm',
-            ],
             'delete' => [
                 'link' => url('backend/users/-id-/delete'),
                 'text' => '<i class="fa fa-times"></i> ' . trans('LaravelAdmin::laravel-admin.delete'),
@@ -46,12 +43,12 @@ class UsersController extends Controller
                 'confirm' => true,
             ],
         ]);
-        return view('LaravelAdmin::users.index')->with('table', $table->setModel(new User())->render())->with('activeMenu', 'sidebar.Users.List');
+        return view('LaravelAdmin::users.index')->with('table', $table->setModel($this->model)->render())->with('activeMenu', 'sidebar.Users.List');
     }
 
     public function edit(AclManager $aclManager, $id)
     {
-        $user = User::findOrFail($id);
+        $user = $this->model->findOrFail($id);
         return view('LaravelAdmin::users.edit')
             ->with('user', $user)
             ->with('roles', $aclManager->getRolesForSelect())
@@ -74,7 +71,7 @@ class UsersController extends Controller
 
     public function update(Requests\UpdateUserRequest $request, $id)
     {
-        $user = User::findOrFail($id);
+        $user = $this->model->findOrFail($id);
         if ($request->get('email') !== $user->email) {
             try {
                 $this->userRepository->updateWithEmail($user->id, $request->all());
@@ -89,7 +86,7 @@ class UsersController extends Controller
 
     public function updatePassword(Requests\UpdatePasswordRequest $request, $id)
     {
-        $user = $user = User::findOrFail($id);
+        $user = $user = $this->model->findOrFail($id);
         $this->userRepository->updatePassword($user->id, $request->all());
         flash()->success(trans('LaravelAdmin::laravel-admin.passwordUpdated'));
         return Redirect::back();
@@ -97,7 +94,7 @@ class UsersController extends Controller
 
     public function destroy($id)
     {
-        $user = $user = User::findOrFail($id);
+        $user = $this->model->findOrFail($id);
         $this->userRepository->deleteUser($user);
         flash()->success(trans('LaravelAdmin::laravel-admin.userDeleted'));
         return Redirect::back();    
@@ -105,7 +102,7 @@ class UsersController extends Controller
 
     public function me(AclManager $aclManager)
     {
-        $user = User::findOrFail(\Auth::user()->id);
+        $user = $this->model->findOrFail(\Auth::user()->id);
         return view('LaravelAdmin::users.edit')
             ->with('user', $user)
             ->with('roles', $aclManager->getRolesForSelect())

@@ -45,7 +45,7 @@ class Installer extends Command{
 	        $password = $this->secret('Please enter the password for the administrator');
 	        $this->info('Please give us a minute while we install everything');
 	        $this->info('Working on ACL');
-	        $this->call('vendor:publish', ['--provider' => 'Kodeine\Acl\AclServiceProvider', '--force' => '']);
+	        $this->call('entrust:migration');
             $this->call('vendor:publish', ['--provider' => 'Joselfonseca\LaravelAdmin\LaravelAdminServiceProvider', '--force' => '', '--tag' => 'LAmigrations']);
 	        $this->info('Migrating Database');
 	        $this->call('migrate');
@@ -53,7 +53,7 @@ class Installer extends Command{
 	        $installer = new AdminInstaller;
 	        $installer->install($email, $password);
             $this->info('Publishing Package stuff');
-            $this->call('vendor:publish', ['--provider' => 'Joselfonseca\LaravelAdmin\LaravelAdminServiceProvider', '--force' => '', '--tag' => 'public']);
+            $this->call('vendor:publish', ['--provider' => 'Joselfonseca\LaravelAdmin\LaravelAdminServiceProvider', '--force' => '', '--tag' => 'LApublic']);
             $this->call('vendor:publish', ['--provider' => 'Joselfonseca\LaravelAdmin\LaravelAdminServiceProvider', '--force' => '', '--tag' => 'LAconfig']);
             $this->call('vendor:publish', ['--provider' => 'Joselfonseca\LaravelAdmin\LaravelAdminServiceProvider', '--force' => '', '--tag' => 'LALang']);
 	        \DB::commit();

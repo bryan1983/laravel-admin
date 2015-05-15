@@ -2,9 +2,8 @@
 
 namespace Joselfonseca\LaravelAdmin\Installer;
 
-use Kodeine\Acl\Models\Eloquent\Role;
-use Kodeine\Acl\Models\Eloquent\Permission;
-use Joselfonseca\LaravelAdmin\Models\User;
+use Joselfonseca\LaravelAdmin\Services\Users\Role;
+use Joselfonseca\LaravelAdmin\Services\Users\Permission;
 
 class Installer
 {
@@ -14,25 +13,28 @@ class Installer
     	$role = $this->createAdminRole();
     	$user = $this->createAdminUser($email, $password);
     	/** Assign Role to the user **/
-    	$user->assignRole($role);
+    	$user->attachRole($role);
     	/** Create User's Management permissions **/
-    	$permission = $this->createUserPermission();
+    	$userPerms = $this->createUserPermission();
     	/** Asign user management permission to the admin role **/
-    	$role->assignPermission($permission);
+    	$role->attachPermissions($userPerms);
+        $adminperms = $this->createAclPermissions();
+        $role->attachPermissions($adminperms);
     }
 
     private function createAdminRole(){
-    	$role = new Role();
-		$roleAdmin = $role->create([
-		    'name' => 'Administrator',
-		    'slug' => 'administrator',
-		    'description' => 'manage administration privileges'
-		]);
-		return $roleAdmin;
+    	$owner = new Role();
+        $owner->name = 'system-administrator';
+        $owner->display_name = 'System Administrator';
+        $owner->description  = 'The General admin user';
+        $owner->save();
+        return $owner;
     }
 
     private function createAdminUser($email, $password){
-    	return User::create([
+        $model = \Config::get('auth.model');
+        $user = new $model;
+    	return $user->create([
     		'name' => 'Administrator',
     		'email' => $email,
     		'password' => bcrypt($password)
@@ -40,19 +42,52 @@ class Installer
     }
 
     private function createUserPermission(){
-    	$permission = new Permission();
-		$permUser = $permission->create([ 
-		    'name'        => 'user',
-		    'slug'        => [          // pass an array of permissions.
-		        'create'     => true,
-		        'view'       => true,
-		        'update'     => true,
-		        'delete'     => true,
-		        'view.phone' => true
-		    ],
-		    'description' => 'Manage user permissions'
-		]);
-		return $permUser;
+        /** Edit User **/
+    	$editUser = new Permission();
+        $editUser->name = 'edit-user';
+        $editUser->display_name = 'Edit User';
+        $editUser->description  = 'Edit existing users';
+        $editUser->save();
+        /** Create User **/
+        $createUser = new Permission();
+        $createUser->name = 'create-user';
+        $createUser->display_name = 'Create Users';
+        $createUser->description  = 'Create new Users';
+        $createUser->save();
+        /** Delete User **/
+        $deleteUser = new Permission();
+        $deleteUser->name = 'delete-user';
+        $deleteUser->display_name = 'Delete Users';
+        $deleteUser->description  = 'Delete Users';
+        $deleteUser->save();
+		return [
+            $editUser, $createUser, $deleteUser
+        ];
+    }
+
+    private function createAclPermissions()
+    {
+        /** Edit User **/
+        $editUserPermissions = new Permission();
+        $editUserPermissions->name = 'edit-user-permissions';
+        $editUserPermissions->display_name = 'Edit User Permissions';
+        $editUserPermissions->description  = 'Edit existing users permissions';
+        $editUserPermissions->save();
+        /** Create User **/
+        $permissionsCrud = new Permission();
+        $permissionsCrud->name = 'permissions-crud';
+        $permissionsCrud->display_name = 'Permissions Crud';
+        $permissionsCrud->description  = 'Create, update and delete Permissions';
+        $permissionsCrud->save();
+        /** Delete User **/
+        $rolesCrud = new Permission();
+        $rolesCrud->name = 'roles-crud';
+        $rolesCrud->display_name = 'Roles Crud';
+        $rolesCrud->description  = 'Create, update and delete roles';
+        $rolesCrud->save();
+        return [
+            $editUserPermissions, $permissionsCrud, $rolesCrud
+        ];    
     }
 
 }
