@@ -67,7 +67,7 @@ class Installer
         $listUser->description  = 'List Users and Manage them';
         $listUser->save();
 		return [
-            $editUser, $createUser, $deleteUser
+            $editUser, $createUser, $deleteUser, $listUser
         ];
     }
 
