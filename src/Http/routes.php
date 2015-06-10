@@ -4,6 +4,10 @@ Route::group(['prefix' => 'backend'], function () {
 		'as' => 'LaravelAdminLogin',
 		'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\LoginController@getLogin'
 	]);
+        Route::get('/logout', [
+		'as' => 'LaravelAdminLogout',
+		'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\LoginController@getLogout'
+	]);
 	Route::post('/login', [
 		'as' => 'LaravelAdminLoginPost',
 		'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\LoginController@postLogin'

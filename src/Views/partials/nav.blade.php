@@ -18,7 +18,7 @@
               <a href="#" class="navbar-profile dropdown-toggle text-bold" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }}<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                   <li><a href="{{ route('LaravelAdminUpdateMe') }}">{{trans('LaravelAdmin::laravel-admin.editMyProfile')}}</a></li>
-                  <li><a href="/auth/logout">{{trans('LaravelAdmin::laravel-admin.LogoutText')}}</a></li>
+                  <li><a href="{{ route('LaravelAdminLogout') }}">{{trans('LaravelAdmin::laravel-admin.LogoutText')}}</a></li>
               </ul>
           </li>
           @endif
