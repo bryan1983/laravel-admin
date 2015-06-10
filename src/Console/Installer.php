@@ -52,9 +52,9 @@ class Installer extends Command{
 	        $installer = new AdminInstaller;
 	        $installer->install($email, $password);
             $this->info('Publishing Package stuff');
-            $this->call('vendor:publish', ['--provider' => 'Joselfonseca\LaravelAdmin\LaravelAdminServiceProvider', '--force' => '', '--tag' => 'LApublic']);
-            $this->call('vendor:publish', ['--provider' => 'Joselfonseca\LaravelAdmin\LaravelAdminServiceProvider', '--force' => '', '--tag' => 'LAconfig']);
-            $this->call('vendor:publish', ['--provider' => 'Joselfonseca\LaravelAdmin\LaravelAdminServiceProvider', '--force' => '', '--tag' => 'LALang']);
+            $this->call('vendor:publish', ['--provider' => 'Joselfonseca\LaravelAdmin\LaravelAdminServiceProvider', '--tag' => 'LApublic']);
+            $this->call('vendor:publish', ['--provider' => 'Joselfonseca\LaravelAdmin\LaravelAdminServiceProvider', '--tag' => 'LAconfig']);
+            $this->call('vendor:publish', ['--provider' => 'Joselfonseca\LaravelAdmin\LaravelAdminServiceProvider', '--tag' => 'LALang']);
 	        \DB::commit();
 	        $this->info('Thanks! we are done!');
     	}catch(\Exception $e){
