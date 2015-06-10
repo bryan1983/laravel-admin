@@ -3,8 +3,6 @@
 namespace Joselfonseca\LaravelAdmin\Http\Controllers;
 
 use Joselfonseca\LaravelAdmin\Http\Controllers\Controller;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,10 +19,8 @@ class LoginController extends Controller
      * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
      * @return void
      */
-    public function __construct(Guard $auth, Registrar $registrar)
+    public function __construct()
     {
-        $this->auth = $auth;
-        $this->registrar = $registrar;
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
@@ -47,7 +43,7 @@ class LoginController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        if ($this->auth->attempt($credentials, $request->has('remember'))) {
+        if (Auth::attempt($credentials, $request->has('remember'))) {
             return redirect()->to(\Config::get('laravel-admin.afterLoginRoute'));
         }
 
