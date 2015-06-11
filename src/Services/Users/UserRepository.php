@@ -19,8 +19,7 @@ class UserRepository
     {
         $data['password'] = bcrypt($data['password']);
         $u                = $this->model->create($data);
-        $roles            = (!isset($data['roles'])) ? [] : $data['roles'];
-        $u->roles()->sync($roles);
+        $this->updateRoles($u, $data);
         return $u;
     }
 
