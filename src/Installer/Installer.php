@@ -66,8 +66,14 @@ class Installer
         $listUser->display_name = 'List Users';
         $listUser->description  = 'List Users and Manage them';
         $listUser->save();
+        /** list Users **/
+        $seeProfile = new Permission();
+        $seeProfile->name = 'see-profile';
+        $seeProfile->display_name = 'See profile';
+        $seeProfile->description  = 'Let the user access profiles';
+        $seeProfile->save();
 		return [
-            $editUser, $createUser, $deleteUser, $listUser
+            $editUser, $createUser, $deleteUser, $listUser, $seeProfile
         ];
     }
 

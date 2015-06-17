@@ -4,21 +4,22 @@ namespace Joselfonseca\LaravelAdmin\Services\Acl;
 
 use Joselfonseca\LaravelAdmin\Services\Users\Role;
 
-
-class AclManager {
-
+class AclManager
+{
     private $model;
 
     public function __construct()
     {
-        $model = \Config::get('auth.model');
+        $model      = \Config::get('auth.model');
         $this->user = new $model;
     }
 
-    public function canSee($permissions)
+    public function canSee($permissions, $user = null)
     {
-        $user = \Auth::user();
-        if(!empty($permissions)){
+        if (is_null($user)) {
+            $user = \Auth::user();
+        }
+        if (!empty($permissions)) {
             return $user->can($permissions);
         }
         return false;
@@ -26,10 +27,9 @@ class AclManager {
 
     public function getRolesForSelect()
     {
-        $roles = new Role;
+        $roles       = new Role;
         $rolesSelect = [];
-        foreach($roles->all() as $role)
-        {
+        foreach ($roles->all() as $role) {
             $rolesSelect[$role->id] = $role->display_name;
         }
         return $rolesSelect;
@@ -39,7 +39,7 @@ class AclManager {
     {
         $roles = Role::findOrFail($roleId);
         $perms = [];
-        $roles->perms->each(function($permission) use(&$perms){
+        $roles->perms->each(function($permission) use(&$perms) {
             $perms[] = $permission->id;
         });
         return $perms;
@@ -47,9 +47,9 @@ class AclManager {
 
     public function getPermissionsIdsForUser($userId)
     {
-        $user = $this->user->findOrFail($userId);
+        $user  = $this->user->findOrFail($userId);
         $perms = [];
-        $user->perms->each(function($permission) use(&$perms){
+        $user->perms->each(function($permission) use(&$perms) {
             $perms[] = $permission->id;
         });
         return $perms;
@@ -68,5 +68,4 @@ class AclManager {
         $user->perms()->attach($permissions);
         return true;
     }
-
 }
