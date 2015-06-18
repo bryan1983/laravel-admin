@@ -50,7 +50,6 @@ class LaravelAdminServiceProvider extends ServiceProvider
              ->loadRoutes()
              ->publishesConfiguration()
              ->publishesAssets()
-             ->publishesMigrations()
              ->registerTranslations()
              ->setMenuComposer($menu);
         \Config::set('entrust.role', 'Joselfonseca\LaravelAdmin\Services\Users\Role');     
@@ -89,7 +88,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../Config/laravel-admin.php' => config_path('laravel-admin.php'),
-        ], 'LAconfig');
+        ]);
         return $this;
     }
 
@@ -97,16 +96,8 @@ class LaravelAdminServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../../public' => public_path('vendor/laravelAdmin'),
-        ], 'LApublic');
+        ]);
         return $this;
-    }
-
-    private function publishesMigrations()
-    {
-        $this->publishes([
-            __DIR__ . '/../Migrations' => base_path('database/migrations'),
-        ], 'LAmigrations');
-        return $this;    
     }
 
     private function loadRoutes()
@@ -127,7 +118,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'LaravelAdmin');
         $this->publishes([
             __DIR__ . '/../../resources/lang' => base_path('resources/lang'),
-        ], 'LALang');
+        ]);
         return $this;
     }
 
