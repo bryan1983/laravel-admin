@@ -1,7 +1,11 @@
 ;
 $(function () {
     /** Datatables **/
-    $('.dataTable').dataTable();
+    $('.dataTable').dataTable({
+        language: {
+            "url": GLOBALS.datablesLang
+        }
+    });
     /** select bootstrap **/
     $('.selectBootstrap').selectpicker();
     /** Confirm dialog **/

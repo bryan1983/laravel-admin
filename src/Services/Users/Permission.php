@@ -11,7 +11,7 @@ class Permission extends Model
 
 	public function getFields(){
         return [
-        	'ID', 'Name', 'Slug', 'Description'
+        	'ID', trans('LaravelAdmin::laravel-admin.permissionName'), 'Slug', trans('LaravelAdmin::laravel-admin.permissiondescription')
         ];
     }
     

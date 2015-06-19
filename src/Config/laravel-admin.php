@@ -1,5 +1,4 @@
 <?php
-
 return [
     /**
      * The App name
