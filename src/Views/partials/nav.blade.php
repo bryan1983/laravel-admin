@@ -1,28 +1,38 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <a href="#" class="navbar-brand">{{config('laravel-admin.appName')}}</a>
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-    <div class="navbar-collapse collapse" id="navbar-main">
-      <ul class="nav navbar-nav">
-        
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-          @if (!Auth::guest())
-          <li class="dropdown">
-              <a href="#" class="navbar-profile dropdown-toggle text-bold" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }}<span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                  <li><a href="{{ route('LaravelAdminUpdateMe') }}">{{trans('LaravelAdmin::laravel-admin.editMyProfile')}}</a></li>
-                  <li><a href="{{ route('LaravelAdminLogout') }}">{{trans('LaravelAdmin::laravel-admin.LogoutText')}}</a></li>
-              </ul>
-          </li>
-          @endif
-      </ul>
-    </div>
-  </div>
-</div>
+<header class="main-header">
+    <a href="{{url('backend/home')}}" class="logo">
+        {{config('laravel-admin.appName')}}
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                @if (!Auth::guest())
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="//{{'www.gravatar.com/avatar/'.md5(Auth::user()->email)}}" class="user-image" alt="User Image">
+                        <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header">
+                            <img src="//{{'www.gravatar.com/avatar/'.md5(Auth::user()->email)}}" class="img-circle" alt="User Image">
+                            <p>
+                                {{ Auth::user()->name }}
+                            </p>
+                        </li>
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="{{ route('LaravelAdminUpdateMe') }}" class="btn btn-default btn-flat">{{trans('LaravelAdmin::laravel-admin.editMyProfile')}}</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="{{ route('LaravelAdminLogout') }}" class="btn btn-default btn-flat">{{trans('LaravelAdmin::laravel-admin.LogoutText')}}</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                @endif
+            </ul>
+        </div>
+    </nav>
+</header>

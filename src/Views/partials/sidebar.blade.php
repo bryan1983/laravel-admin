@@ -1,12 +1,10 @@
-<div class="nav-side-menu">
-    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-    <div class="menu-list">
-    <ul id="menu-content" class="menu-content collapse out">
-      @if(isset($activeMenu))
+<section class="sidebar">
+    <ul class="sidebar-menu">
+        <li class="header">Menu</li>
+        @if(isset($activeMenu))
         {!! $menu->render('sidebar', $activeMenu) !!}
-      @else
+        @else
         {!! $menu->render('sidebar') !!}
-      @endif  
+        @endif
     </ul>
-  </div>
-</div>
+</section>

@@ -5,7 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>@yield('pageTitle')</title>
-        <link href="{{ asset('/vendor/laravelAdmin/css/laravel-admin.css') }}" rel="stylesheet">
+        <link href="{{ asset('/vendor/laravelAdmin/css/vendors.css') }}" rel="stylesheet">
+        <link href="{{ asset('/vendor/laravelAdmin/css/app.css') }}" rel="stylesheet">
         <!-- Fonts -->
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -15,8 +16,7 @@
                 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body>
-        @include('LaravelAdmin::partials.nav')
+    <body class="login-page">
         @yield('content')
         <!-- Scripts -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

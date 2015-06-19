@@ -64,11 +64,10 @@ class MenuBuilder
         $hrefClass = isset($item['link']['class']) ? $item['link']['class'] : '';
         $hrefExtra = isset($item['link']['extra']) ? $item['link']['extra'] : '';
         $liclass = isset($item['li']['class']) ? $item['li']['class'] : '';
-        $sub = isset($item['submenus']) ? ' data-toggle="collapse" data-target="#' . $key . '"' : '';
         $link = ($item['link']['link'] == '#') ? '#' : url($item['link']['link']);
-        $return = '<li class="' . $liclass . '"' . $sub . '><a href="' . $link . '" class="' . $hrefClass . '" ' . $hrefExtra . '>' . $item['link']['text'] . '</a>';
+        $return = '<li class="treeview ' . $liclass . '"><a href="' . $link . '" class="' . $hrefClass . '" ' . $hrefExtra . '>' . $item['link']['text'] . '</a>';
         if (isset($item['submenus'])) {
-            $ulClass = isset($item['ul_submenu_class']) ? $item['ul_submenu_class'] : 'collapse';
+            $ulClass = isset($item['ul_submenu_class']) ? $item['ul_submenu_class'] : '';
             $return .= '<ul class="sub-menu ' . $ulClass . '" id="' . $key . '">';
             foreach ($item['submenus'] as $key => $submenu) {
                 if ($this->checkPermission($submenu)) {
@@ -107,9 +106,9 @@ class MenuBuilder
     {
         if (isset($this->items[$menu[0]][$menu[1]])) {
             if (isset($this->items[$menu[0]][$menu[1]]['li']['class'])) {
-                $this->items[$menu[0]][$menu[1]]['li']['class'] = $this->items[$menu[0]][$menu[1]]['li']['class'] . ' active expanded';
+                $this->items[$menu[0]][$menu[1]]['li']['class'] = $this->items[$menu[0]][$menu[1]]['li']['class'] . ' active';
             } else {
-                $this->items[$menu[0]][$menu[1]]['li']['class'] = " active expanded";
+                $this->items[$menu[0]][$menu[1]]['li']['class'] = " active";
             }
         }
     }
@@ -120,10 +119,10 @@ class MenuBuilder
         if (isset($this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]])) {
             if (isset($this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'])) {
                 $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'] = $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['link']['class'] . ' active';
-                $this->items[$menu[0]][$menu[1]]['ul_submenu_class'] = ' collapsed in';
+                $this->items[$menu[0]][$menu[1]]['ul_submenu_class'] = ' treeview-menu';
             } else {
                 $this->items[$menu[0]][$menu[1]]['submenus'][$menu[2]]['li']['class'] = 'active';
-                $this->items[$menu[0]][$menu[1]]['ul_submenu_class'] = ' collapsed in';
+                $this->items[$menu[0]][$menu[1]]['ul_submenu_class'] = ' treeview-menu';
             }
         }
     }
