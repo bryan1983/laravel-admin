@@ -20,14 +20,16 @@ class LaravelAdminServiceProvider extends ServiceProvider
         'Zizaco\Entrust\EntrustServiceProvider',
         'Collective\Html\HtmlServiceProvider',
         'TwigBridge\ServiceProvider',
-        'Laracasts\Flash\FlashServiceProvider'
+        'Laracasts\Flash\FlashServiceProvider',
+        'Barryvdh\Debugbar\ServiceProvider',
     ];
     protected $aliases = [
         'Entrust' => 'Zizaco\Entrust\EntrustFacade',
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
         'Twig' => 'TwigBridge\Facade\Twig',
-        'Flash' => 'Laracasts\Flash\Flash'
+        'Flash' => 'Laracasts\Flash\Flash',
+        'Debugbar' => 'Barryvdh\Debugbar\Facade',
     ];
 
     /**

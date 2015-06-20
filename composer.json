@@ -28,7 +28,8 @@
         "zizaco/entrust": "1.4.*",
         "laravelcollective/html": "~5.0",
         "rcrowe/twigbridge" : "0.7.*",
-        "laracasts/flash": "~1.3"
+        "laracasts/flash": "~1.3",
+        "barryvdh/laravel-debugbar": "^2.0@dev"
     },
     "require-dev": {
         "orchestra/testbench": "3.0.*",
