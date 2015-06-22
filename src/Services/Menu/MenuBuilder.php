@@ -68,7 +68,7 @@ class MenuBuilder
         $return = '<li class="treeview ' . $liclass . '"><a href="' . $link . '" class="' . $hrefClass . '" ' . $hrefExtra . '>' . $item['link']['text'] . '</a>';
         if (isset($item['submenus'])) {
             $ulClass = isset($item['ul_submenu_class']) ? $item['ul_submenu_class'] : '';
-            $return .= '<ul class="sub-menu ' . $ulClass . '" id="' . $key . '">';
+            $return .= '<ul class="treeview-menu ' . $ulClass . '" id="' . $key . '">';
             foreach ($item['submenus'] as $key => $submenu) {
                 if ($this->checkPermission($submenu)) {
                     $return .= $this->parseMenuItem($submenu, $key);
