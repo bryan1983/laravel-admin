@@ -13,7 +13,7 @@
         {% for row in rows %}
         <tr>
             {% for rowItem in row %}
-            <td>{{ rowItem }}</td>
+            <td>{{ rowItem |raw }}</td>
             {% endfor %}
             {% if actions %}
             <td>
