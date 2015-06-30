@@ -56,9 +56,6 @@ class LaravelAdminServiceProvider extends ServiceProvider
              ->setMenuComposer($menu);
         \Config::set('entrust.role', 'Joselfonseca\LaravelAdmin\Services\Users\Role');     
         \Config::set('entrust.permission', 'Joselfonseca\LaravelAdmin\Services\Users\Permission');
-        \Entrust::routeNeedsPermission('backend/users*', array('list-users'), view('LaravelAdmin::errors.unauthorized'), false);
-        \Entrust::routeNeedsPermission('backend/permissions*', array('permissions-crud'), view('LaravelAdmin::errors.unauthorized'), false);
-        \Entrust::routeNeedsPermission('backend/roles*', array('roles-crud'), view('LaravelAdmin::errors.unauthorized'), false);
     }
 
     private function registerOtherProviders()
