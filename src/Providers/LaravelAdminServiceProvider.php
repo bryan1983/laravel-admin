@@ -22,6 +22,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
         'TwigBridge\ServiceProvider',
         'Laracasts\Flash\FlashServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
+        'Kris\LaravelFormBuilder\FormBuilderServiceProvider'
     ];
     protected $aliases = [
         'Entrust' => 'Zizaco\Entrust\EntrustFacade',
@@ -30,6 +31,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
         'Twig' => 'TwigBridge\Facade\Twig',
         'Flash' => 'Laracasts\Flash\Flash',
         'Debugbar' => 'Barryvdh\Debugbar\Facade',
+        'FormBuilder' => 'Kris\LaravelFormBuilder\Facades\FormBuilder'
     ];
 
     /**
