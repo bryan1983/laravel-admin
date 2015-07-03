@@ -71,4 +71,5 @@ $(function () {
     });
     
     $(".wysihtml5").wysihtml5();
+    $(".datepicker").datepicker();
 });

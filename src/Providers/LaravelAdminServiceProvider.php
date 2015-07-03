@@ -97,7 +97,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../../public' => public_path('vendor/laravelAdmin'),
-        ]);
+        ], 'LAPublic');
         return $this;
     }
 

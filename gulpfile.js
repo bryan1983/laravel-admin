@@ -1,5 +1,4 @@
 var elixir = require('laravel-elixir'),
-        minifyCss = require('gulp-minify-css'),
         minifyJs = require('gulp-uglify');
 // Config Stull
 elixir.config.srcDir = '/';
@@ -29,22 +28,15 @@ elixir(function (mix) {
 });
 
 var gulp = require('gulp');
-var minifyCss = require('gulp-minify-css');
 var sourcemaps = require('gulp-sourcemaps');
 var concatCss = require('gulp-concat-css');
 
-gulp.task('build-css', ['conbine-css', 'minify-css']);
+gulp.task('build-css', ['conbine-css']);
 
 gulp.task('conbine-css', function () {
     return gulp.src('./resources/css/*.css')
             .pipe(sourcemaps.init())
             .pipe(concatCss('vendors.css'))
-            .pipe(gulp.dest('./public/css/'));
-});
-gulp.task('minify-css', function () {
-    return gulp.src('./public/css/*.css')
-            .pipe(minifyCss())
-            .pipe(sourcemaps.write())
             .pipe(gulp.dest('./public/css/'));
 });
 
