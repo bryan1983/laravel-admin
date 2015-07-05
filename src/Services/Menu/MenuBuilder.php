@@ -4,18 +4,30 @@ namespace Joselfonseca\LaravelAdmin\Services\Menu;
 
 use Joselfonseca\LaravelAdmin\Services\Acl\AclManager;
 
+
 /**
- * Description of MenuBuilder
- *
- * @author desarrollo
+ * Class MenuBuilder
+ * @package Joselfonseca\LaravelAdmin\Services\Menu
  */
 class MenuBuilder
 {
 
+    /**
+     * @var array
+     */
     public $items;
+    /**
+     * @var AclManager
+     */
     public $acl;
+    /**
+     * @var
+     */
     public $frontMenu;
 
+    /**
+     * @param AclManager $acl
+     */
     public function __construct(AclManager $acl)
     {
         $this->acl = $acl;
@@ -26,6 +38,19 @@ class MenuBuilder
         ];
     }
 
+    /**
+     * @param array $items
+     * @param string $menu
+     * @throws \Exception
+     */
+    public function addMenu(array $items, $menu = 'sidebar')
+    {
+        $this->setMenuItem($items, $menu);
+    }
+
+    /**
+     * @throws \Exception
+     */
     protected function setItems()
     {
         if (isset($this->frontMenu['sidebar'])) {
@@ -39,6 +64,10 @@ class MenuBuilder
         }
     }
 
+    /**
+     * @param $menu
+     * @return array
+     */
     protected function parseMenu($menu)
     {
         $tree = [];
@@ -50,6 +79,10 @@ class MenuBuilder
         return $tree;
     }
 
+    /**
+     * @param $item
+     * @return bool
+     */
     protected function checkPermission($item)
     {
         $can_see = false;
@@ -59,6 +92,11 @@ class MenuBuilder
         return $can_see;
     }
 
+    /**
+     * @param $item
+     * @param $key
+     * @return string
+     */
     protected function parseMenuItem($item, $key)
     {
         $hrefClass = isset($item['link']['class']) ? $item['link']['class'] : '';
@@ -80,6 +118,11 @@ class MenuBuilder
         return $return;
     }
 
+    /**
+     * @param array $items
+     * @param string $group
+     * @throws \Exception
+     */
     public function setMenuItem(array $items = [], $group = 'sidebar')
     {
         if (!isset($this->items[$group])) {
@@ -88,6 +131,12 @@ class MenuBuilder
         $this->items[$group] = array_merge($this->items[$group], $items);
     }
 
+    /**
+     * @param string $group
+     * @param null $active
+     * @return string
+     * @throws \Exception
+     */
     public function render($group = 'sidebar', $active = null)
     {
         $this->setActiveMenu($active);
@@ -102,6 +151,9 @@ class MenuBuilder
         return $string;
     }
 
+    /**
+     * @param $menu
+     */
     protected function setSingleMenuActive($menu)
     {
         if (isset($this->items[$menu[0]][$menu[1]])) {
@@ -113,6 +165,10 @@ class MenuBuilder
         }
     }
 
+    /**
+     * @param $menu
+     * @param bool $submenu
+     */
     protected function setSubMenuActive($menu, $submenu = false)
     {
         $this->setSingleMenuActive($menu);
@@ -127,6 +183,9 @@ class MenuBuilder
         }
     }
 
+    /**
+     * @param $name
+     */
     public function setActiveMenu($name)
     {
         if (!empty($name)) {
@@ -140,6 +199,9 @@ class MenuBuilder
         }
     }
 
+    /**
+     * @param $menu
+     */
     public function setMenu($menu)
     {
         $this->frontMenu = $menu;

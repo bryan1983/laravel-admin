@@ -17,6 +17,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
     protected $defer = false;
 
     protected $providers = [
+        'Joselfonseca\LaravelAdmin\Providers\MenuServiceProvider',
         'Zizaco\Entrust\EntrustServiceProvider',
         'Collective\Html\HtmlServiceProvider',
         'TwigBridge\ServiceProvider',
@@ -42,21 +43,18 @@ class LaravelAdminServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerCommands()
-             ->registerOtherProviders()
-             ->registerAliases();
+            ->registerOtherProviders()
+            ->registerAliases();
     }
 
     public function boot()
     {
-        $this->app->singleton('Joselfonseca\LaravelAdmin\Services\Menu\MenuBuilder', 'Joselfonseca\LaravelAdmin\Services\Menu\MenuBuilder');
-        $menu = $this->app->make('Joselfonseca\LaravelAdmin\Services\Menu\MenuBuilder');
         $this->loadViewsConfiguration()
-             ->loadRoutes()
-             ->publishesConfiguration()
-             ->publishesAssets()
-             ->registerTranslations()
-             ->setMenuComposer($menu);
-        \Config::set('entrust.role', 'Joselfonseca\LaravelAdmin\Services\Users\Role');     
+            ->loadRoutes()
+            ->publishesConfiguration()
+            ->publishesAssets()
+            ->registerTranslations();
+        \Config::set('entrust.role', 'Joselfonseca\LaravelAdmin\Services\Users\Role');
         \Config::set('entrust.permission', 'Joselfonseca\LaravelAdmin\Services\Users\Permission');
     }
 
@@ -65,6 +63,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
         foreach ($this->providers as $provider) {
             $this->app->register($provider);
         }
+
         return $this;
     }
 
@@ -73,6 +72,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
         foreach ($this->aliases as $alias => $original) {
             AliasLoader::getInstance()->alias($alias, $original);
         }
+
         return $this;
     }
 
@@ -82,6 +82,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Views/' => base_path('resources/views/vendor/LaravelAdmin'),
         ]);
+
         return $this;
     }
 
@@ -90,6 +91,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Config/laravel-admin.php' => config_path('laravel-admin.php'),
         ]);
+
         return $this;
     }
 
@@ -98,12 +100,14 @@ class LaravelAdminServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../public' => public_path('vendor/laravelAdmin'),
         ], 'LAPublic');
+
         return $this;
     }
 
     private function loadRoutes()
     {
         include __DIR__ . '/../Http/routes.php';
+
         return $this;
     }
 
@@ -111,6 +115,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
     {
         $this->app->bind('command.laravel-admin.install', 'Joselfonseca\LaravelAdmin\Console\Installer');
         $this->commands('command.laravel-admin.install');
+
         return $this;
     }
 
@@ -120,15 +125,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../resources/lang' => base_path('resources/lang'),
         ]);
-        return $this;
-    }
 
-    private function setMenuComposer($menu)
-    {
-        View::composer('*', function ($view) use ($menu) {
-            $menu->setMenu(config('laravel-admin.menu'));
-            $view->with('menu', $menu);
-        });
         return $this;
     }
 
