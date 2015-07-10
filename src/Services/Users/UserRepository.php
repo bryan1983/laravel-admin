@@ -2,6 +2,8 @@
 
 namespace Joselfonseca\LaravelAdmin\Services\Users;
 
+use Joselfonseca\LaravelAdmin\Events\UserWasCreated;
+
 class UserRepository
 {
 
@@ -20,6 +22,7 @@ class UserRepository
         $data['password'] = bcrypt($data['password']);
         $u                = $this->model->create($data);
         $this->updateRoles($u, $data);
+        event(new UserWasCreated($u, $data));
         return $u;
     }
 
@@ -49,6 +52,7 @@ class UserRepository
         $u->email = $data['email'];
         $u->save();
         $this->updateRoles($u, $data);
+        event(new UserWasUpdated($user, $data));
         return $u;
     }
 
