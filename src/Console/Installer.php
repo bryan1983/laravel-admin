@@ -3,6 +3,7 @@
 namespace Joselfonseca\LaravelAdmin\Console;
 
 use Illuminate\Console\Command;
+use Joselfonseca\LaravelAdmin\Providers\LaravelAdminServiceProvider;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Joselfonseca\LaravelAdmin\Installer\Installer as AdminInstaller;
@@ -54,7 +55,7 @@ class Installer extends Command
             $installer = new AdminInstaller;
             $installer->install($email, $password);
             $this->info('Publishing Package stuff');
-            $this->call('vendor:publish', []);
+            $this->call('vendor:publish', ['--provider' => 'Joselfonseca\LaravelAdmin\Providers\LaravelAdminServiceProvider']);
             \DB::commit();
             $this->info('Thanks! we are done!');
         } catch (\Exception $e) {
