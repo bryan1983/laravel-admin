@@ -16,28 +16,28 @@ class MenuServiceProvider extends ServiceProvider {
             'Users' => [
                 'link' => [
                     'link' => '#',
-                    'text' => '<i class="fa fa-user fa-lg"></i> Users',
+                    'text' => '<i class="fa fa-user fa-lg"></i> '.trans('LaravelAdmin::laravel-admin.usersTitle'),
                 ],
                 'permissions' => ['list-users'],
                 'submenus' => [
                     'List' => [
                         'link' => [
                             'link' => 'backend/users',
-                            'text' => 'List',
+                            'text' => trans('LaravelAdmin::laravel-admin.usersList'),
                         ],
                         'permissions' => ['list-users'],
                     ],
                     'Roles' => [
                         'link' => [
                             'link' => 'backend/roles',
-                            'text' => 'Roles',
+                            'text' => trans('LaravelAdmin::laravel-admin.userRoles'),
                         ],
                         'permissions' => ['roles-crud'],
                     ],
                     'Permissions' => [
                         'link' => [
                             'link' => 'backend/permissions',
-                            'text' => 'Permissions',
+                            'text' => trans('LaravelAdmin::laravel-admin.permissions'),
                         ],
                         'permissions' => ['permissions-crud'],
                     ]

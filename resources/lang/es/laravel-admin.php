@@ -10,6 +10,7 @@ return [
     'LogoutText' => 'Cerrar Sesión',
     'usersTitle' => 'Usuarios',
     'usersListTitle' => 'Administrador de usuarios',
+    'usersList' => 'Listado',
     'userName' => 'Nombre',
     'userEmail' => 'Correo Electrónico',
     'edit' => 'Editar',

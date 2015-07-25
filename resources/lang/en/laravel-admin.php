@@ -11,6 +11,7 @@ return [
     'LogoutText' => 'Logout',
     'usersTitle' => 'Users',
     'usersListTitle' => 'Users Management',
+    'usersList' => 'List',
     'userName' => 'Name',
     'userEmail' => 'Email',
     'edit' => 'Edit',
