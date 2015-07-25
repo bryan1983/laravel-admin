@@ -64,16 +64,16 @@ class LaravelAdminServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__ . '/../../resources/lang' => base_path('resources/lang'),
-        ]);
+        ], 'la-lang');
         $this->publishes([
             __DIR__ . '/../Views/' => base_path('resources/views/vendor/LaravelAdmin'),
-        ]);
+        ], 'la-views');
         $this->publishes([
             __DIR__ . '/../Config/laravel-admin.php' => config_path('laravel-admin.php'),
-        ]);
+        ], 'la-config');
         $this->publishes([
             __DIR__ . '/../../public' => public_path('vendor/laravelAdmin'),
-        ]);
+        ], 'la-public');
         $this->loadViewsConfiguration()
             ->loadRoutes()
             ->registerTranslations();
