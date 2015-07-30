@@ -3,6 +3,7 @@
 namespace Joselfonseca\LaravelAdmin\Services\Users;
 
 use Joselfonseca\LaravelAdmin\Events\UserWasCreated;
+use Joselfonseca\LaravelAdmin\Events\UserWasUpdated;
 
 class UserRepository
 {
