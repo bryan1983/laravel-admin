@@ -18,4 +18,4 @@ If you discover any security related issues, please email jose at ditecnologia d
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](license.md) for more information.
