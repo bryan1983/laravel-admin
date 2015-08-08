@@ -14,7 +14,7 @@ please visit [http://laravel-admin.readthedocs.org/en/latest/](http://laravel-ad
 
 ## Contributing
 
-Please see [CONTRIBUTING](docs/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
@@ -27,4 +27,4 @@ If you discover any security related issues, please email jose at ditecnologia d
 
 ## License
 
-The MIT License (MIT). Please see [License File](docs/LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](docs/license.md) for more information.
