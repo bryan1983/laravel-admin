@@ -1,0 +1,7 @@
+site_name: Laravel Admin Panel Documentation
+repo_url: https://github.com/joselfonseca/laravel-admin
+pages:
+- 'Introduction': 'index.md'
+- 'Installation': 'instalation.md'
+- 'Change Log': 'CHANGELOG.md'
+- 'License': 'LICENSE.md'
