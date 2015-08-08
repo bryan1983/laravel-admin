@@ -8,14 +8,6 @@
 
 Have a Laravel 5 admin panel with users and permissions ready to go!
 
-## Documentation
-
-please visit [http://laravel-admin.readthedocs.org/en/latest/](http://laravel-admin.readthedocs.org/en/latest/)
-
-## Contributing
-
-Please see [CONTRIBUTING](docs/CONTRIBUTING.md) for details.
-
 ## Security
 
 If you discover any security related issues, please email jose at ditecnologia dot com instead of using the issue tracker.
@@ -23,8 +15,7 @@ If you discover any security related issues, please email jose at ditecnologia d
 ## Credits
 
 - [Jose Luis Fonseca](https://github.com/joselfonseca)
-- [All Contributors](../../contributors)
 
 ## License
 
-The MIT License (MIT). Please see [License File](docs/LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
