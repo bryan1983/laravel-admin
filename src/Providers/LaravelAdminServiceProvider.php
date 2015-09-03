@@ -29,8 +29,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
         'Collective\Html\HtmlServiceProvider',
         'TwigBridge\ServiceProvider',
         'Laracasts\Flash\FlashServiceProvider',
-        'Barryvdh\Debugbar\ServiceProvider',
-        'Kris\LaravelFormBuilder\FormBuilderServiceProvider'
+        'Barryvdh\Debugbar\ServiceProvider'
     ];
     /**
      * @var array
@@ -41,8 +40,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
         'Html' => 'Collective\Html\HtmlFacade',
         'Twig' => 'TwigBridge\Facade\Twig',
         'Flash' => 'Laracasts\Flash\Flash',
-        'Debugbar' => 'Barryvdh\Debugbar\Facade',
-        'FormBuilder' => 'Kris\LaravelFormBuilder\Facades\FormBuilder'
+        'Debugbar' => 'Barryvdh\Debugbar\Facade'
     ];
 
     /**
@@ -62,7 +60,6 @@ class LaravelAdminServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         $this->publishes([
             __DIR__ . '/../../resources/lang' => base_path('resources/lang'),
         ], 'la-lang');
@@ -115,6 +112,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
     private function loadViewsConfiguration()
     {
         $this->loadViewsFrom(__DIR__ . '/../Views/', 'LaravelAdmin');
+
         return $this;
     }
 
@@ -125,6 +123,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
     private function loadRoutes()
     {
         include __DIR__ . '/../Http/routes.php';
+
         return $this;
     }
 
@@ -147,6 +146,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
     private function registerTranslations()
     {
         $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'LaravelAdmin');
+
         return $this;
     }
 

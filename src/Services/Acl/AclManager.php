@@ -4,16 +4,29 @@ namespace Joselfonseca\LaravelAdmin\Services\Acl;
 
 use Joselfonseca\LaravelAdmin\Services\Users\Role;
 
+/**
+ * Class AclManager
+ * Some function to interact with the ACL
+ * @package Joselfonseca\LaravelAdmin\Services\Acl
+ */
 class AclManager
 {
-    private $model;
 
+    /**
+     * Get the user model from config
+     */
     public function __construct()
     {
         $model      = \Config::get('auth.model');
         $this->user = new $model;
     }
 
+    /**
+     * Can the user see based on permissions
+     * @param $permissions
+     * @param null $user
+     * @return bool
+     */
     public function canSee($permissions, $user = null)
     {
         if (is_null($user)) {
@@ -25,6 +38,10 @@ class AclManager
         return false;
     }
 
+    /**
+     * Get the roles for a select html input
+     * @return array
+     */
     public function getRolesForSelect()
     {
         $roles       = new Role;
@@ -35,6 +52,11 @@ class AclManager
         return $rolesSelect;
     }
 
+    /**
+     * get the permissions ids for a role
+     * @param $roleId
+     * @return array
+     */
     public function getPermissionsIdsForRole($roleId)
     {
         $roles = Role::findOrFail($roleId);
@@ -45,6 +67,11 @@ class AclManager
         return $perms;
     }
 
+    /**
+     * Get the permissions ids for a user
+     * @param $userId
+     * @return array
+     */
     public function getPermissionsIdsForUser($userId)
     {
         $user  = $this->user->findOrFail($userId);
@@ -55,14 +82,26 @@ class AclManager
         return $perms;
     }
 
-    public function assignPermitionsToRole($roleId, $permissions)
+    /**
+     * Assing permissions to a Role
+     * @param $roleId
+     * @param $permissions
+     * @return bool
+     */
+    public function assignPermissionsToRole($roleId, $permissions)
     {
         $roles = Role::findOrFail($roleId);
         $roles->perms()->attach($permissions);
         return true;
     }
 
-    public function assignPermitionsToUser($userId, $permissions)
+    /**
+     * Assign permissions to a User
+     * @param $userId
+     * @param $permissions
+     * @return bool
+     */
+    public function assignPermissionsToUser($userId, $permissions)
     {
         $user = $this->user->findOrFail($userId);
         $user->perms()->attach($permissions);

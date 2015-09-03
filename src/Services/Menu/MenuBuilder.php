@@ -206,7 +206,6 @@ class MenuBuilder
     {
         $this->frontMenu = $menu;
         $this->setItems();
-
     }
 
 }

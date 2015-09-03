@@ -18,6 +18,7 @@ class SlugGeneratorObserver {
     public $model;
 
     /**
+     * When saving, create a slug
      * @param $model
      */
     public function saving($model) {
@@ -33,6 +34,7 @@ class SlugGeneratorObserver {
     }
 
     /**
+     * When updating, update the slug
      * @param $model
      */
     public function updating($model)

@@ -1,14 +1,21 @@
 <?php
 
-
 namespace Joselfonseca\LaravelAdmin\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use View;
 
 
-class MenuServiceProvider extends ServiceProvider {
+/**
+ * Class MenuServiceProvider
+ * @package Joselfonseca\LaravelAdmin\Providers
+ */
+class MenuServiceProvider extends ServiceProvider
+{
 
+    /**
+     * Boot the provider
+     */
     public function boot()
     {
         $menu = $this->app->make('admin.menu');
@@ -16,7 +23,7 @@ class MenuServiceProvider extends ServiceProvider {
             'Users' => [
                 'link' => [
                     'link' => '#',
-                    'text' => '<i class="fa fa-user fa-lg"></i> '.trans('laravel-admin.usersTitle'),
+                    'text' => '<i class="fa fa-user"></i> ' . trans('laravel-admin.usersTitle'),
                 ],
                 'permissions' => ['list-users'],
                 'submenus' => [
@@ -48,12 +55,20 @@ class MenuServiceProvider extends ServiceProvider {
         $this->setMenuComposer($menu);
     }
 
+    /**
+     * Register Stuff in the application
+     */
     public function register()
     {
         $this->app->singleton('admin.menu',
             'Joselfonseca\LaravelAdmin\Services\Menu\MenuBuilder');
     }
 
+    /**
+     * Menu View Composer
+     * @param $menu
+     * @return $this
+     */
     private function setMenuComposer($menu)
     {
         View::composer('*', function ($view) use ($menu) {

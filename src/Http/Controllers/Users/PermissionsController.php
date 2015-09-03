@@ -98,10 +98,10 @@ class PermissionsController extends Controller
     public function permissionsAssign(Request $request, AclManager $acl)
     {
         if ($request->get('type') === 'role') {
-            $acl->assignPermitionsToRole($request->get('model'),
+            $acl->assignPermissionsToRole($request->get('model'),
                 $request->get('perms'));
         } else {
-            $acl->assignPermitionsToUser($request->get('model'),
+            $acl->assignPermissionsToUser($request->get('model'),
                 $request->get('perms'));
         }
         flash()->success(trans('LaravelAdmin::laravel-admin.permissionsAttachSuccess'));

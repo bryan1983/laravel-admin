@@ -2,17 +2,37 @@
 
 namespace Joselfonseca\LaravelAdmin\Services\TableBuilder;
 
+/**
+ * Class TableBuilder
+ * @package Joselfonseca\LaravelAdmin\Services\TableBuilder
+ */
 class TableBuilder
 {
+    /**
+     * @var
+     */
     private $model;
+    /**
+     * @var
+     */
     private $twig;
+    /**
+     * @var array
+     */
     private $actions = [];
 
+    /**
+     *
+     */
     public function __construct()
     {
         $this->setTwig();
     }
 
+    /**
+     * Set the twig env
+     * @return $this
+     */
     private function setTwig()
     {
         if (!is_dir(storage_path('twig'))) {
@@ -32,17 +52,30 @@ class TableBuilder
         return $this;
     }
 
+    /**
+     * Set the model
+     * @param $model
+     * @return $this
+     */
     public function setModel($model)
     {
         $this->model = $model;
         return $this;
     }
 
+    /**
+     * Set the actions for the table
+     * @param array $array
+     */
     public function setActions(array $array = [])
     {
         $this->actions = $array;
     }
 
+    /**
+     * Render the table
+     * @return mixed
+     */
     public function render()
     {
         return $this->twig->render('table.html',
