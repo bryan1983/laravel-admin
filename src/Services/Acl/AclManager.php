@@ -3,6 +3,7 @@
 namespace Joselfonseca\LaravelAdmin\Services\Acl;
 
 use Joselfonseca\LaravelAdmin\Services\Users\Role;
+use Joselfonseca\LaravelAdmin\Services\Users\User;
 
 /**
  * Class AclManager
@@ -15,10 +16,9 @@ class AclManager
     /**
      * Get the user model from config
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        $model      = \Config::get('auth.model');
-        $this->user = new $model;
+        $this->user = $user;
     }
 
     /**
@@ -44,7 +44,7 @@ class AclManager
      */
     public function getRolesForSelect()
     {
-        $roles       = new Role;
+        $roles = new Role;
         $rolesSelect = [];
         foreach ($roles->all() as $role) {
             $rolesSelect[$role->id] = $role->display_name;
@@ -61,7 +61,7 @@ class AclManager
     {
         $roles = Role::findOrFail($roleId);
         $perms = [];
-        $roles->perms->each(function($permission) use(&$perms) {
+        $roles->perms->each(function ($permission) use (&$perms) {
             $perms[] = $permission->id;
         });
         return $perms;
@@ -74,9 +74,9 @@ class AclManager
      */
     public function getPermissionsIdsForUser($userId)
     {
-        $user  = $this->user->findOrFail($userId);
+        $user = $this->user->findOrFail($userId);
         $perms = [];
-        $user->perms->each(function($permission) use(&$perms) {
+        $user->perms->each(function ($permission) use (&$perms) {
             $perms[] = $permission->id;
         });
         return $perms;

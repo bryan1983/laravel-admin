@@ -12,13 +12,14 @@ use Joselfonseca\LaravelAdmin\Events\UserWasUpdated;
 class UserRepository
 {
 
+    protected $model;
+
     /**
      *
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        $model = \Config::get('auth.model');
-        $this->model = new $model;
+        $this->model = $user;
     }
 
     /**

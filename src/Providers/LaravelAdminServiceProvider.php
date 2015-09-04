@@ -135,7 +135,6 @@ class LaravelAdminServiceProvider extends ServiceProvider
     {
         $this->app->bind('command.laravel-admin.install', 'Joselfonseca\LaravelAdmin\Console\Installer');
         $this->commands('command.laravel-admin.install');
-
         return $this;
     }
 
@@ -146,7 +145,6 @@ class LaravelAdminServiceProvider extends ServiceProvider
     private function registerTranslations()
     {
         $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'LaravelAdmin');
-
         return $this;
     }
 
