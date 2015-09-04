@@ -17,6 +17,12 @@
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="../css/highlight.css">
 
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Instalation";
+  </script>
+  
   <script src="../js/jquery-2.1.1.min.js"></script>
   <script src="../js/modernizr-2.8.3.min.js"></script>
   <script type="text/javascript" src="../js/highlight.pack.js"></script>
@@ -33,93 +39,87 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> Laravel Admin Panel</a>
-        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-      <ul class="current">
-    
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Home</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="..">Home</a>
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Instalation</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#laravel-admin-panel-installation">Laravel Admin Panel Installation</a></li>
                 
-            </li>
+            
+            </ul>
         
-
-    
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../The Menu/">The Menu</a>
         
-            <li class="toctree-l1 current">
-                <a class="current" href="./">Instalation</a>
-                
-                    <ul>
-                    
-                        <li class="toctree-l3"><a href="#laravel-admin-panel-installation">Laravel Admin Panel Installation</a></li>
-                        
-                    
-                    </ul>
-                
-            </li>
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../The ACL/">The ACL</a>
         
-
-    
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../Master View/">Master View</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../The Menu/">The Menu</a>
-                
-            </li>
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../Simple Table Builder/">Simple Table Builder</a>
         
-
-    
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../Flash Messages/">Flash Messages</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../The ACL/">The ACL</a>
-                
-            </li>
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../license/">License</a>
         
-
-    
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../changelog/">Changelog</a>
         
-            <li class="toctree-l1 ">
-                <a class="" href="../Master View/">Master View</a>
-                
-            </li>
-        
-
-    
-        
-            <li class="toctree-l1 ">
-                <a class="" href="../Simple Table Builder/">Simple Table Builder</a>
-                
-            </li>
-        
-
-    
-        
-            <li class="toctree-l1 ">
-                <a class="" href="../Flash Messages/">Flash Messages</a>
-                
-            </li>
-        
-
-    
-        
-            <li class="toctree-l1 ">
-                <a class="" href="../license/">License</a>
-                
-            </li>
-        
-
-    
-        
-            <li class="toctree-l1 ">
-                <a class="" href="../changelog/">Changelog</a>
-                
-            </li>
-        
-
-    
-</ul>
-
+    </li>
+<li>
+          
+        </ul>
       </div>
       &nbsp;
     </nav>
@@ -139,16 +139,19 @@
   <ul class="wy-breadcrumbs">
     <li><a href="..">Docs</a> &raquo;</li>
     
+      
+    
     <li>Instalation</li>
-      <li class="wy-breadcrumbs-aside">
-        
-      </li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
   </ul>
   <hr/>
 </div>
           <div role="main">
             <div class="section">
-              <h1 id="laravel-admin-panel-installation">Laravel Admin Panel Installation</h1>
+              
+                <h1 id="laravel-admin-panel-installation">Laravel Admin Panel Installation</h1>
 <p>To install this package, open your composer.json file and add "joselfonseca/laravel-admin" : "0.3.*"</p>
 <pre><code class="json">    &quot;require&quot;: {
         &quot;laravel/framework&quot;: &quot;5.1.*&quot;,
@@ -209,6 +212,7 @@ Once all the dependencies are installed, open the config/app.php file and add th
 
 <p>This will ask you for an email to create the default admin user, as well as the password. After that it will publish some other migrations, migrate the database and it will also publish some public assets and configuration file</p>
 <p>Once that is done you can navigate to http://yoursite.dev/backend/login and you will be able to log in with the credentials provided.</p>
+              
             </div>
           </div>
           <footer>
@@ -226,9 +230,8 @@ Once all the dependencies are installed, open the config/app.php file and add th
   <hr/>
 
   <div role="contentinfo">
-    <p>
     <!-- Copyright etc -->
-    </p>
+    
   </div>
 
   Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
@@ -243,15 +246,15 @@ Once all the dependencies are installed, open the config/app.php file and add th
 
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
-        
-      <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
-      <span style="margin-left: 15px"><a href="../The Menu/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../The Menu/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
     </span>
 </div>
 
-<!--
-MkDocs version  : 0.12.2
-Docs Build Date : 2015-08-08 02:11:15.568145
--->
 </body>
 </html>
