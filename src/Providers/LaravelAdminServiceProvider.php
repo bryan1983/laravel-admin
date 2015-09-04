@@ -72,6 +72,9 @@ class LaravelAdminServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../public' => public_path('vendor/laravelAdmin'),
         ], 'la-public');
+        $this->publishes([
+            __DIR__ . '/../../migrations' => base_path('database/migrations'),
+        ], 'la-migrations');
         $this->loadViewsConfiguration()
             ->loadRoutes()
             ->registerTranslations();

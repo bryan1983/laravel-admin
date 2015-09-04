@@ -4,6 +4,7 @@ namespace Joselfonseca\LaravelAdmin\Installer;
 
 use Joselfonseca\LaravelAdmin\Services\Users\Role;
 use Joselfonseca\LaravelAdmin\Services\Users\Permission;
+use Joselfonseca\LaravelAdmin\Services\Users\User;
 
 /**
  * Class Installer
@@ -51,8 +52,7 @@ class Installer
      */
     private function createAdminUser($email, $password)
     {
-        $model = \Config::get('auth.model');
-        $user = new $model;
+        $user = new User();
         return $user->create([
             'name' => 'Administrator',
             'email' => $email,

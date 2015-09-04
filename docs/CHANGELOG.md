@@ -48,3 +48,5 @@ All Notable changes to `laravel-admin` will be documented in this file
         ]);
     });
 ```
+
+The installation process has been updated for a more easy and practical way, please check the installation documentation

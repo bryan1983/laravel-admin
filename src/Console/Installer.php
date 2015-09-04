@@ -44,18 +44,9 @@ class Installer extends Command
         \DB::beginTransaction();
         try {
             $this->info('Welcome to the Laravel-Admin Installer');
-            $email     = $this->ask('Please enter the email for the administrator');
-            $password  = $this->secret('Please enter the password for the administrator');
-            $this->info('Please give us a minute while we install everything');
-            $this->info('Working on ACL');
-            $this->call('entrust:migration');
-            $this->info('Migrating Database');
-            $this->call('migrate');
             $this->info('Creating basic user and Roles');
             $installer = new AdminInstaller;
-            $installer->install($email, $password);
-            $this->info('Publishing Package stuff');
-            $this->call('vendor:publish', ['--provider' => 'Joselfonseca\LaravelAdmin\Providers\LaravelAdminServiceProvider']);
+            $installer->install('admin@admin.com', 'secret');
             \DB::commit();
             $this->info('Thanks! we are done!');
         } catch (\Exception $e) {
