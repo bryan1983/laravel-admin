@@ -1,11 +1,11 @@
 # Laravel Admin Panel Installation
 
-To install this package, open your composer.json file and add "joselfonseca/laravel-admin" : "0.3.*"
+To install this package, open your composer.json file and add "joselfonseca/laravel-admin" : "0.4.*"
 
 ```json
     "require": {
         "laravel/framework": "5.1.*",
-        "joselfonseca/laravel-admin" : "0.3.*"
+        "joselfonseca/laravel-admin" : "0.4.*"
     }
 ```
 Then run composer update and wait until it installs the dependencies.

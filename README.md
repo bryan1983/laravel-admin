@@ -1,6 +1,6 @@
 # Laravel Admin Panel
 
-[![Laravel](https://img.shields.io/badge/Laravel-~5.0-orange.svg?style=flat-square)](http://laravel.com)
+[![Laravel](https://img.shields.io/badge/Laravel-~5.1-orange.svg?style=flat-square)](http://laravel.com)
 [![Latest Version](https://img.shields.io/github/release/joselfonseca/laravel-admin.svg?style=flat-square)](https://github.com/joselfonseca/laravel-admin/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](docs/license.md)
 [![Build Status](https://img.shields.io/travis/joselfonseca/laravel-admin/master.svg?style=flat-square)](https://travis-ci.org/joselfonseca/laravel-admin)
