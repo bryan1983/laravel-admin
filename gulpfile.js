@@ -1,5 +1,4 @@
-var elixir = require('laravel-elixir'),
-        minifyJs = require('gulp-uglify');
+var elixir = require('laravel-elixir');
 // Config Stull
 elixir.config.srcDir = '/';
 elixir.config.assetsDir = 'resources/';
@@ -7,36 +6,42 @@ elixir.config.assetsDir = 'resources/';
 /** Compile the less and JS! **/
 elixir(function (mix) {
     mix.less("laravel-admin.less");
+    mix.less("app.less");
+    mix.styles([
+        '../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
+        '../plugins/bootstrapSelect/dist/css/bootstrap-select.min.css',
+        '../plugins/colorpicker/bootstrap-colorpicker.css',
+        '../plugins/datepicker/datepicker3.css',
+        '../plugins/daterangepicker/daterangepicker-bs3.css',
+        '../plugins/fullcalendar/fullcalendar.css',
+        '../plugins/fullcalendar/fullcalendar.print.css',
+        '../plugins/morris/morris.css',
+        '../plugins/select2/select2.css',
+        '../plugins/timepicker/bootstrap-timepicker.min.css'
+    ]);
     mix.scripts([
-        "vendor/datatables/jquery.dataTables.min.js",
-        "vendor/datatables/dataTables.bootstrap.js",
-        "vendor/bootstrapSelect/dist/js/bootstrap-select.js",
-        "vendor/bootstrapSelect/dist/js/i18n/defaults-es_CL.js",
-        "vendor/bootbox/bootbox.min.js",
-        "vendor/speakingurl/speakingurl.min.js",
-        "vendor/slugify/dist/slugify.min.js",
-        "vendor/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js",
-        "vendor/datepicker/bootstrap-datepicker.js",
-        "vendor/daterangepicker/daterangepicker.js",
-        "vendor/daterangepicker/moment.min.js",
-        "vendor/fullcalendar/fullcalendar.min.js",
-        "vendor/slimScroll/jquery.slimscroll.js",
-        "vendor/timepicker/bootstrap-timepicker.min.js",
+        "../plugins/datatables/jquery.dataTables.min.js",
+        "../plugins/datatables/dataTables.bootstrap.js",
+        "../plugins/bootstrapSelect/dist/js/bootstrap-select.js",
+        "../plugins/bootstrapSelect/dist/js/i18n/defaults-es_CL.js",
+        "../plugins/bootbox/bootbox.min.js",
+        "../plugins/speakingurl/speakingurl.min.js",
+        "../plugins/slugify/dist/slugify.min.js",
+        "../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js",
+        "../plugins/datepicker/bootstrap-datepicker.js",
+        "../plugins/daterangepicker/daterangepicker.js",
+        "../plugins/daterangepicker/moment.min.js",
+        "../plugins/fullcalendar/fullcalendar.min.js",
+        "../plugins/slimScroll/jquery.slimscroll.js",
+        '../plugins/chartjs/Chart.min.js',
+        '../plugins/colorpicker/bootstrap-colorpicker.min.js',
+        '../plugins/morris/morris.min.js',
+        '../plugins/select2/select2.full.min.js',
+        '../plugins/select2/i18n/es.js',
+        '../plugins/pace/pace.js',
+        '../plugins/timepicker/bootstrap-timepicker.js',
         "adminlte.js",
         "app.js"
     ]);
-});
-
-var gulp = require('gulp');
-var sourcemaps = require('gulp-sourcemaps');
-var concatCss = require('gulp-concat-css');
-
-gulp.task('build-css', ['conbine-css']);
-
-gulp.task('conbine-css', function () {
-    return gulp.src('./resources/css/*.css')
-            .pipe(sourcemaps.init())
-            .pipe(concatCss('vendors.css'))
-            .pipe(gulp.dest('./public/css/'));
 });
 
