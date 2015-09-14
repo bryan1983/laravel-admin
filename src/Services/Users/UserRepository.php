@@ -65,7 +65,7 @@ class UserRepository
         $u->email = $data['email'];
         $u->save();
         $this->updateRoles($u, $data);
-        event(new UserWasUpdated($user, $data));
+        event(new UserWasUpdated($u, $data));
 
         return $u;
     }
