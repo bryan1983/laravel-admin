@@ -2,10 +2,11 @@
 
 namespace Joselfonseca\LaravelAdmin\Http\Controllers;
 
-use Joselfonseca\LaravelAdmin\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
+use Joselfonseca\LaravelAdmin\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class LoginController extends Controller
 {
