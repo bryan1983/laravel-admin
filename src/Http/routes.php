@@ -16,7 +16,7 @@ Route::group(['prefix' => 'backend'],
         'as' => 'LaravelAdminLoginPost',
         'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\LoginController@postLogin'
     ]);
-    Route::group(['middleware' => 'auth'],
+    Route::group(['middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AuthMiddleware'],
         function() {
         Route::get('/home',
             [
