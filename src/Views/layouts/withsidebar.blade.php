@@ -38,6 +38,7 @@
             </aside>
             <div class="content-wrapper">
                 <section class="content-header">
+                    @include('errors.viewErrors')
                     @yield('content')
                 </section>
             </div>
