@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>The Menu - Laravel Admin Panel</title>
+  <title>Config - Laravel Admin Panel</title>
   
 
   <link rel="shortcut icon" href="../img/favicon.ico">
@@ -20,7 +20,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "The Menu";
+    var mkdocs_page_name = "Config";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -64,8 +64,17 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../config/">Config</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Config</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#config-file">Config File</a></li>
+                
+                    <li><a class="toctree-l4" href="#the-file">The file</a></li>
+                
+            
+            </ul>
         
     </li>
 <li>
@@ -92,19 +101,8 @@
 <li>
           
             <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">The Menu</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#laravel-admin-menu">Laravel Admin Menu</a></li>
-                
-                    <li><a class="toctree-l4" href="#adding-a-menu-to-the-sidebar">Adding a menu to the sidebar</a></li>
-                
-                    <li><a class="toctree-l4" href="#setting-the-active-menu-item">Setting the active menu item</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../The Menu/">The Menu</a>
         
     </li>
 <li>
@@ -159,7 +157,7 @@
     
       
     
-    <li>The Menu</li>
+    <li>Config</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -169,46 +167,34 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="laravel-admin-menu">Laravel Admin Menu</h1>
-<h2 id="adding-a-menu-to-the-sidebar">Adding a menu to the sidebar</h2>
-<p>Laravel Admin has a menu that you can customize, to do that just add to your service provider the following code in the boot method.</p>
-<pre><code class="php">    $menu = $this-&gt;app-&gt;make('admin.menu');
-    $menu-&gt;addMenu([
-        'Courses' =&gt; [
-            'link' =&gt; [
-                'link' =&gt; '#',
-                'text' =&gt; '&lt;i class=&quot;fa fa-book fa-lg&quot;&gt;&lt;/i&gt; Cursos',
-            ],
-            'permissions' =&gt; ['administrador-de-cursos'],
-            'submenus' =&gt; [
-                'List' =&gt; [
-                    'link' =&gt; [
-                        'link' =&gt; 'backend/courses',
-                        'text' =&gt; 'Listado',
-                    ],
-                    'permissions' =&gt; ['administrador-de-cursos'],
-                ]
-            ]
-        ]
-    ]);
+                <h1 id="config-file">Config File</h1>
+<p>If you want to publish your configuration, run:</p>
+<pre><code class="bash">    php artisan vendor:publish --provider=&quot;Joselfonseca\LaravelAdmin\Providers\LaravelAdminServiceProvider&quot;
 </code></pre>
 
-<p>The Menu array contains another array which is sidebar, this is meant to be the sidebar menu, in it there is another array, each key in that array represents a menu item and its structure is the following</p>
-<pre><code class="php">    'Dashboard' =&gt; [ //this is the key that identify the menu item
-        'link' =&gt; [// this is what we use to build the link
-            'link' =&gt; 'backend/home', // the URI to go to, this is placed inside a url() helper
-            'text' =&gt; '&lt;i class=&quot;fa fa-dashboard fa-lg&quot;&gt;&lt;/i&gt; Dashboard', // The text to display in the link, you can use font-awesome icons
-        ],
-        'permissions' =&gt; [] // array with the permissions required to see the item, use the slugs
-        'submenus' =&gt; [] // array with the same structure as the parent, this will create a submenu.
-    ]
+<p>However, at the time of installation it should already be published.</p>
+<h2 id="the-file">The file</h2>
+<pre><code class="php">    &lt;?php
+    return [
+        /**
+         * The App name
+         * */
+        'appName' =&gt; &quot;Laravel Admin Panel&quot;,
+        /**
+         * Route to go after login
+        **/ 
+        'afterLoginRoute' =&gt; 'backend/users',
+        /**
+        * Add Errors &amp; Logging from Validator Laravel 5.*
+        * make for Wim_cartago
+        **/
+        'viewErrors' =&gt; false
+    ];
 </code></pre>
 
-<p>You can add as many items as you need.</p>
-<h2 id="setting-the-active-menu-item">Setting the active menu item</h2>
-<p>In the controllers you can set the current menu that should be mark as active, simply pass a variable called activeMenu to the view, the value should follow this pattern {sidebar}.{Item}.{Item}, for the avobe example should look something like this:</p>
-<pre><code class="php">    return view('LaravelAdmin::home.home')-&gt;with('activeMenu', 'sidebar.Dashboard');
-</code></pre>
+<p>You can change your App name updating the <code>appName</code> option<br />
+You can modify where the user is taken after the successful login with the <code>'afterLoginRoute'</code> option. <br />
+You can also set <code>viewErrors</code> to true to have a partial with the errors display for every page. </p>
               
             </div>
           </div>
@@ -216,10 +202,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Simple Table Builder/" class="btn btn-neutral float-right" title="Simple Table Builder"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Authentication/" class="btn btn-neutral float-right" title="Authentication"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../Master View/" class="btn btn-neutral" title="Master View"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Instalation/" class="btn btn-neutral" title="Instalation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -245,10 +231,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../Master View/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../Instalation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../Simple Table Builder/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../Authentication/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
