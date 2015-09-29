@@ -2,6 +2,12 @@
 
 All Notable changes to `laravel-admin` will be documented in this file
 
+# 0.4.3
+
+- Merge a pull request to has the errors notice global and it will appear if config says so.
+- Added a Middleware to the protected endpoints, it will return to /backend/login for any protected route.
+- Small Bug Fixes
+
 # 0.4
 
 - All the styles and plugins were re merged, you have to publish the assets and views.
