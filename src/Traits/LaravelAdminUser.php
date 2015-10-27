@@ -3,13 +3,11 @@
 namespace Joselfonseca\LaravelAdmin\Traits;
 
 use Zizaco\Entrust\Traits\EntrustUserTrait;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 trait LaravelAdminUser
 {
 
-    use EntrustUserTrait,
-        SoftDeletes;
+    use EntrustUserTrait;
 
     public function getFields()
     {
