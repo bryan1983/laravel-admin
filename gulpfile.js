@@ -1,7 +1,4 @@
 var elixir = require('laravel-elixir');
-// Config Stull
-elixir.config.srcDir = '/';
-elixir.config.assetsDir = 'resources/';
 
 /** Compile the less and JS! **/
 elixir(function (mix) {
