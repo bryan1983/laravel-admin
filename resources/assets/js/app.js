@@ -1,11 +1,13 @@
 ;
 $(function () {
     /** Datatables **/
-    $('.dataTable').dataTable({
-        language: {
-            "url": GLOBALS.datablesLang
-        }
-    });
+    if ( ! $.fn.DataTable.isDataTable( '.dataTable' ) ) {
+        $('.dataTable').dataTable({
+            language: {
+                "url": GLOBALS.datablesLang
+            }
+        });
+    }
     /** select bootstrap **/
     $('.selectBootstrap').selectpicker();
     /** Confirm dialog **/
