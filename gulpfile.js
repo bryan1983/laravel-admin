@@ -14,7 +14,8 @@ elixir(function (mix) {
         '../plugins/fullcalendar/fullcalendar.print.css',
         '../plugins/morris/morris.css',
         '../plugins/select2/select2.css',
-        '../plugins/timepicker/bootstrap-timepicker.min.css'
+        '../plugins/timepicker/bootstrap-timepicker.min.css',
+        '../plugins/sweetalert/dist/sweetalert.css'
     ]);
     mix.scripts([
         "../plugins/datatables/jquery.dataTables.min.js",
@@ -37,6 +38,7 @@ elixir(function (mix) {
         '../plugins/select2/i18n/es.js',
         '../plugins/pace/pace.js',
         '../plugins/timepicker/bootstrap-timepicker.js',
+        '../plugins/sweetalert/dist/sweetalert.min.js',
         "adminlte.js",
         "app.js"
     ]);

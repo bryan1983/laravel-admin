@@ -38,5 +38,9 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <script src="{{ asset('/vendor/laravelAdmin/js/all.js') }}"></script>
         @yield('scripts')
+        @include('sweet::alert')
+        <!-- delete form for elements -->
+        {!! Form::open(['id' => 'deleteForm', 'method' => 'DELETE']) !!}
+        {!! Form::close() !!}
     </body>
 </html>

@@ -62,5 +62,9 @@ return [
     'permissionsEditTitle' => 'Edit permission',
     'permissionDeleteSuccess' => 'The permission has been deleted',
     'unauthorizedTitle' => 'Unauthoriced Access',
-    'unauthorizedText' => 'The resource you are trying to access in not available for your profile'
+    'unauthorizedText' => 'The resource you are trying to access in not available for your profile',
+    'alertDelete' => 'Are you sure you want to delete this?',
+    'alertDeleteText' => 'Keep in mind this can\'t be undone.',
+    'alertDeleteConfirm' => 'Yes, i am sure',
+    'alertDeleteCancel' => 'No, cancel!'
 ];

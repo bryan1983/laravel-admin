@@ -11,6 +11,7 @@ use Joselfonseca\LaravelAdmin\Http\Requests\UpdatePermissionRequest;
 use Illuminate\Support\Facades\Redirect;
 use Joselfonseca\LaravelAdmin\Services\Acl\AclManager;
 use Illuminate\Http\Request;
+use SweetAlert;
 
 class PermissionsController extends Controller
 {
@@ -32,7 +33,7 @@ class PermissionsController extends Controller
             'delete' => [
                 'link' => url('backend/permissions/-id-/delete'),
                 'text' => '<i class="fa fa-times"></i> '.trans('LaravelAdmin::laravel-admin.delete'),
-                'class' => 'btn btn-danger btn-sm confirm',
+                'class' => 'btn btn-danger btn-sm confirm-delete',
                 'confirm' => true,
             ],
         ]);
@@ -50,7 +51,7 @@ class PermissionsController extends Controller
     public function store(PermissionsRequest $request)
     {
         $this->model->create($request->all());
-        flash()->success(trans('LaravelAdmin::laravel-admin.permissionCreationSuccess'));
+        SweetAlert::success(trans('LaravelAdmin::laravel-admin.permissionCreationSuccess'));
         return Redirect::to('backend/permissions');
     }
 
@@ -72,7 +73,7 @@ class PermissionsController extends Controller
         }
         $role->fill($request->all());
         $role->save();
-        flash()->success(trans('LaravelAdmin::laravel-admin.permissionEditionSuccess'));
+        SweetAlert::success(trans('LaravelAdmin::laravel-admin.permissionEditionSuccess'));
         return Redirect::to('backend/permissions');
     }
 
@@ -80,7 +81,7 @@ class PermissionsController extends Controller
     {
         $role = $this->model->findOrFail($id);
         $role->delete();
-        flash()->success(trans('LaravelAdmin::laravel-admin.permissionDeleteSuccess'));
+        SweetAlert::success(trans('LaravelAdmin::laravel-admin.permissionDeleteSuccess'));
         return Redirect::to('backend/permissions');
     }
 
@@ -104,7 +105,7 @@ class PermissionsController extends Controller
             $acl->assignPermissionsToUser($request->get('model'),
                 $request->get('perms'));
         }
-        flash()->success(trans('LaravelAdmin::laravel-admin.permissionsAttachSuccess'));
+        SweetAlert::success(trans('LaravelAdmin::laravel-admin.permissionsAttachSuccess'));
         return Redirect::back();
     }
 }

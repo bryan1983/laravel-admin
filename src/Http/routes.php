@@ -71,7 +71,7 @@ Route::group(['prefix' => 'backend'],
                 'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@updatePassword',
                 'middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AclMiddleware:edit-user'
             ]);
-            Route::get('/{id}/delete',
+            Route::delete('/{id}/delete',
                 [
                 'as' => 'deleteUser',
                 'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@destroy',
@@ -111,7 +111,7 @@ Route::group(['prefix' => 'backend'],
                 'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\RolesController@update',
                 'middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AclMiddleware:roles-crud'
             ]);
-            Route::get('/{id}/delete',
+            Route::delete('/{id}/delete',
                 [
                 'as' => 'LaravelAdminRolesDelete',
                 'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\RolesController@destroy',
@@ -175,7 +175,7 @@ Route::group(['prefix' => 'backend'],
                 'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@update',
                 'middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AclMiddleware:permissions-crud'
             ]);
-            Route::get('/{id}/delete',
+            Route::delete('/{id}/delete',
                 [
                 'as' => 'LaravelAdminPermissionsDelete',
                 'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@destroy',

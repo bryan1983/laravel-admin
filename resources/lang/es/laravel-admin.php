@@ -61,5 +61,9 @@ return [
     'permissionsEditTitle' => 'Editar Permiso',
     'permissionDeleteSuccess' => 'El permiso se ha eliminado',
     'unauthorizedTitle' => 'Acceso no autorizado.',
-    'unauthorizedText' => 'Lo que esta tratando de ver, no esta autorizado para su perfil'
+    'unauthorizedText' => 'Lo que esta tratando de ver, no esta autorizado para su perfil',
+    'alertDelete' => 'Está seguro que desea eliminar esto?',
+    'alertDeleteText' => 'Tenga en cuenta que esto no puede revertirse',
+    'alertDeleteConfirm' => 'Si, estoy seguro',
+    'alertDeleteCancel' => 'No, cancelar acción!'
 ];

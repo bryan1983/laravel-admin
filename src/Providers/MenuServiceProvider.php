@@ -2,8 +2,8 @@
 
 namespace Joselfonseca\LaravelAdmin\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use View;
+use Illuminate\Support\ServiceProvider;
 
 
 /**

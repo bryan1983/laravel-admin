@@ -10,31 +10,6 @@ $(function () {
     }
     /** select bootstrap **/
     $('.selectBootstrap').selectpicker();
-    /** Confirm dialog **/
-    $(document).on('click', '.confirm', function (e) {
-        e.preventDefault();
-        var $this = $(this);
-        bootbox.dialog({
-            message: $this.data('message') || "Esta seguro de eliminar este elemento?",
-            title: $this.data('title') || "Eliminar elemento",
-            buttons: {
-                success: {
-                    label: $this.data('success') || "Si",
-                    className: "btn-success",
-                    callback: function () {
-                        window.location.href = $this.attr('href');
-                    }
-                },
-                danger: {
-                    label: $this.data('danger') || "No",
-                    className: "btn-danger",
-                    callback: function () {
-
-                    }
-                }
-            }
-        });
-    });
     /** SlugAble **/
     if ($('.slugable').length > 0) {
         var $target = $('.slugable').find('.slug-target');
@@ -74,4 +49,25 @@ $(function () {
     
     $(".wysihtml5").wysihtml5();
     $(".datepicker").datepicker();
+
+    /** delete dialog **/
+    $(document).on('click', '.confirm-delete', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        swal({
+                title: window.la_lang.alertDelete,
+                text: window.la_lang.alertDeleteText,
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: window.la_lang.alertDeleteConfirm,
+                cancelButtonText: window.la_lang.alertDeleteCancel,
+                closeOnConfirm: true,
+                closeOnCancel: true
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    $('#deleteForm').attr('action', $this.attr('href')).submit();
+                }
+            });
+    });
 });

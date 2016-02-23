@@ -9,6 +9,7 @@ use Joselfonseca\LaravelAdmin\Services\TableBuilder\TableBuilder;
 use Joselfonseca\LaravelAdmin\Services\Users\UserRepository;
 use Illuminate\Support\Facades\Redirect;
 use Exception;
+use SweetAlert;
 
 /**
  * Description of UsersController
@@ -39,7 +40,7 @@ class UsersController extends Controller
             'delete' => [
                 'link' => url('backend/users/-id-/delete'),
                 'text' => '<i class="fa fa-times"></i> ' . trans('LaravelAdmin::laravel-admin.delete'),
-                'class' => 'btn btn-danger btn-sm confirm',
+                'class' => 'btn btn-danger btn-sm confirm-delete',
                 'confirm' => true,
             ],
         ]);
@@ -65,7 +66,7 @@ class UsersController extends Controller
     public function store(Requests\CreateUserRequest $request)
     {
         $this->userRepository->create($request->all());
-        flash()->success(trans('LaravelAdmin::laravel-admin.userCreated'));
+        SweetAlert::success(trans('LaravelAdmin::laravel-admin.userCreated'));
         return Redirect::to('backend/users');
     }
 
@@ -80,7 +81,7 @@ class UsersController extends Controller
             }
         }
         $this->userRepository->update($user->id, $request->all());
-        flash()->success(trans('LaravelAdmin::laravel-admin.userUpdated'));
+        SweetAlert::success(trans('LaravelAdmin::laravel-admin.userUpdated'));
         return Redirect::back();
     }
 
@@ -88,7 +89,7 @@ class UsersController extends Controller
     {
         $user = $user = $this->model->findOrFail($id);
         $this->userRepository->updatePassword($user->id, $request->all());
-        flash()->success(trans('LaravelAdmin::laravel-admin.passwordUpdated'));
+        SweetAlert::success(trans('LaravelAdmin::laravel-admin.passwordUpdated'));
         return Redirect::back();
     }
 
@@ -96,7 +97,7 @@ class UsersController extends Controller
     {
         $user = $this->model->findOrFail($id);
         $this->userRepository->deleteUser($user);
-        flash()->success(trans('LaravelAdmin::laravel-admin.userDeleted'));
+        SweetAlert::success(trans('LaravelAdmin::laravel-admin.userDeleted'));
         return Redirect::back();    
     }
 

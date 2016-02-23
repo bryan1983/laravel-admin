@@ -2,9 +2,10 @@
 
 namespace Joselfonseca\LaravelAdmin\Providers;
 
+use View;
+use JavaScript;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
-use View;
 
 /**
  * Class LaravelAdminServiceProvider
@@ -29,7 +30,9 @@ class LaravelAdminServiceProvider extends ServiceProvider
         'Collective\Html\HtmlServiceProvider',
         'TwigBridge\ServiceProvider',
         'Laracasts\Flash\FlashServiceProvider',
-        'Barryvdh\Debugbar\ServiceProvider'
+        'Barryvdh\Debugbar\ServiceProvider',
+        'UxWeb\SweetAlert\SweetAlertServiceProvider',
+        'Laracasts\Utilities\JavaScript\JavaScriptServiceProvider'
     ];
     /**
      * @var array
@@ -40,7 +43,8 @@ class LaravelAdminServiceProvider extends ServiceProvider
         'Html' => 'Collective\Html\HtmlFacade',
         'Twig' => 'TwigBridge\Facade\Twig',
         'Flash' => 'Laracasts\Flash\Flash',
-        'Debugbar' => 'Barryvdh\Debugbar\Facade'
+        'Debugbar' => 'Barryvdh\Debugbar\Facade',
+        'SweetAlert' => 'UxWeb\SweetAlert\SweetAlert'
     ];
 
     /**
@@ -80,6 +84,8 @@ class LaravelAdminServiceProvider extends ServiceProvider
             ->registerTranslations();
         \Config::set('entrust.role', 'Joselfonseca\LaravelAdmin\Services\Users\Role');
         \Config::set('entrust.permission', 'Joselfonseca\LaravelAdmin\Services\Users\Permission');
+        \Config::set('javascript.bind_js_vars_to_this_view', 'LaravelAdmin::layouts.withsidebar');
+        $this->setLangJs();
     }
 
     /**
@@ -149,6 +155,16 @@ class LaravelAdminServiceProvider extends ServiceProvider
     {
         $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'LaravelAdmin');
         return $this;
+    }
+
+    /**
+     * set the lang for the JS
+     */
+    protected function setLangJs()
+    {
+        JavaScript::put([
+            'la_lang' => app('translator')->getLoader()->load(app()->getLocale(), 'laravel-admin', 'LaravelAdmin')
+        ]);
     }
 
 }

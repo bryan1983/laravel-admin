@@ -9,6 +9,7 @@ use Joselfonseca\LaravelAdmin\Services\TableBuilder\TableBuilder;
 use Joselfonseca\LaravelAdmin\Http\Requests\RoleRequest;
 use Joselfonseca\LaravelAdmin\Http\Requests\UpdateRoleRequest;
 use Illuminate\Support\Facades\Redirect;
+use SweetAlert;
 
 class RolesController extends Controller
 {
@@ -36,7 +37,7 @@ class RolesController extends Controller
             'delete' => [
                 'link' => url('backend/roles/-id-/delete'),
                 'text' => '<i class="fa fa-times"></i> ' . trans('LaravelAdmin::laravel-admin.delete'),
-                'class' => 'btn btn-danger btn-sm confirm',
+                'class' => 'btn btn-danger btn-sm confirm-delete',
                 'confirm' => true,
             ],
         ]);
@@ -53,7 +54,7 @@ class RolesController extends Controller
     public function store(RoleRequest $request)
     {
     	$this->model->create($request->all());
-    	flash()->success(trans('LaravelAdmin::laravel-admin.rolCreationSuccess'));
+		SweetAlert::success(trans('LaravelAdmin::laravel-admin.rolCreationSuccess'));
     	return Redirect::to('backend/roles');
     }
 
@@ -77,7 +78,7 @@ class RolesController extends Controller
     	}
     	$role->fill($request->all());
     	$role->save();
-    	flash()->success(trans('LaravelAdmin::laravel-admin.rolEditionSuccess'));
+        SweetAlert::success(trans('LaravelAdmin::laravel-admin.rolEditionSuccess'));
     	return Redirect::to('backend/roles');
     }
 
@@ -85,7 +86,7 @@ class RolesController extends Controller
     {
     	$role = $this->model->findOrFail($id);
     	$role->delete();
-    	flash()->success(trans('LaravelAdmin::laravel-admin.rolDeleteSuccess'));
+        SweetAlert::success(trans('LaravelAdmin::laravel-admin.rolDeleteSuccess'));
     	return Redirect::to('backend/roles');
     }
 
@@ -103,7 +104,7 @@ class RolesController extends Controller
     {
         $role = $this->model->findOrFail($id);
         $role->perms()->detach($permission);
-        flash()->success(trans('LaravelAdmin::laravel-admin.permissionsDetachedSuccess'));
+        SweetAlert::success(trans('LaravelAdmin::laravel-admin.permissionsDetachedSuccess'));
         return Redirect::back();
     }
 }
