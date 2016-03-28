@@ -29,21 +29,21 @@ class MenuServiceProvider extends ServiceProvider
                 'submenus' => [
                     'List' => [
                         'link' => [
-                            'link' => 'backend/users',
+                            'link' => config('laravel-admin.routePrefix', 'backend').'/users',
                             'text' => trans('laravel-admin.usersList'),
                         ],
                         'permissions' => ['list-users'],
                     ],
                     'Roles' => [
                         'link' => [
-                            'link' => 'backend/roles',
+                            'link' => config('laravel-admin.routePrefix', 'backend').'/roles',
                             'text' => trans('laravel-admin.userRoles'),
                         ],
                         'permissions' => ['roles-crud'],
                     ],
                     'Permissions' => [
                         'link' => [
-                            'link' => 'backend/permissions',
+                            'link' => config('laravel-admin.routePrefix', 'backend').'/permissions',
                             'text' => trans('laravel-admin.permissions'),
                         ],
                         'permissions' => ['permissions-crud'],

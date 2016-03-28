@@ -26,12 +26,12 @@ class PermissionsController extends Controller
     {
         $table->setActions([
             'edit' => [
-                'link' => url('backend/permissions/-id-/edit/'),
+                'link' => url(config('laravel-admin.routePrefix', 'backend').'/permissions/-id-/edit/'),
                 'text' => '<i class="fa fa-pencil"></i> '.trans('LaravelAdmin::laravel-admin.edit'),
                 'class' => 'btn btn-primary btn-sm',
             ],
             'delete' => [
-                'link' => url('backend/permissions/-id-/delete'),
+                'link' => url(config('laravel-admin.routePrefix', 'backend').'/permissions/-id-/delete'),
                 'text' => '<i class="fa fa-times"></i> '.trans('LaravelAdmin::laravel-admin.delete'),
                 'class' => 'btn btn-danger btn-sm confirm-delete',
                 'confirm' => true,
@@ -52,7 +52,7 @@ class PermissionsController extends Controller
     {
         $this->model->create($request->all());
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.permissionCreationSuccess'));
-        return Redirect::to('backend/permissions');
+        return Redirect::to(config('laravel-admin.routePrefix', 'backend').'/permissions');
     }
 
     public function edit($id)
@@ -74,7 +74,7 @@ class PermissionsController extends Controller
         $role->fill($request->all());
         $role->save();
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.permissionEditionSuccess'));
-        return Redirect::to('backend/permissions');
+        return Redirect::to(config('laravel-admin.routePrefix', 'backend').'/permissions');
     }
 
     public function destroy($id)
@@ -82,7 +82,7 @@ class PermissionsController extends Controller
         $role = $this->model->findOrFail($id);
         $role->delete();
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.permissionDeleteSuccess'));
-        return Redirect::to('backend/permissions');
+        return Redirect::to(config('laravel-admin.routePrefix', 'backend').'/permissions');
     }
 
     public function getForSelect(Request $request, AclManager $acl)

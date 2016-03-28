@@ -1,6 +1,7 @@
 <?php
-Route::group(['prefix' => 'backend'],
+Route::group(['prefix' => config('laravel-admin.routePrefix', 'backend')],
     function () {
+    Route::get('/', 'Joselfonseca\LaravelAdmin\Http\Controllers\HomeController@index');
     Route::get('/login',
         [
         'as' => 'LaravelAdminLogin',

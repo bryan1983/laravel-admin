@@ -45,7 +45,7 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
-            return redirect()->to(\Config::get('laravel-admin.afterLoginRoute'));
+            return redirect()->to(config('laravel-admin.routePrefix', 'backend').'/'.\Config::get('laravel-admin.afterLoginRoute'));
         }
 
         return redirect()->route('LaravelAdminLogin')

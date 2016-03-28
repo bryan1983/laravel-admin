@@ -7,10 +7,13 @@ return [
     /**
      * Route to go after login
     **/ 
-    'afterLoginRoute' => 'backend/users',
+    'afterLoginRoute' => 'users',
     /**
     * Add Errors & Logging from Validator Laravel 5.*
-    * make for Wim_cartago
     **/
-    'viewErrors' => false
+    'viewErrors' => false,
+    /**
+     * Route prefix for admin routes
+     */
+    'routePrefix' => 'backend'
 ];

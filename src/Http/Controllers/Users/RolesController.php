@@ -25,17 +25,17 @@ class RolesController extends Controller
     {
     	$table->setActions([
             'edit' => [
-                'link' => url('backend/roles/-id-/edit/'),
+                'link' => url(config('laravel-admin.routePrefix', 'backend').'/roles/-id-/edit/'),
                 'text' => '<i class="fa fa-pencil"></i> ' . trans('LaravelAdmin::laravel-admin.edit'),
                 'class' => 'btn btn-primary btn-sm',
             ],
             'permissions' => [
-                'link' => url('backend/roles/-id-/permissions'),
+                'link' => url(config('laravel-admin.routePrefix', 'backend').'/roles/-id-/permissions'),
                 'text' => '<i class="fa fa-lock"></i> ' . trans('LaravelAdmin::laravel-admin.permissions'),
                 'class' => 'btn btn-default btn-sm',
             ],
             'delete' => [
-                'link' => url('backend/roles/-id-/delete'),
+                'link' => url(config('laravel-admin.routePrefix', 'backend').'/roles/-id-/delete'),
                 'text' => '<i class="fa fa-times"></i> ' . trans('LaravelAdmin::laravel-admin.delete'),
                 'class' => 'btn btn-danger btn-sm confirm-delete',
                 'confirm' => true,
@@ -55,7 +55,7 @@ class RolesController extends Controller
     {
     	$this->model->create($request->all());
 		SweetAlert::success(trans('LaravelAdmin::laravel-admin.rolCreationSuccess'));
-    	return Redirect::to('backend/roles');
+    	return Redirect::to(config('laravel-admin.routePrefix', 'backend').'/roles');
     }
 
     public function edit($id)
@@ -79,7 +79,7 @@ class RolesController extends Controller
     	$role->fill($request->all());
     	$role->save();
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.rolEditionSuccess'));
-    	return Redirect::to('backend/roles');
+    	return Redirect::to(config('laravel-admin.routePrefix', 'backend').'/roles');
     }
 
     public function destroy($id)
@@ -87,7 +87,7 @@ class RolesController extends Controller
     	$role = $this->model->findOrFail($id);
     	$role->delete();
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.rolDeleteSuccess'));
-    	return Redirect::to('backend/roles');
+    	return Redirect::to(config('laravel-admin.routePrefix', 'backend').'/roles');
     }
 
     public function permissions($id)

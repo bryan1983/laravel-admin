@@ -33,12 +33,12 @@ class UsersController extends Controller
     {
         $table->setActions([
             'edit' => [
-                'link' => url('backend/users/-id-/edit/'),
+                'link' => url(config('laravel-admin.routePrefix', 'backend').'/users/-id-/edit/'),
                 'text' => '<i class="fa fa-pencil"></i> ' . trans('LaravelAdmin::laravel-admin.edit'),
                 'class' => 'btn btn-primary btn-sm',
             ],
             'delete' => [
-                'link' => url('backend/users/-id-/delete'),
+                'link' => url(config('laravel-admin.routePrefix', 'backend').'/users/-id-/delete'),
                 'text' => '<i class="fa fa-times"></i> ' . trans('LaravelAdmin::laravel-admin.delete'),
                 'class' => 'btn btn-danger btn-sm confirm-delete',
                 'confirm' => true,
@@ -67,7 +67,7 @@ class UsersController extends Controller
     {
         $this->userRepository->create($request->all());
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.userCreated'));
-        return Redirect::to('backend/users');
+        return Redirect::to(config('laravel-admin.routePrefix', 'backend').'/users');
     }
 
     public function update(Requests\UpdateUserRequest $request, $id)
