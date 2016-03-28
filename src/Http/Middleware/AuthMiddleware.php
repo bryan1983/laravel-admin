@@ -38,7 +38,7 @@ class AuthMiddleware {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('backend/login');
+                return redirect()->guest(config('laravel-admin.routePrefix', 'backend').'/login');
             }
         }
 
