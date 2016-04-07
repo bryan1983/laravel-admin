@@ -21,7 +21,7 @@ $(function () {
         var $this = $(this);
         /** get the permissions Model **/
         $.ajax({
-            url: GLOBALS.site_url+'/backend/roles/permissions/get',
+            url: GLOBALS.site_url+'/'+GLOBALS.prefix+'/roles/permissions/get',
             type: 'GET',
             dataType: 'json',
             data: {

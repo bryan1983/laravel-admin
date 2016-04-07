@@ -21,7 +21,8 @@
         <script>
             var GLOBALS = {
                 site_url: '{{url()}}',
-                datablesLang: '//cdn.datatables.net/plug-ins/1.10.7/i18n/English.json'
+                datablesLang: '//cdn.datatables.net/plug-ins/1.10.7/i18n/English.json',
+                prefix: '{{ config('laravel-admin.routePrefix', 'backend') }}'
             };
         </script>
         @if(config('app.locale') == 'es')
