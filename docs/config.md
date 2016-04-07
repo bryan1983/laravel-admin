@@ -19,14 +19,19 @@ However, at the time of installation it should already be published.
         /**
          * Route to go after login
         **/ 
-        'afterLoginRoute' => 'backend/users',
+        'afterLoginRoute' => 'users',
         /**
         * Add Errors & Logging from Validator Laravel 5.*
         * make for Wim_cartago
         **/
-        'viewErrors' => false
+        'viewErrors' => false,
+        /**
+         * Route prefix for admin routes
+         */
+        'routePrefix' => 'backend'
     ];
 ```
 You can change your App name updating the `appName` option<br />
 You can modify where the user is taken after the successful login with the `'afterLoginRoute'` option. <br />
-You can also set `viewErrors` to true to have a partial with the errors display for every page. 
+You can also set `viewErrors` to true to have a partial with the errors display for every page. <br />
+You can also set `routePrefix` to change the prefix of the panel routes for something like `admin`. <br />
