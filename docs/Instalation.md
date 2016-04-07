@@ -5,7 +5,7 @@ To install this package, open your composer.json file and add "joselfonseca/lara
 ```json
     "require": {
         "laravel/framework": "5.1.*",
-        "joselfonseca/laravel-admin" : "0.4.*"
+        "joselfonseca/laravel-admin" : "0.5.*"
     }
 ```
 Then run composer update and wait until it installs the dependencies.
