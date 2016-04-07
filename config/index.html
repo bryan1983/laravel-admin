@@ -3,7 +3,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
   
   <title>Config - Laravel Admin Panel</title>
   
@@ -21,6 +24,8 @@
   <script>
     // Current page data
     var mkdocs_page_name = "Config";
+    var mkdocs_page_input_path = "config.md";
+    var mkdocs_page_url = "/config/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -183,18 +188,23 @@
         /**
          * Route to go after login
         **/ 
-        'afterLoginRoute' =&gt; 'backend/users',
+        'afterLoginRoute' =&gt; 'users',
         /**
         * Add Errors &amp; Logging from Validator Laravel 5.*
         * make for Wim_cartago
         **/
-        'viewErrors' =&gt; false
+        'viewErrors' =&gt; false,
+        /**
+         * Route prefix for admin routes
+         */
+        'routePrefix' =&gt; 'backend'
     ];
 </code></pre>
 
 <p>You can change your App name updating the <code>appName</code> option<br />
 You can modify where the user is taken after the successful login with the <code>'afterLoginRoute'</code> option. <br />
-You can also set <code>viewErrors</code> to true to have a partial with the errors display for every page. </p>
+You can also set <code>viewErrors</code> to true to have a partial with the errors display for every page. <br />
+You can also set <code>routePrefix</code> to change the prefix of the panel routes for something like <code>admin</code>. <br /></p>
               
             </div>
           </div>
@@ -202,7 +212,7 @@ You can also set <code>viewErrors</code> to true to have a partial with the erro
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Authentication/" class="btn btn-neutral float-right" title="Authentication"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../Authentication/" class="btn btn-neutral float-right" title="Authentication">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../Instalation/" class="btn btn-neutral" title="Instalation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
