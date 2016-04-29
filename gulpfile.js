@@ -39,6 +39,7 @@ elixir(function (mix) {
         '../plugins/pace/pace.js',
         '../plugins/timepicker/bootstrap-timepicker.js',
         '../plugins/sweetalert/dist/sweetalert.min.js',
+        '../plugins/stickyTabs/stickyTabs.js',
         "adminlte.js",
         "app.js"
     ]);
