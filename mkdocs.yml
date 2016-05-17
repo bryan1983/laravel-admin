@@ -11,4 +11,4 @@ pages:
 - Flash Messages.md
 - license.md
 - changelog.md
-theme: readthedocs
+theme: material
