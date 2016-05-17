@@ -5,20 +5,19 @@
 @section('content')
 
 <div class="container-fluid admin">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            {{trans('LaravelAdmin::laravel-admin.rolesListTitle')}}
+    <div class="row">
+        <div class="col-md-12">
+            @include('flash::message')
         </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-lg-10">
-                    @include('flash::message')
-                </div>
-                <div class="col-lg-2">
-                    <a href="{{route('LaravelAdminRolesCreate')}}" class="btn btn-block btn-primary"><i class="fa fa-plus"></i> {{trans('LaravelAdmin::laravel-admin.createRoleTitle')}}</a>
-                </div>
+    </div>
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">{{trans('LaravelAdmin::laravel-admin.rolesListTitle')}}</h3>
+            <div class="box-tools">
+                <a href="{{route('LaravelAdminRolesCreate')}}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> {{trans('LaravelAdmin::laravel-admin.createRoleTitle')}}</a>
             </div>
-            <hr />
+        </div>
+        <div class="box-body">
             {!! $table !!}
         </div>
     </div>

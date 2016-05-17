@@ -5,11 +5,11 @@
 @section('content')
 
 <div class="container-fluid admin">
-	<div class="panel panel-primary">
-		<div class="panel-heading">
-			{{trans('LaravelAdmin::laravel-admin.createRoleTitle')}} 
+	<div class="box">
+		<div class="box-header with-border">
+			<h3 class="box-title">{{trans('LaravelAdmin::laravel-admin.createRoleTitle')}}</h3>
 		</div>
-		<div class="panel-body">
+		<div class="box-body">
 			<div class="row">
 	            <div class="col-lg-10 col-md-10 col-xs-12 col-lg-offset-1 col-md-offset-1">
                 	<div class="row">

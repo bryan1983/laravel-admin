@@ -5,19 +5,22 @@
 @section('content')
 
     <div class="container-fluid admin">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                {{trans('LaravelAdmin::laravel-admin.managePermissions'). ' - '}}
-                @if($type === 'roles')
-                    {{$model->display_name}}
-                @else
-                    {{$model->name}}
-                @endif
+        <div class="box panel-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">
+                    {{trans('LaravelAdmin::laravel-admin.managePermissions'). ' - '}}
+                    @if($type === 'roles')
+                        {{$model->display_name}}
+                    @else
+                        {{$model->name}}
+                    @endif
+                </h3>
             </div>
-            <div class="panel-body">
+            {!! Form::open(['route' => ['LaravelAdminRolesPermissionsUpdate', $model->id], 'method' => 'PUT']) !!}
+            <div class="box-body">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-xs-12">
-                        {!! Form::open(['route' => ['LaravelAdminRolesPermissionsUpdate', $model->id], 'method' => 'PUT']) !!}
+                        <p>Select the permissions the role will have access to.</p>
                         <div class="row">
                             @foreach($permissionsList as $id => $name)
                                 <div class="col-md-3">
@@ -28,18 +31,19 @@
                                 </div>
                             @endforeach
                         </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <button class="btn btn-primary btn-block"><i
-                                            class="fa fa-save"></i> {{trans('LaravelAdmin::laravel-admin.save')}}
-                                </button>
-                            </div>
-                        </div>
-                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
+            <div class="box-footer">
+                <div class="row">
+                    <div class="col-md-2">
+                        <button class="btn btn-primary btn-block">
+                            <i class="fa fa-save"></i> {{trans('LaravelAdmin::laravel-admin.save')}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {!! Form::close() !!}
         </div>
     </div>
     <div class="modal fade" id="permissionsAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

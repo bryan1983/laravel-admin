@@ -5,9 +5,9 @@
 @section('content')
 
 <div class="container-fluid admin">
-	<div class="panel panel-primary">
-		<div class="panel-heading">
-			{{trans('LaravelAdmin::laravel-admin.createUserTitle')}} 
+	<div class="box">
+		<div class="box-header with-border">
+			<h3 class="box-title">{{trans('LaravelAdmin::laravel-admin.createUserTitle')}}</h3>
 		</div>
 		<div class="panel-body">
 			<div class="row">
