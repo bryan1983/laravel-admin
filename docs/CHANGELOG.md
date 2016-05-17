@@ -2,6 +2,16 @@
 
 All Notable changes to `laravel-admin` will be documented in this file
 
+# 0.6
+
+- Update Permissions assignation View, see https://github.com/joselfonseca/laravel-admin/commit/b6c4481c61bd43c187179db9316e7bc83f49c4f8
+- Update views to use Boxes instead of panels, see https://github.com/joselfonseca/laravel-admin/commit/23606198f145bda893f765407a86b96325e3efe6
+- if Menu permissions false, let it see by everyone, see https://github.com/joselfonseca/laravel-admin/commit/7266039ff19c971fe433a7af497f5d26e272dadd
+
+# 0.5
+
+- Some Improvements
+
 # 0.4.3
 
 - Merge a pull request to has the errors notice global and it will appear if config says so.

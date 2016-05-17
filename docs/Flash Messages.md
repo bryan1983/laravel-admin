@@ -1,3 +1,3 @@
 # Flash Messages
 
-For Flash messages, i am using [laracast/flash](https://github.com/laracasts/flash). please refer to it's documentation for usage.
+For Flash messages, we are using Sweet Alert, for for information visit [https://github.com/uxweb/sweet-alert](https://github.com/uxweb/sweet-alert)

@@ -34,7 +34,7 @@ The Menu array contains another array which is sidebar, this is meant to be the 
             'link' => 'backend/home', // the URI to go to, this is placed inside a url() helper
             'text' => '<i class="fa fa-dashboard fa-lg"></i> Dashboard', // The text to display in the link, you can use font-awesome icons
         ],
-        'permissions' => [] // array with the permissions required to see the item, use the slugs
+        'permissions' => [] // array with the permissions required to see the item, use the slugs. You can also pass false if you want the menu to be seen by everyone
         'submenus' => [] // array with the same structure as the parent, this will create a submenu.
     ]
 ```
