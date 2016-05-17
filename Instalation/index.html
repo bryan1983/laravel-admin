@@ -13,11 +13,15 @@
       
       
       
+        <link rel="canonical" href="https://github.com/joselfonseca/laravel-admin/Instalation/">
+      
+      
+        <meta name="author" content="Jose Fonseca">
       
     
-    <meta property="og:url" content="None">
+    <meta property="og:url" content="https://github.com/joselfonseca/laravel-admin/Instalation/">
     <meta property="og:title" content="Laravel Admin Panel">
-    <meta property="og:image" content="None/../">
+    <meta property="og:image" content="https://github.com/joselfonseca/laravel-admin/Instalation//../">
     <meta name="apple-mobile-web-app-title" content="Laravel Admin Panel">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -43,6 +47,8 @@
     </style>
     <link rel="stylesheet" href="../assets/stylesheets/application-0dac3e5884.css">
     
+      <link rel="stylesheet" href="../assets/stylesheets/palettes-05ab2406df.css">
+    
     
       
       
@@ -64,7 +70,10 @@
   
   
   
-  <body class=" ">
+  <body class="palette-primary-indigo palette-accent-light-blue">
+    
+      
+      
     
     <div class="backdrop">
       <div class="backdrop-paper"></div>
@@ -91,6 +100,16 @@
       </div>
     </div>
     
+      
+      <div class="button button-twitter" role="button" aria-label="Twitter">
+        <a href="https://twitter.com/joselfonseca" title="@joselfonseca on Twitter" target="_blank" class="toggle-button icon icon-twitter"></a>
+      </div>
+    
+    
+      
+      <div class="button button-github" role="button" aria-label="GitHub">
+        <a href="https://github.com/joselfonseca" title="@joselfonseca on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+      </div>
     
     <div class="button button-search" role="button" aria-label="Search">
       <label class="toggle-button icon icon-search" title="Search" for="toggle-search"></label>
@@ -116,7 +135,7 @@
       <div class="drawer">
         <nav aria-label="Navigation">
   
-  <a href="/" class="project">
+  <a href="https://github.com/joselfonseca/laravel-admin" class="project">
     <div class="banner">
       
       <div class="name">
@@ -127,11 +146,30 @@
           </span>
         </strong>
         
+          <br>
+          joselfonseca/laravel-admin
+        
       </div>
     </div>
   </a>
   <div class="scrollable">
     <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            
+            <a href="https://github.com/joselfonseca/laravel-admin/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/joselfonseca/laravel-admin/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
       
       <div class="toc">
         <ul>
@@ -242,6 +280,27 @@
           
         </ul>
         
+          <hr>
+          <span class="section">The author</span>
+          <ul>
+            
+              
+              <li>
+                <a href="https://twitter.com/joselfonseca" target="_blank" title="@joselfonseca on Twitter">
+                  @joselfonseca on Twitter
+                </a>
+              </li>
+            
+            
+              
+              <li>
+                <a href="https://github.com/joselfonseca" target="_blank" title="@joselfonseca on GitHub">
+                  @joselfonseca on GitHub
+                </a>
+              </li>
+            
+          </ul>
+        
       </div>
     </div>
   </div>
@@ -250,49 +309,55 @@
       <article class="article">
         <div class="wrapper">
           
-          <h1 id="laravel-admin-panel-installation">Laravel Admin Panel Installation</h1>
+          <h1 id="laravel-admin-panel-installation">Laravel Admin Panel Installation<a class="headerlink" href="#laravel-admin-panel-installation" title="Permanent link">#</a></h1>
 <p>To install this package, open your composer.json file and add "joselfonseca/laravel-admin" : "0.6.*"</p>
-<pre><code class="json">    &quot;require&quot;: {
-        &quot;laravel/framework&quot;: &quot;5.1.*&quot;,
-        &quot;joselfonseca/laravel-admin&quot; : &quot;0.6.*&quot;
-    }
-</code></pre>
+<div class="code"><pre><span></span>    <span class="s2">&quot;require&quot;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="err">    </span><span class="nt">&quot;laravel/framework&quot;</span><span class="p">:</span> <span class="s2">&quot;5.1.*&quot;</span><span class="p">,</span>
+    <span class="err">    </span><span class="nt">&quot;joselfonseca/laravel-admin&quot;</span> <span class="p">:</span> <span class="s2">&quot;0.6.*&quot;</span>
+    <span class="p">}</span>
+</pre></div>
+
 
 <p>Then run composer update and wait until it installs the dependencies.
 Once all the dependencies are installed, open the config/app.php file and add the Laravel Admin Service provider.</p>
-<pre><code class="php">    'providers' =&gt; [
-        ...
-        Joselfonseca\LaravelAdmin\Providers\LaravelAdminServiceProvider::class,
-        ...
-    ]
-</code></pre>
+<div class="code"><pre><span></span><span class="x">    &#39;providers&#39; =&gt; [</span>
+<span class="x">        ...</span>
+<span class="x">        Joselfonseca\LaravelAdmin\Providers\LaravelAdminServiceProvider::class,</span>
+<span class="x">        ...</span>
+<span class="x">    ]</span>
+</pre></div>
+
 
 <p>Once the service provider has been added, make sure your user model extends the class <code>Joselfonseca\LaravelAdmin\Services\Users\User</code> like the following example</p>
-<pre><code class="php">
-    namespace JarvisPlatform;
+<div class="code"><pre><span></span><span class="x">    namespace JarvisPlatform;</span>
 
-    use Joselfonseca\LaravelAdmin\Services\Users\User as Model;
+<span class="x">    use Joselfonseca\LaravelAdmin\Services\Users\User as Model;</span>
 
-    class User extends Model {
+<span class="x">    class User extends Model {</span>
 
-    }
+<span class="x">    }</span>
+</pre></div>
 
-</code></pre>
 
 <p>Once your model extends de laravel admin user model, publish the assets and migrations for the package running</p>
-<pre><code class="bash">    php artisan vendor:publish --provider=&quot;Joselfonseca\LaravelAdmin\Providers\LaravelAdminServiceProvider&quot;
-</code></pre>
+<div class="code"><pre><span></span>    php artisan vendor:publish --provider<span class="o">=</span><span class="s2">&quot;Joselfonseca\LaravelAdmin\Providers\LaravelAdminServiceProvider&quot;</span>
+</pre></div>
+
 
 <p>Migrate the database</p>
-<pre><code class="php">    php artisan migrate
-</code></pre>
+<div class="code"><pre><span></span><span class="x">    php artisan migrate</span>
+</pre></div>
+
 
 <p>Run this command in the CLI to start the installation process.</p>
-<pre><code>    php artisan laravelAdmin:install
-</code></pre>
+<div class="code"><pre><span></span>    php artisan laravelAdmin:install
+</pre></div>
+
 
 <p>Once that is done you can navigate to http://yoursite.dev/backend/login and you will be able to log in with the credentials <code>admin@admin.com</code> and password <code>secret</code>.</p>
           <aside class="copyright" role="note">
+            
+              Copyright (c) 2016 John Doe &ndash;
             
             Documentation built with
             <a href="http://www.mkdocs.org" target="_blank">MkDocs</a>
@@ -361,7 +426,7 @@ Once all the dependencies are installed, open the config/app.php file and add th
     </main>
     <script>
       var base_url = '..';
-      var repo_id  = '';
+      var repo_id  = 'joselfonseca/laravel-admin';
     </script>
     <script src="../assets/javascripts/application-997097ee0c.js"></script>
     

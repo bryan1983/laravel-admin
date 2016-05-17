@@ -13,11 +13,15 @@
       
       
       
+        <link rel="canonical" href="https://github.com/joselfonseca/laravel-admin/The Menu/">
+      
+      
+        <meta name="author" content="Jose Fonseca">
       
     
-    <meta property="og:url" content="None">
+    <meta property="og:url" content="https://github.com/joselfonseca/laravel-admin/The Menu/">
     <meta property="og:title" content="Laravel Admin Panel">
-    <meta property="og:image" content="None/../">
+    <meta property="og:image" content="https://github.com/joselfonseca/laravel-admin/The Menu//../">
     <meta name="apple-mobile-web-app-title" content="Laravel Admin Panel">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -43,6 +47,8 @@
     </style>
     <link rel="stylesheet" href="../assets/stylesheets/application-0dac3e5884.css">
     
+      <link rel="stylesheet" href="../assets/stylesheets/palettes-05ab2406df.css">
+    
     
       
       
@@ -64,7 +70,10 @@
   
   
   
-  <body class=" ">
+  <body class="palette-primary-indigo palette-accent-light-blue">
+    
+      
+      
     
     <div class="backdrop">
       <div class="backdrop-paper"></div>
@@ -91,6 +100,16 @@
       </div>
     </div>
     
+      
+      <div class="button button-twitter" role="button" aria-label="Twitter">
+        <a href="https://twitter.com/joselfonseca" title="@joselfonseca on Twitter" target="_blank" class="toggle-button icon icon-twitter"></a>
+      </div>
+    
+    
+      
+      <div class="button button-github" role="button" aria-label="GitHub">
+        <a href="https://github.com/joselfonseca" title="@joselfonseca on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+      </div>
     
     <div class="button button-search" role="button" aria-label="Search">
       <label class="toggle-button icon icon-search" title="Search" for="toggle-search"></label>
@@ -116,7 +135,7 @@
       <div class="drawer">
         <nav aria-label="Navigation">
   
-  <a href="/" class="project">
+  <a href="https://github.com/joselfonseca/laravel-admin" class="project">
     <div class="banner">
       
       <div class="name">
@@ -127,11 +146,30 @@
           </span>
         </strong>
         
+          <br>
+          joselfonseca/laravel-admin
+        
       </div>
     </div>
   </a>
   <div class="scrollable">
     <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            
+            <a href="https://github.com/joselfonseca/laravel-admin/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/joselfonseca/laravel-admin/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
       
       <div class="toc">
         <ul>
@@ -258,6 +296,27 @@
           
         </ul>
         
+          <hr>
+          <span class="section">The author</span>
+          <ul>
+            
+              
+              <li>
+                <a href="https://twitter.com/joselfonseca" target="_blank" title="@joselfonseca on Twitter">
+                  @joselfonseca on Twitter
+                </a>
+              </li>
+            
+            
+              
+              <li>
+                <a href="https://github.com/joselfonseca" target="_blank" title="@joselfonseca on GitHub">
+                  @joselfonseca on GitHub
+                </a>
+              </li>
+            
+          </ul>
+        
       </div>
     </div>
   </div>
@@ -266,47 +325,51 @@
       <article class="article">
         <div class="wrapper">
           
-          <h1 id="laravel-admin-menu">Laravel Admin Menu</h1>
-<h2 id="adding-a-menu-to-the-sidebar">Adding a menu to the sidebar</h2>
+          <h1 id="laravel-admin-menu">Laravel Admin Menu<a class="headerlink" href="#laravel-admin-menu" title="Permanent link">#</a></h1>
+<h2 id="adding-a-menu-to-the-sidebar">Adding a menu to the sidebar<a class="headerlink" href="#adding-a-menu-to-the-sidebar" title="Permanent link">#</a></h2>
 <p>Laravel Admin has a menu that you can customize, to do that just add to your service provider the following code in the boot method.</p>
-<pre><code class="php">    $menu = $this-&gt;app-&gt;make('admin.menu');
-    $menu-&gt;addMenu([
-        'Courses' =&gt; [
-            'link' =&gt; [
-                'link' =&gt; '#',
-                'text' =&gt; '&lt;i class=&quot;fa fa-book fa-lg&quot;&gt;&lt;/i&gt; Cursos',
-            ],
-            'permissions' =&gt; ['administrador-de-cursos'],
-            'submenus' =&gt; [
-                'List' =&gt; [
-                    'link' =&gt; [
-                        'link' =&gt; 'backend/courses',
-                        'text' =&gt; 'Listado',
-                    ],
-                    'permissions' =&gt; ['administrador-de-cursos'],
-                ]
-            ]
-        ]
-    ]);
-</code></pre>
+<div class="code"><pre><span></span><span class="x">    $menu = $this-&gt;app-&gt;make(&#39;admin.menu&#39;);</span>
+<span class="x">    $menu-&gt;addMenu([</span>
+<span class="x">        &#39;Courses&#39; =&gt; [</span>
+<span class="x">            &#39;link&#39; =&gt; [</span>
+<span class="x">                &#39;link&#39; =&gt; &#39;#&#39;,</span>
+<span class="x">                &#39;text&#39; =&gt; &#39;&lt;i class=&quot;fa fa-book fa-lg&quot;&gt;&lt;/i&gt; Cursos&#39;,</span>
+<span class="x">            ],</span>
+<span class="x">            &#39;permissions&#39; =&gt; [&#39;administrador-de-cursos&#39;],</span>
+<span class="x">            &#39;submenus&#39; =&gt; [</span>
+<span class="x">                &#39;List&#39; =&gt; [</span>
+<span class="x">                    &#39;link&#39; =&gt; [</span>
+<span class="x">                        &#39;link&#39; =&gt; &#39;backend/courses&#39;,</span>
+<span class="x">                        &#39;text&#39; =&gt; &#39;Listado&#39;,</span>
+<span class="x">                    ],</span>
+<span class="x">                    &#39;permissions&#39; =&gt; [&#39;administrador-de-cursos&#39;],</span>
+<span class="x">                ]</span>
+<span class="x">            ]</span>
+<span class="x">        ]</span>
+<span class="x">    ]);</span>
+</pre></div>
+
 
 <p>The Menu array contains another array which is sidebar, this is meant to be the sidebar menu, in it there is another array, each key in that array represents a menu item and its structure is the following</p>
-<pre><code class="php">    'Dashboard' =&gt; [ //this is the key that identify the menu item
-        'link' =&gt; [// this is what we use to build the link
-            'link' =&gt; 'backend/home', // the URI to go to, this is placed inside a url() helper
-            'text' =&gt; '&lt;i class=&quot;fa fa-dashboard fa-lg&quot;&gt;&lt;/i&gt; Dashboard', // The text to display in the link, you can use font-awesome icons
-        ],
-        'permissions' =&gt; [] // array with the permissions required to see the item, use the slugs. You can also pass false if you want the menu to be seen by everyone
-        'submenus' =&gt; [] // array with the same structure as the parent, this will create a submenu.
-    ]
-</code></pre>
+<div class="code"><pre><span></span><span class="x">    &#39;Dashboard&#39; =&gt; [ //this is the key that identify the menu item</span>
+<span class="x">        &#39;link&#39; =&gt; [// this is what we use to build the link</span>
+<span class="x">            &#39;link&#39; =&gt; &#39;backend/home&#39;, // the URI to go to, this is placed inside a url() helper</span>
+<span class="x">            &#39;text&#39; =&gt; &#39;&lt;i class=&quot;fa fa-dashboard fa-lg&quot;&gt;&lt;/i&gt; Dashboard&#39;, // The text to display in the link, you can use font-awesome icons</span>
+<span class="x">        ],</span>
+<span class="x">        &#39;permissions&#39; =&gt; [] // array with the permissions required to see the item, use the slugs. You can also pass false if you want the menu to be seen by everyone</span>
+<span class="x">        &#39;submenus&#39; =&gt; [] // array with the same structure as the parent, this will create a submenu.</span>
+<span class="x">    ]</span>
+</pre></div>
+
 
 <p>You can add as many items as you need.</p>
-<h2 id="setting-the-active-menu-item">Setting the active menu item</h2>
+<h2 id="setting-the-active-menu-item">Setting the active menu item<a class="headerlink" href="#setting-the-active-menu-item" title="Permanent link">#</a></h2>
 <p>In the controllers you can set the current menu that should be mark as active, simply pass a variable called activeMenu to the view, the value should follow this pattern {sidebar}.{Item}.{Item}, for the avobe example should look something like this:</p>
-<pre><code class="php">    return view('LaravelAdmin::home.home')-&gt;with('activeMenu', 'sidebar.Dashboard');
-</code></pre>
+<div class="code"><pre><span></span><span class="x">    return view(&#39;LaravelAdmin::home.home&#39;)-&gt;with(&#39;activeMenu&#39;, &#39;sidebar.Dashboard&#39;);</span>
+</pre></div>
           <aside class="copyright" role="note">
+            
+              Copyright (c) 2016 John Doe &ndash;
             
             Documentation built with
             <a href="http://www.mkdocs.org" target="_blank">MkDocs</a>
@@ -375,7 +438,7 @@
     </main>
     <script>
       var base_url = '..';
-      var repo_id  = '';
+      var repo_id  = 'joselfonseca/laravel-admin';
     </script>
     <script src="../assets/javascripts/application-997097ee0c.js"></script>
     

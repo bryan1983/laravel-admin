@@ -13,11 +13,15 @@
       
       
       
+        <link rel="canonical" href="https://github.com/joselfonseca/laravel-admin/config/">
+      
+      
+        <meta name="author" content="Jose Fonseca">
       
     
-    <meta property="og:url" content="None">
+    <meta property="og:url" content="https://github.com/joselfonseca/laravel-admin/config/">
     <meta property="og:title" content="Laravel Admin Panel">
-    <meta property="og:image" content="None/../">
+    <meta property="og:image" content="https://github.com/joselfonseca/laravel-admin/config//../">
     <meta name="apple-mobile-web-app-title" content="Laravel Admin Panel">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -43,6 +47,8 @@
     </style>
     <link rel="stylesheet" href="../assets/stylesheets/application-0dac3e5884.css">
     
+      <link rel="stylesheet" href="../assets/stylesheets/palettes-05ab2406df.css">
+    
     
       
       
@@ -64,7 +70,10 @@
   
   
   
-  <body class=" ">
+  <body class="palette-primary-indigo palette-accent-light-blue">
+    
+      
+      
     
     <div class="backdrop">
       <div class="backdrop-paper"></div>
@@ -91,6 +100,16 @@
       </div>
     </div>
     
+      
+      <div class="button button-twitter" role="button" aria-label="Twitter">
+        <a href="https://twitter.com/joselfonseca" title="@joselfonseca on Twitter" target="_blank" class="toggle-button icon icon-twitter"></a>
+      </div>
+    
+    
+      
+      <div class="button button-github" role="button" aria-label="GitHub">
+        <a href="https://github.com/joselfonseca" title="@joselfonseca on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+      </div>
     
     <div class="button button-search" role="button" aria-label="Search">
       <label class="toggle-button icon icon-search" title="Search" for="toggle-search"></label>
@@ -116,7 +135,7 @@
       <div class="drawer">
         <nav aria-label="Navigation">
   
-  <a href="/" class="project">
+  <a href="https://github.com/joselfonseca/laravel-admin" class="project">
     <div class="banner">
       
       <div class="name">
@@ -127,11 +146,30 @@
           </span>
         </strong>
         
+          <br>
+          joselfonseca/laravel-admin
+        
       </div>
     </div>
   </a>
   <div class="scrollable">
     <div class="wrapper">
+      
+        <ul class="repo">
+          <li class="repo-download">
+            
+            <a href="https://github.com/joselfonseca/laravel-admin/archive/master.zip" target="_blank" title="Download" data-action="download">
+              <i class="icon icon-download"></i> Download
+            </a>
+          </li>
+          <li class="repo-stars">
+            <a href="https://github.com/joselfonseca/laravel-admin/stargazers" target="_blank" title="Stargazers" data-action="star">
+              <i class="icon icon-star"></i> Stars
+              <span class="count">&ndash;</span>
+            </a>
+          </li>
+        </ul>
+        <hr>
       
       <div class="toc">
         <ul>
@@ -252,6 +290,27 @@
           
         </ul>
         
+          <hr>
+          <span class="section">The author</span>
+          <ul>
+            
+              
+              <li>
+                <a href="https://twitter.com/joselfonseca" target="_blank" title="@joselfonseca on Twitter">
+                  @joselfonseca on Twitter
+                </a>
+              </li>
+            
+            
+              
+              <li>
+                <a href="https://github.com/joselfonseca" target="_blank" title="@joselfonseca on GitHub">
+                  @joselfonseca on GitHub
+                </a>
+              </li>
+            
+          </ul>
+        
       </div>
     </div>
   </div>
@@ -260,34 +319,38 @@
       <article class="article">
         <div class="wrapper">
           
-          <h1 id="config-file">Config File</h1>
+          <h1 id="config-file">Config File<a class="headerlink" href="#config-file" title="Permanent link">#</a></h1>
 <p>If you want to publish your configuration, run:</p>
-<pre><code class="bash">    php artisan vendor:publish --provider=&quot;Joselfonseca\LaravelAdmin\Providers\LaravelAdminServiceProvider&quot;
-</code></pre>
+<div class="code"><pre><span></span>    php artisan vendor:publish --provider<span class="o">=</span><span class="s2">&quot;Joselfonseca\LaravelAdmin\Providers\LaravelAdminServiceProvider&quot;</span>
+</pre></div>
+
 
 <p>However, at the time of installation it should already be published.</p>
-<h2 id="the-file">The file</h2>
-<pre><code class="php">    &lt;?php
-    return [
-        /**
-         * The App name
-         * */
-        'appName' =&gt; &quot;Laravel Admin Panel&quot;,
-        /**
-         * Route to go after login
-        **/ 
-        'afterLoginRoute' =&gt; 'users',
-        /**
-         * Route prefix for admin routes
-         */
-        'routePrefix' =&gt; 'backend'
-    ];
-</code></pre>
+<h2 id="the-file">The file<a class="headerlink" href="#the-file" title="Permanent link">#</a></h2>
+<div class="code"><pre><span></span><span class="x">    </span><span class="cp">&lt;?php</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="sd">/**</span>
+<span class="sd">         * The App name</span>
+<span class="sd">         * */</span>
+        <span class="s1">&#39;appName&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Laravel Admin Panel&quot;</span><span class="p">,</span>
+        <span class="sd">/**</span>
+<span class="sd">         * Route to go after login</span>
+<span class="sd">        **/</span> 
+        <span class="s1">&#39;afterLoginRoute&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;users&#39;</span><span class="p">,</span>
+        <span class="sd">/**</span>
+<span class="sd">         * Route prefix for admin routes</span>
+<span class="sd">         */</span>
+        <span class="s1">&#39;routePrefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;backend&#39;</span>
+    <span class="p">];</span>
+</pre></div>
+
 
 <p>You can change your App name updating the <code>appName</code> option<br />
 You can modify where the user is taken after the successful login with the <code>'afterLoginRoute'</code> option. <br />
 You can also set <code>routePrefix</code> to change the prefix of the panel routes for something like <code>admin</code>. <br /></p>
           <aside class="copyright" role="note">
+            
+              Copyright (c) 2016 John Doe &ndash;
             
             Documentation built with
             <a href="http://www.mkdocs.org" target="_blank">MkDocs</a>
@@ -356,7 +419,7 @@ You can also set <code>routePrefix</code> to change the prefix of the panel rout
     </main>
     <script>
       var base_url = '..';
-      var repo_id  = '';
+      var repo_id  = 'joselfonseca/laravel-admin';
     </script>
     <script src="../assets/javascripts/application-997097ee0c.js"></script>
     
