@@ -8,7 +8,7 @@ repo_name: 'GitHub'
 repo_url: 'https://github.com/joselfonseca/laravel-admin'
 
 # Copyright
-copyright: 'Copyright (c) 2016 John Doe'
+copyright: 'Copyright (c) 2016 Jose Fonseca'
 pages:
 - index.md
 - Instalation.md
