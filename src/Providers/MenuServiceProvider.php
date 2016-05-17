@@ -40,15 +40,7 @@ class MenuServiceProvider extends ServiceProvider
                             'text' => trans('laravel-admin.userRoles'),
                         ],
                         'permissions' => ['roles-crud'],
-                    ],
-                    'Permissions' => [
-                        'link' => [
-                            'link' => config('laravel-admin.routePrefix', 'backend').'/permissions',
-                            'text' => trans('laravel-admin.permissions'),
-                        ],
-                        'permissions' => ['permissions-crud'],
                     ]
-
                 ]
             ]
         ]);
