@@ -1,4 +1,14 @@
-site_name: Laravel Admin Panel
+# Project information
+site_name: 'Laravel Admin Panel'
+site_description: 'Small Admin panel using AdminLTE 2 for laravel applications'
+site_author: 'Jose Fonseca'
+site_url: 'https://github.com/joselfonseca/laravel-admin'
+# Repository
+repo_name: 'GitHub'
+repo_url: 'https://github.com/joselfonseca/laravel-admin'
+
+# Copyright
+copyright: 'Copyright (c) 2016 John Doe'
 pages:
 - index.md
 - Instalation.md
@@ -12,3 +22,17 @@ pages:
 - license.md
 - changelog.md
 theme: material
+extra:
+  palette:
+      primary: 'indigo'
+      accent: 'light blue'
+  author:
+      github: 'joselfonseca'
+      twitter: 'joselfonseca'
+
+# Extensions
+markdown_extensions:
+  - codehilite(css_class=code)
+  - admonition
+  - toc:
+      permalink: '#'
