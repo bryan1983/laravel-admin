@@ -86,6 +86,9 @@ class MenuBuilder
     protected function checkPermission($item)
     {
         $can_see = false;
+        if($item['permissions'] == false)
+            return true;
+        
         if (isset($item['permissions']) && is_array($item['permissions'])) {
             $can_see = $this->acl->canSee($item['permissions']);
         }
