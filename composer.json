@@ -25,7 +25,7 @@
     ],
     "require": {
         "php" : ">=5.5.0",
-        "zizaco/entrust": "1.6.*",
+        "zizaco/entrust": "5.2.x-dev",
         "laravelcollective/html": "~5.1",
         "rcrowe/twigbridge" : "0.7.*",
         "laracasts/flash": "~1.3",
