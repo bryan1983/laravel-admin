@@ -11,7 +11,7 @@ repo_url: 'https://github.com/joselfonseca/laravel-admin'
 copyright: 'Copyright (c) 2016 Jose Fonseca'
 pages:
 - index.md
-- Instalation.md
+- Installation.md
 - config.md
 - Authentication.md
 - The ACL.md
