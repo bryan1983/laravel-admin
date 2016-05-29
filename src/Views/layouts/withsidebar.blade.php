@@ -8,7 +8,6 @@
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
         <link href="{{ asset('/vendor/laravelAdmin/css/all.css') }}" rel="stylesheet">
         <link href="{{ asset('/vendor/laravelAdmin/css/laravel-admin.css') }}" rel="stylesheet">
-        <link href="{{ asset('/vendor/laravelAdmin/css/app.css') }}" rel="stylesheet">
         <!-- Fonts -->
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         @yield('styles')
@@ -22,7 +21,8 @@
             var GLOBALS = {
                 site_url: '{{url()}}',
                 datablesLang: '//cdn.datatables.net/plug-ins/1.10.7/i18n/English.json',
-                prefix: '{{ config('laravel-admin.routePrefix', 'backend') }}'
+                prefix: '{{ config('laravel-admin.routePrefix', 'backend') }}',
+                token: '{{ csrf_token() }}'
             };
         </script>
         @if(config('app.locale') == 'es')
@@ -45,8 +45,8 @@
             </div>
         </div>
         <!-- Scripts -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script src="{{ asset('/vendor/laravelAdmin/js/all.js') }}"></script>
         @yield('scripts')
         @include('sweet::alert')

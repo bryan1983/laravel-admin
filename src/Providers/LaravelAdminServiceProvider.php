@@ -25,26 +25,23 @@ class LaravelAdminServiceProvider extends ServiceProvider
      * @var array
      */
     protected $providers = [
-        'Joselfonseca\LaravelAdmin\Providers\MenuServiceProvider',
-        'Zizaco\Entrust\EntrustServiceProvider',
-        'Collective\Html\HtmlServiceProvider',
-        'TwigBridge\ServiceProvider',
-        'Laracasts\Flash\FlashServiceProvider',
-        'Barryvdh\Debugbar\ServiceProvider',
-        'UxWeb\SweetAlert\SweetAlertServiceProvider',
-        'Laracasts\Utilities\JavaScript\JavaScriptServiceProvider'
+        \Joselfonseca\LaravelAdmin\Providers\MenuServiceProvider::class,
+        \Zizaco\Entrust\EntrustServiceProvider::class,
+        \Barryvdh\Debugbar\ServiceProvider::class,
+        \UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        \Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
+        \Styde\Html\HtmlServiceProvider::class,
+        \Prettus\Repository\Providers\RepositoryServiceProvider::class
     ];
     /**
      * @var array
      */
     protected $aliases = [
-        'Entrust' => 'Zizaco\Entrust\EntrustFacade',
-        'Form' => 'Collective\Html\FormFacade',
-        'Html' => 'Collective\Html\HtmlFacade',
-        'Twig' => 'TwigBridge\Facade\Twig',
-        'Flash' => 'Laracasts\Flash\Flash',
-        'Debugbar' => 'Barryvdh\Debugbar\Facade',
-        'SweetAlert' => 'UxWeb\SweetAlert\SweetAlert'
+        'Entrust' => \Zizaco\Entrust\EntrustFacade::class,
+        'Form' => \Collective\Html\FormFacade::class,
+        'Html' => \Collective\Html\HtmlFacade::class,
+        'Debugbar' => \Barryvdh\Debugbar\Facade::class,
+        'SweetAlert' => \UxWeb\SweetAlert\SweetAlert::class
     ];
 
     /**
