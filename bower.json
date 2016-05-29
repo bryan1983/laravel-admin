@@ -1,0 +1,23 @@
+{
+  "name": "laravel-admin",
+  "description": "Admin panel for Laravel Apps",
+  "main": "",
+  "authors": [
+    "Jose Luis Fonseca"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "~1.8.3",
+    "moment": "~2.13.0"
+  },
+  "devDependencies": {}
+}
