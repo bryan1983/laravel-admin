@@ -35,7 +35,8 @@
         "guzzlehttp/guzzle": "~5.3|~6.0",
         "laracasts/utilities": "^2.1",
         "prettus/l5-repository": "2.1.*",
-        "prettus/laravel-validation": "1.1.*"
+        "prettus/laravel-validation": "1.1.*",
+        "rcrowe/twigbridge" : "0.7.*"
     },
     "require-dev": {
         "orchestra/testbench": "3.1.*",
