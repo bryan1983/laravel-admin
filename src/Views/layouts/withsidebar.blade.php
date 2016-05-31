@@ -39,7 +39,6 @@
             </aside>
             <div class="content-wrapper">
                 <section class="content-header">
-                    @include('LaravelAdmin::errors.viewErrors')
                     @yield('content')
                 </section>
             </div>
