@@ -5,11 +5,6 @@
 @section('content')
 
 <div class="container-fluid admin">
-    <div class="row">
-        <div class="col-md-12">
-            @include('flash::message')
-        </div>
-    </div>
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">{{trans('LaravelAdmin::laravel-admin.rolesListTitle')}}</h3>
