@@ -36,7 +36,6 @@ elixir(function (mix) {
         '../plugins/colorpicker/bootstrap-colorpicker.min.js',
         '../plugins/morris/morris.min.js',
         '../plugins/select2/select2.full.min.js',
-        '../plugins/select2/i18n/es.js',
         '../plugins/pace/pace.js',
         '../plugins/timepicker/bootstrap-timepicker.js',
         '../plugins/sweetalert/dist/sweetalert.min.js',
