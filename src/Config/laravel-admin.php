@@ -15,5 +15,11 @@ return [
     /**
      * Route prefix for admin routes
      */
-    'routePrefix' => 'backend'
+    'routePrefix' => 'backend',
+    /**
+     * Middleware stack for routes
+     */
+    'middleware' => [
+
+    ]
 ];
