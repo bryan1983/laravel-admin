@@ -8,7 +8,7 @@ elixir(function (mix) {
         '../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
         '../plugins/bootstrapSelect/dist/css/bootstrap-select.min.css',
         '../plugins/colorpicker/bootstrap-colorpicker.css',
-        '../plugins/datepicker/datepicker3.css',
+        '../plugins/datepicker/bootstrap-datepicker.css',
         '../plugins/daterangepicker/daterangepicker-bs3.css',
         '../plugins/fullcalendar/fullcalendar.css',
         '../plugins/fullcalendar/fullcalendar.print.css',
