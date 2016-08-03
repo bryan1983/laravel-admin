@@ -4,37 +4,37 @@ namespace Joselfonseca\LaravelAdmin\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Password;
-use Joselfonseca\LaravelAdmin\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+/**
+ * Class LoginController
+ * @package Joselfonseca\LaravelAdmin\Http\Controllers
+ */
 class LoginController extends Controller
 {
 
     use AuthenticatesAndRegistersUsers;
 
+
     /**
-     * Create a new authentication controller instance.
-     *
-     * @param  \Illuminate\Contracts\Auth\Guard  $auth
-     * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
-     * @return void
+     * LoginController constructor.
      */
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getLogin()
     {
         return view('LaravelAdmin::Auth.login');
     }
 
     /**
-     * Handle a login request to the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
      */
     public function postLogin(Request $request)
     {
@@ -45,25 +45,22 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
-            return redirect()->to(config('laravel-admin.routePrefix', 'backend').'/'.\Config::get('laravel-admin.afterLoginRoute'));
+            return redirect()->to(config('laravel-admin.routePrefix', 'backend').'/'.config('laravel-admin.afterLoginRoute'));
         }
-
         return redirect()->route('LaravelAdminLogin')
-                         ->withInput($request->only('email', 'remember'))
-                         ->withErrors([
-                             'email' => $this->getFailedLoginMessage(),
-                         ]);
+            ->withInput($request->only('email', 'remember'))
+             ->withErrors([
+                 'email' => $this->getFailedLoginMessage(),
+             ]);
     }
 
+
     /**
-     * Log the user out of the application.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function getLogout()
     {
         Auth::logout();
-
         return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
     }
 }

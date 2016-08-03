@@ -4,6 +4,10 @@ namespace Joselfonseca\LaravelAdmin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class RoleRequest
+ * @package Joselfonseca\LaravelAdmin\Http\Requests
+ */
 class RoleRequest extends FormRequest
 {
 

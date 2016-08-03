@@ -3,9 +3,12 @@
 namespace Joselfonseca\LaravelAdmin\Providers;
 
 use View;
+use Config;
 use JavaScript;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
+use Joselfonseca\LaravelAdmin\Repositories\UserRepository;
+use Joselfonseca\LaravelAdmin\Contracts\UserRepositoryContract;
 
 /**
  * Class LaravelAdminServiceProvider
@@ -31,7 +34,8 @@ class LaravelAdminServiceProvider extends ServiceProvider
         \UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         \Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
         \Styde\Html\HtmlServiceProvider::class,
-        \Prettus\Repository\Providers\RepositoryServiceProvider::class
+        \Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        \Yajra\Datatables\DatatablesServiceProvider::class,
     ];
     /**
      * @var array
@@ -41,7 +45,9 @@ class LaravelAdminServiceProvider extends ServiceProvider
         'Form' => \Collective\Html\FormFacade::class,
         'Html' => \Collective\Html\HtmlFacade::class,
         'Debugbar' => \Barryvdh\Debugbar\Facade::class,
-        'SweetAlert' => \UxWeb\SweetAlert\SweetAlert::class
+        'SweetAlert' => \UxWeb\SweetAlert\SweetAlert::class,
+        'Datatables' => \Yajra\Datatables\Facades\Datatables::class,
+
     ];
 
     /**
@@ -51,6 +57,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(UserRepositoryContract::class, UserRepository::class);
         $this->registerCommands()
             ->registerOtherProviders()
             ->registerAliases();
@@ -65,10 +72,10 @@ class LaravelAdminServiceProvider extends ServiceProvider
             __DIR__ . '/../../resources/lang' => base_path('resources/lang'),
         ], 'la-lang');
         $this->publishes([
-            __DIR__ . '/../Views/' => base_path('resources/views/vendor/LaravelAdmin'),
+            __DIR__ . '/../../resources/views/' => base_path('resources/views/vendor/LaravelAdmin'),
         ], 'la-views');
         $this->publishes([
-            __DIR__ . '/../Config/laravel-admin.php' => config_path('laravel-admin.php'),
+            __DIR__ . '/../../config/config.php' => config_path('laravel-admin.php'),
         ], 'la-config');
         $this->publishes([
             __DIR__ . '/../../public' => public_path('vendor/laravelAdmin'),
@@ -79,9 +86,13 @@ class LaravelAdminServiceProvider extends ServiceProvider
         $this->loadViewsConfiguration()
             ->loadRoutes()
             ->registerTranslations();
-        \Config::set('entrust.role', 'Joselfonseca\LaravelAdmin\Services\Users\Role');
-        \Config::set('entrust.permission', 'Joselfonseca\LaravelAdmin\Services\Users\Permission');
-        \Config::set('javascript.bind_js_vars_to_this_view', 'LaravelAdmin::layouts.withsidebar');
+        $this->mergeConfigFrom(
+            __DIR__.'/../../config/config.php',
+            'laravel-admin'
+        );
+        Config::set('entrust.role', 'Joselfonseca\LaravelAdmin\Services\Users\Role');
+        Config::set('entrust.permission', 'Joselfonseca\LaravelAdmin\Services\Users\Permission');
+        Config::set('javascript.bind_js_vars_to_this_view', 'LaravelAdmin::layouts.withsidebar');
         $this->setLangJs();
     }
 
@@ -117,7 +128,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
      */
     private function loadViewsConfiguration()
     {
-        $this->loadViewsFrom(__DIR__ . '/../Views/', 'LaravelAdmin');
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'LaravelAdmin');
 
         return $this;
     }

@@ -1,27 +1,29 @@
 <?php
 
-
 namespace Joselfonseca\LaravelAdmin\Http\Middleware;
 
+use Auth;
 use Closure;
 
+/**
+ * Class AclMiddleware
+ * @package Joselfonseca\LaravelAdmin\Http\Middleware
+ */
 class AclMiddleware
 {
 
     /**
-     * Run the request filter.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string  $role
+     * @param $request
+     * @param Closure $next
+     * @param $permissions
      * @return mixed
      */
     public function handle($request, Closure $next, $permissions)
     {
         $perms = explode(',', $permissions);
-        $user = \Auth::user();
+        $user = Auth::user();
         if (!$user->can($perms)) {
-            return redirect()->to('unauthorized');
+            abort(403, 'Unauthorized action.');
         }
         return $next($request);
     }

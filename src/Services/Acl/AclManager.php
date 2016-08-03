@@ -2,8 +2,8 @@
 
 namespace Joselfonseca\LaravelAdmin\Services\Acl;
 
+use Joselfonseca\LaravelAdmin\Entities\User;
 use Joselfonseca\LaravelAdmin\Services\Users\Role;
-use Joselfonseca\LaravelAdmin\Services\Users\User;
 
 /**
  * Class AclManager

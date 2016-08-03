@@ -4,6 +4,10 @@ namespace Joselfonseca\LaravelAdmin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class UpdatePermissionRequest
+ * @package Joselfonseca\LaravelAdmin\Http\Requests
+ */
 class UpdatePermissionRequest extends FormRequest
 {
 

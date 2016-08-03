@@ -4,6 +4,10 @@ namespace Joselfonseca\LaravelAdmin\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class CreateUserRequest
+ * @package Joselfonseca\LaravelAdmin\Http\Requests
+ */
 class CreateUserRequest extends FormRequest
 {
 

@@ -14,10 +14,6 @@ Route::group(['prefix' => config('laravel-admin.routePrefix', 'backend'), 'middl
     ]);
     Route::group(['middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AuthMiddleware'], function () {
         Route::get('/', 'Joselfonseca\LaravelAdmin\Http\Controllers\HomeController@index');
-        Route::get('/home', [
-            'as' => 'LaravelAdminHome',
-            'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\HomeController@index'
-        ]);
         Route::get('/me/edit', [
             'as' => 'LaravelAdminUpdateMe',
             'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\UsersController@me'

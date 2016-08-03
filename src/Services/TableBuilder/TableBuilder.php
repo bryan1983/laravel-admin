@@ -78,11 +78,10 @@ class TableBuilder
      */
     public function render()
     {
-        return $this->twig->render('table.html',
-                [
-                'fields' => $this->model->getFields(),
-                'rows' => $this->model->getRows(),
-                'actions' => $this->actions
+        return $this->twig->render('table.html', [
+            'fields' => $this->model->getFields(),
+            'rows' => $this->model->getRows(),
+            'actions' => $this->actions
         ]);
     }
 }

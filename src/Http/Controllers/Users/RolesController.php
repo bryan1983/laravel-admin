@@ -2,15 +2,15 @@
 
 namespace Joselfonseca\LaravelAdmin\Http\Controllers\Users;
 
-use Illuminate\Http\Request;
-use Joselfonseca\LaravelAdmin\Http\Controllers\Controller;
-use Joselfonseca\LaravelAdmin\Services\Users\Role;
-use Joselfonseca\LaravelAdmin\Services\Users\Permission;
-use Joselfonseca\LaravelAdmin\Services\TableBuilder\TableBuilder;
-use Joselfonseca\LaravelAdmin\Http\Requests\RoleRequest;
-use Joselfonseca\LaravelAdmin\Http\Requests\UpdateRoleRequest;
-use Illuminate\Support\Facades\Redirect;
 use SweetAlert;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Joselfonseca\LaravelAdmin\Services\Users\Role;
+use Joselfonseca\LaravelAdmin\Http\Requests\RoleRequest;
+use Joselfonseca\LaravelAdmin\Services\Users\Permission;
+use Joselfonseca\LaravelAdmin\Http\Controllers\Controller;
+use Joselfonseca\LaravelAdmin\Http\Requests\UpdateRoleRequest;
+use Joselfonseca\LaravelAdmin\Services\TableBuilder\TableBuilder;
 
 class RolesController extends Controller
 {

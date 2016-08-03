@@ -1,5 +1,5 @@
 <header class="main-header">
-    <a href="{{url('backend/home')}}" class="logo">
+    <a href="{{config('laravel-admin.afterLoginRoute')}}" class="logo">
         {{config('laravel-admin.appName')}}
     </a>
     <!-- Header Navbar: style can be found in header.less -->

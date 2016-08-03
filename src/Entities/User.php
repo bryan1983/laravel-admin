@@ -1,6 +1,6 @@
 <?php
 
-namespace Joselfonseca\LaravelAdmin\Services\Users;
+namespace Joselfonseca\LaravelAdmin\Entities;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

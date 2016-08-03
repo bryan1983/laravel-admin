@@ -8,12 +8,7 @@
         <div class="box panel-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">
-                    {{trans('LaravelAdmin::laravel-admin.managePermissions'). ' - '}}
-                    @if($type === 'roles')
-                        {{$model->display_name}}
-                    @else
-                        {{$model->name}}
-                    @endif
+                    {{trans('LaravelAdmin::laravel-admin.managePermissions')}} <strong>{{$model->display_name}}</strong>
                 </h3>
             </div>
             {!! Form::open(['route' => ['LaravelAdminRolesPermissionsUpdate', $model->id], 'method' => 'PUT']) !!}

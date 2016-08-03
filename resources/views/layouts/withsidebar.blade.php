@@ -38,10 +38,19 @@
                 @include('LaravelAdmin::partials.sidebar')
             </aside>
             <div class="content-wrapper">
-                <section class="content-header">
+                <section class="content">
                     @yield('content')
+                    <!-- delete form for elements -->
+                    {!! Form::open(['id' => 'deleteForm', 'method' => 'DELETE']) !!}
+                    {!! Form::close() !!}
                 </section>
             </div>
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> {{ config('laravel-admin.version', '1.0') }}
+                </div>
+                <strong>{{ config('laravel-admin.copyright', 'Copyright © Laravel Admin - All rights reserved.') }}</strong>
+            </footer>
         </div>
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
@@ -49,8 +58,5 @@
         <script src="{{ asset('/vendor/laravelAdmin/js/all.js') }}"></script>
         @yield('scripts')
         @include('sweet::alert')
-        <!-- delete form for elements -->
-        {!! Form::open(['id' => 'deleteForm', 'method' => 'DELETE']) !!}
-        {!! Form::close() !!}
     </body>
 </html>

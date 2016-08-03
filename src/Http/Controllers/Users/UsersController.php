@@ -2,14 +2,17 @@
 
 namespace Joselfonseca\LaravelAdmin\Http\Controllers\Users;
 
-use Joselfonseca\LaravelAdmin\Http\Controllers\Controller;
+use DB;
+use Auth;
+use Datatables;
+use SweetAlert;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Joselfonseca\LaravelAdmin\Http\Requests;
 use Joselfonseca\LaravelAdmin\Services\Acl\AclManager;
-use Joselfonseca\LaravelAdmin\Services\TableBuilder\TableBuilder;
-use Joselfonseca\LaravelAdmin\Services\Users\UserRepository;
-use Illuminate\Support\Facades\Redirect;
-use Exception;
-use SweetAlert;
+use Joselfonseca\LaravelAdmin\Http\Controllers\Controller;
+use Joselfonseca\LaravelAdmin\Exceptions\EmailTakenException;
+use Joselfonseca\LaravelAdmin\Contracts\UserRepositoryContract;
 
 /**
  * Description of UsersController
@@ -19,43 +22,54 @@ use SweetAlert;
 class UsersController extends Controller
 {
 
-    private $userRepository;
-    private $model;
+    /**
+     * @var UserRepositoryContract
+     */
+    protected $repository;
 
-    public function __construct(UserRepository $r)
+    /**
+     * UsersController constructor.
+     * @param UserRepositoryContract $repository
+     */
+    public function __construct(UserRepositoryContract $repository)
     {
-        $this->userRepository = $r;
-        $model = \Config::get('auth.model');
-        $this->model = new $model;
+        $this->repository = $repository;
     }
 
-    public function index(TableBuilder $table)
+    /**
+     * @param Request $request
+     * @return $this
+     */
+    public function index(Request $request)
     {
-        $table->setActions([
-            'edit' => [
-                'link' => url(config('laravel-admin.routePrefix', 'backend').'/users/-id-/edit/'),
-                'text' => '<i class="fa fa-pencil"></i> ' . trans('LaravelAdmin::laravel-admin.edit'),
-                'class' => 'btn btn-primary btn-sm',
-            ],
-            'delete' => [
-                'link' => url(config('laravel-admin.routePrefix', 'backend').'/users/-id-/delete'),
-                'text' => '<i class="fa fa-times"></i> ' . trans('LaravelAdmin::laravel-admin.delete'),
-                'class' => 'btn btn-danger btn-sm confirm-delete',
-                'confirm' => true,
-            ],
-        ]);
-        return view('LaravelAdmin::users.index')->with('table', $table->setModel($this->model)->render())->with('activeMenu', 'sidebar.Users.List');
+        if($request->ajax()){
+            return Datatables::of($this->repository->all(['id', 'name', 'email']))
+                ->addColumn('action', function ($user) {
+                    return '<a href="'.route('LaravelAdminUsersEdit', [$user->id]).'" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i> '.trans('laravel-admin.edit').'</a> &nbsp;&nbsp;<a href="'.route('deleteUser', [$user->id]).'" class="btn btn-sm btn-danger confirm-delete"><i class="fa fa-times"></i> '.trans('laravel-admin.delete').'</a>';
+                })
+                ->make();
+        }
+        return view('LaravelAdmin::users.index')->with('activeMenu', 'sidebar.Users.List');
     }
 
+    /**
+     * @param AclManager $aclManager
+     * @param $id
+     * @return mixed
+     */
     public function edit(AclManager $aclManager, $id)
     {
-        $user = $this->model->findOrFail($id);
+        $user = $this->repository->find($id);
         return view('LaravelAdmin::users.edit')
             ->with('user', $user)
             ->with('roles', $aclManager->getRolesForSelect())
             ->with('activeMenu', 'sidebar.Users');
     }
 
+    /**
+     * @param AclManager $aclManager
+     * @return mixed
+     */
     public function create(AclManager $aclManager)
     {
         return view('LaravelAdmin::users.create')
@@ -63,55 +77,81 @@ class UsersController extends Controller
             ->with('activeMenu', 'sidebar.Users');
     }
 
+    /**
+     * @param Requests\CreateUserRequest $request
+     * @return mixed
+     */
     public function store(Requests\CreateUserRequest $request)
     {
-        $this->userRepository->create($request->all());
+        DB::transaction(function() use ($request){
+            $this->repository->create($request->all());
+        });
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.userCreated'));
         return Redirect::to(config('laravel-admin.routePrefix', 'backend').'/users');
     }
 
+    /**
+     * @param Requests\UpdateUserRequest $request
+     * @param $id
+     * @return mixed
+     */
     public function update(Requests\UpdateUserRequest $request, $id)
     {
-        $user = $this->model->findOrFail($id);
-        if ($request->get('email') !== $user->email) {
-            try {
-                $this->userRepository->updateWithEmail($user->id, $request->all());
-            } catch (Exception $e) {
-                return Redirect::back()->withErrors(['email' => trans('LaravelAdmin::laravel-admin.emailTaken')]);
-            }
+        try{
+            DB::transaction(function() use ($request, $id){
+                $this->repository->update($request->all(), $id);
+            });
+        }catch (EmailTakenException $e){
+            SweetAlert::error(trans('LaravelAdmin::laravel-admin.emailTaken'));
+            return redirect()->back()->withInput();
         }
-        $this->userRepository->update($user->id, $request->all());
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.userUpdated'));
-        return Redirect::back();
+        return redirect()->back();
     }
 
+    /**
+     * @param Requests\UpdatePasswordRequest $request
+     * @param $id
+     * @return mixed
+     */
     public function updatePassword(Requests\UpdatePasswordRequest $request, $id)
     {
-        $user = $user = $this->model->findOrFail($id);
-        $this->userRepository->updatePassword($user->id, $request->all());
+        DB::transaction(function() use ($request, $id){
+            $this->repository->updatePassword($id, $request->get('password'));
+        });
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.passwordUpdated'));
         return Redirect::back();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function destroy($id)
     {
-        $user = $this->model->findOrFail($id);
-        $this->userRepository->deleteUser($user);
+        $this->repository->delete($id);
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.userDeleted'));
         return Redirect::back();
     }
 
+    /**
+     * @param AclManager $aclManager
+     * @return mixed
+     */
     public function me(AclManager $aclManager)
     {
-        $user = $this->model->findOrFail(\Auth::user()->id);
         return view('LaravelAdmin::users.edit')
-            ->with('user', $user)
+            ->with('user', Auth::user())
             ->with('roles', $aclManager->getRolesForSelect())
             ->with('activeMenu', 'sidebar.Users');
     }
 
+    /**
+     * @param Requests\UpdateUserRequest $request
+     * @return mixed
+     */
     public function meEdit(Requests\UpdateUserRequest $request)
     {
-        return $this->update($request, \Auth::user()->id);
+        return $this->update($request, Auth::user()->id);
     }
 }

@@ -5,21 +5,23 @@ namespace Joselfonseca\LaravelAdmin\Http\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
+/**
+ * Class AuthMiddleware
+ * @package Joselfonseca\LaravelAdmin\Http\Middleware
+ */
 class AuthMiddleware
 {
 
+
     /**
-     * The Guard implementation.
-     *
      * @var Guard
      */
     protected $auth;
 
+
     /**
-     * Create a new filter instance.
-     *
-     * @param  Guard  $auth
-     * @return void
+     * AuthMiddleware constructor.
+     * @param Guard $auth
      */
     public function __construct(Guard $auth)
     {
@@ -27,11 +29,9 @@ class AuthMiddleware
     }
 
     /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
+     * @param $request
+     * @param Closure $next
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function handle($request, Closure $next)
     {
