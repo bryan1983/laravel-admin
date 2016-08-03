@@ -163,5 +163,4 @@ class LaravelAdminServiceProvider extends ServiceProvider
             'la_lang' => app('translator')->getLoader()->load(app()->getLocale(), 'laravel-admin', 'LaravelAdmin')
         ]);
     }
-
 }

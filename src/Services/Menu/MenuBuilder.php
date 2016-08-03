@@ -4,7 +4,6 @@ namespace Joselfonseca\LaravelAdmin\Services\Menu;
 
 use Joselfonseca\LaravelAdmin\Services\Acl\AclManager;
 
-
 /**
  * Class MenuBuilder
  * @package Joselfonseca\LaravelAdmin\Services\Menu
@@ -86,8 +85,9 @@ class MenuBuilder
     protected function checkPermission($item)
     {
         $can_see = false;
-        if($item['permissions'] == false)
+        if ($item['permissions'] == false) {
             return true;
+        }
         
         if (isset($item['permissions']) && is_array($item['permissions'])) {
             $can_see = $this->acl->canSee($item['permissions']);
@@ -210,5 +210,4 @@ class MenuBuilder
         $this->frontMenu = $menu;
         $this->setItems();
     }
-
 }

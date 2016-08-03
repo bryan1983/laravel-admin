@@ -3,12 +3,12 @@
 
 namespace Joselfonseca\LaravelAdmin\Services\Slug;
 
-
 /**
  * Class SlugGeneratorObserver
  * @package App\Services\Slug
  */
-class SlugGeneratorObserver {
+class SlugGeneratorObserver
+{
 
     use SlugGeneratorTrait;
 
@@ -21,14 +21,15 @@ class SlugGeneratorObserver {
      * When saving, create a slug
      * @param $model
      */
-    public function saving($model) {
+    public function saving($model)
+    {
         $this->model = $model;
-        if(!isset($this->model->title)){
+        if (!isset($this->model->title)) {
             $title = $this->model->name;
-        }else{
+        } else {
             $title = $this->model->title;
         }
-        if(!isset($this->model->id)){
+        if (!isset($this->model->id)) {
             $this->model->slug = $this->generateSlug($title);
         }
     }
@@ -40,12 +41,12 @@ class SlugGeneratorObserver {
     public function updating($model)
     {
         $this->model = $model;
-        if(!isset($this->model->title)){
+        if (!isset($this->model->title)) {
             $title = $this->model->name;
-        }else{
+        } else {
             $title = $this->model->title;
         }
-        if(isset($model->generateNewSlug) && $model->generateNewSlug === true){
+        if (isset($model->generateNewSlug) && $model->generateNewSlug === true) {
             $this->model->slug = $this->generateSlug($title);
             unset($model->generateNewSlug);
         }

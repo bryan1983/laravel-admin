@@ -31,7 +31,7 @@ class Role extends Model
     public function getRows()
     {
         $data = [];
-        $this->get()->each(function($rol) use (&$data) {
+        $this->get()->each(function ($rol) use (&$data) {
             $data[] = [
                 'id' => $rol->id,
                 'name' => $rol->display_name,

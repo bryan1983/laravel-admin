@@ -19,7 +19,7 @@ trait LaravelAdminUser
     public function getRows()
     {
         $data = [];
-        $this->get()->each(function($row) use(&$data) {
+        $this->get()->each(function ($row) use (&$data) {
             $data[] = [
                 'id' => $row->id,
                 'name' => $row->name,
@@ -32,7 +32,7 @@ trait LaravelAdminUser
     public function getRolesForSelect()
     {
         $data = [];
-        $this->roles->each(function($role) use (&$data) {
+        $this->roles->each(function ($role) use (&$data) {
             $data[] = $role->id;
         });
         return $data;

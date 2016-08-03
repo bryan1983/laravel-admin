@@ -6,12 +6,8 @@ return [
     'appName' => "Laravel Admin Panel",
     /**
      * Route to go after login
-    **/ 
-    'afterLoginRoute' => 'users',
-    /**
-    * Add Errors & Logging from Validator Laravel 5.*
     **/
-    'viewErrors' => false,
+    'afterLoginRoute' => 'users',
     /**
      * Route prefix for admin routes
      */

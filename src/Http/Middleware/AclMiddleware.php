@@ -5,7 +5,8 @@ namespace Joselfonseca\LaravelAdmin\Http\Middleware;
 
 use Closure;
 
-class AclMiddleware {
+class AclMiddleware
+{
 
     /**
      * Run the request filter.
@@ -17,12 +18,11 @@ class AclMiddleware {
      */
     public function handle($request, Closure $next, $permissions)
     {
-        $perms = explode(',',$permissions);
+        $perms = explode(',', $permissions);
         $user = \Auth::user();
-        if(!$user->can($perms)){
+        if (!$user->can($perms)) {
             return redirect()->to('unauthorized');
         }
         return $next($request);
     }
-
 }

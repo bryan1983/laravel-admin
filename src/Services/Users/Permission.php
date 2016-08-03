@@ -20,9 +20,10 @@ class Permission extends Model
      * Get the fields for the table generator
      * @return array
      */
-    public function getFields(){
+    public function getFields()
+    {
         return [
-        	'ID', trans('LaravelAdmin::laravel-admin.permissionName'), 'Slug', trans('LaravelAdmin::laravel-admin.permissiondescription')
+            'ID', trans('LaravelAdmin::laravel-admin.permissionName'), 'Slug', trans('LaravelAdmin::laravel-admin.permissiondescription')
         ];
     }
 
@@ -30,17 +31,17 @@ class Permission extends Model
      * Get the rows for the Table Generator
      * @return array
      */
-    public function getRows(){
-    	$data = [];
-    	$this->get()->each(function($rol) use (&$data){
-    		$data[] = [
-    			'id' => $rol->id,
-    			'name' => $rol->display_name,
-    			'slug' => $rol->name,
-    			'description' => $rol->description
-    		];
-    	});
+    public function getRows()
+    {
+        $data = [];
+        $this->get()->each(function ($rol) use (&$data) {
+            $data[] = [
+                'id' => $rol->id,
+                'name' => $rol->display_name,
+                'slug' => $rol->name,
+                'description' => $rol->description
+            ];
+        });
         return $data;
     }
-
 }

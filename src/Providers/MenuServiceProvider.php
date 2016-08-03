@@ -5,7 +5,6 @@ namespace Joselfonseca\LaravelAdmin\Providers;
 use View;
 use Illuminate\Support\ServiceProvider;
 
-
 /**
  * Class MenuServiceProvider
  * @package Joselfonseca\LaravelAdmin\Providers
@@ -69,5 +68,4 @@ class MenuServiceProvider extends ServiceProvider
 
         return $this;
     }
-
 }

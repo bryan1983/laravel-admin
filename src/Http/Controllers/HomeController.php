@@ -10,22 +10,22 @@ use Joselfonseca\LaravelAdmin\Http\Middleware\AuthMiddleware;
  * Class HomeController
  * @package Joselfonseca\LaravelAdmin\Http\Controllers
  */
-class HomeController extends Controller{
+class HomeController extends Controller
+{
 
-	/**
-	 * HomeController constructor.
+    /**
+     * HomeController constructor.
      */
-	public function __construct()
-	{
-		$this->middleware(AuthMiddleware::class);
-	}
+    public function __construct()
+    {
+        $this->middleware(AuthMiddleware::class);
+    }
 
-	/**
-	 * @return $this
+    /**
+     * @return $this
      */
-	public function index(){
-
-		return view('LaravelAdmin::home.home')->with('activeMenu', 'sidebar.Dashboard');
-
-	}
+    public function index()
+    {
+        return view('LaravelAdmin::home.home')->with('activeMenu', 'sidebar.Dashboard');
+    }
 }

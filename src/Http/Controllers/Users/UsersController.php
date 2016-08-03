@@ -60,7 +60,7 @@ class UsersController extends Controller
     {
         return view('LaravelAdmin::users.create')
             ->with('roles', $aclManager->getRolesForSelect())
-            ->with('activeMenu', 'sidebar.Users');       
+            ->with('activeMenu', 'sidebar.Users');
     }
 
     public function store(Requests\CreateUserRequest $request)
@@ -98,7 +98,7 @@ class UsersController extends Controller
         $user = $this->model->findOrFail($id);
         $this->userRepository->deleteUser($user);
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.userDeleted'));
-        return Redirect::back();    
+        return Redirect::back();
     }
 
     public function me(AclManager $aclManager)
@@ -114,5 +114,4 @@ class UsersController extends Controller
     {
         return $this->update($request, \Auth::user()->id);
     }
-
 }

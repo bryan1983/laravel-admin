@@ -126,5 +126,4 @@ class Installer
             $rolesCrud
         ];
     }
-
 }

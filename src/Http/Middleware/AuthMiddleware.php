@@ -5,7 +5,8 @@ namespace Joselfonseca\LaravelAdmin\Http\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class AuthMiddleware {
+class AuthMiddleware
+{
 
     /**
      * The Guard implementation.
@@ -44,5 +45,4 @@ class AuthMiddleware {
 
         return $next($request);
     }
-
 }

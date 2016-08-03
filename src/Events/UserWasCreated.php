@@ -31,5 +31,4 @@ class UserWasCreated extends Event
         $this->user = $user;
         $this->input = $data;
     }
-
 }
