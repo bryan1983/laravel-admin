@@ -1,6 +1,6 @@
 # Laravel Admin Panel Installation
 
-To install this package, open your composer.json file and add "joselfonseca/laravel-admin" : "0.6.*"
+To install this package, open your composer.json file and add "joselfonseca/laravel-admin" : "1.0.*"
 
 ```json
     "require": {

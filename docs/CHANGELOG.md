@@ -4,13 +4,23 @@ All Notable changes to `laravel-admin` will be documented in this file
 
 # 1.0.0 Official release
 
-This is the first official stable release of the package, here are the changes and upgrades made.
+This is the first official stable release of the package, here are the changes and upgrades made, please keep in mind this is a major release and it introduces braking changes.
 
-- PSR2 Fixes, see [This commit](https://github.com/joselfonseca/laravel-admin/commit/e96eafc3b18e9f1b0ff48c6bde5770e9acba79f3)
-- Refactor users administration to use repositories and lots of cleanup, see [This commit](https://github.com/joselfonseca/laravel-admin/commit/1d5c4b56561ce504e40b73b224fb206e494626a9)
-- Refactor roles and permissions administration to use repositories and lots of cleanup, see [https://github.com/joselfonseca/laravel-admin/commit/52df0c48e9a3d41aba7b0f53398085b5a66f8eaf)
-- Some Layout improvements
-- Change users and roles tables to use Laravel DataTables
+- PSR2 Fixes, see [This commit](https://github.com/joselfonseca/laravel-admin/commit/e96eafc3b18e9f1b0ff48c6bde5770e9acba79f3).
+- Refactor users administration to use repositories and lots of cleanup, see [This commit](https://github.com/joselfonseca/laravel-admin/commit/1d5c4b56561ce504e40b73b224fb206e494626a9).
+- Refactor roles and permissions administration to use repositories and lots of cleanup, see [https://github.com/joselfonseca/laravel-admin/commit/52df0c48e9a3d41aba7b0f53398085b5a66f8eaf).
+- Some Layout improvements.
+- Table Builder was removed.
+- Change users and roles tables to use Laravel DataTables.
+
+Upgrade guide: To upgrade from previous versions please:
+ 
+- Change the package version in composer.json to match 1.0.* and run composer update.
+- Most of the views where changed, if you made changes yourself please check the changes made in the repository and try to merge them to fit your needs
+- User Model was changed to namespace `Joselfonseca\LaravelAdmin\Entities\User`, so make sure your User model extends the new namespace.
+- Role and Permission model were also changed to a new namespace `Joselfonseca\LaravelAdmin\Entities\Role` and `Joselfonseca\LaravelAdmin\Entities\Permission` so update your models accordingly.
+- Table builder was removed so replace it for Laravel Data Tables where ever you used it.
+- Update your config file to reflect the new one [https://github.com/joselfonseca/laravel-admin/blob/master/config/config.php](https://github.com/joselfonseca/laravel-admin/blob/master/config/config.php)
 
 # 0.6
 
