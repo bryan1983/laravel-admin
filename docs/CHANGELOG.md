@@ -9,7 +9,8 @@ This is the first official stable release of the package, here are the changes a
 - PSR2 Fixes, see [This commit](https://github.com/joselfonseca/laravel-admin/commit/e96eafc3b18e9f1b0ff48c6bde5770e9acba79f3)
 - Refactor users administration to use repositories and lots of cleanup, see [This commit](https://github.com/joselfonseca/laravel-admin/commit/1d5c4b56561ce504e40b73b224fb206e494626a9)
 - Refactor roles and permissions administration to use repositories and lots of cleanup, see [https://github.com/joselfonseca/laravel-admin/commit/52df0c48e9a3d41aba7b0f53398085b5a66f8eaf)
-
+- Some Layout improvements
+- Change users and roles tables to use Laravel DataTables
 
 # 0.6
 
