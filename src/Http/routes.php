@@ -117,38 +117,5 @@ Route::group(['prefix' => config('laravel-admin.routePrefix', 'backend'), 'middl
                 'middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AclMiddleware:roles-crud'
             ]);
         });
-        /** Permissions Routes * */
-        Route::group(['prefix' => 'permissions'], function () {
-            Route::get('/', [
-                'as' => 'LaravelAdminPermissions',
-                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@index',
-                'middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AclMiddleware:permissions-crud'
-            ]);
-            Route::get('/create', [
-                'as' => 'LaravelAdminPermissionsCreate',
-                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@create',
-                'middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AclMiddleware:permissions-crud'
-            ]);
-            Route::post('/create', [
-                'as' => 'LaravelAdminPermissionsCreatePost',
-                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@store',
-                'middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AclMiddleware:permissions-crud'
-            ]);
-            Route::get('/{id}/edit', [
-                'as' => 'LaravelAdminPermissionsEdit',
-                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@edit',
-                'middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AclMiddleware:permissions-crud'
-            ]);
-            Route::post('/{id}/edit', [
-                'as' => 'LaravelAdminPermissionsEditPost',
-                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@update',
-                'middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AclMiddleware:permissions-crud'
-            ]);
-            Route::delete('/{id}/delete', [
-                'as' => 'LaravelAdminPermissionsDelete',
-                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@destroy',
-                'middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AclMiddleware:permissions-crud'
-            ]);
-        });
     });
 });

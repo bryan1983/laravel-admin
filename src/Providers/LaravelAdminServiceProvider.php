@@ -7,8 +7,12 @@ use Config;
 use JavaScript;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
+use Joselfonseca\LaravelAdmin\Entities\Role;
+use Joselfonseca\LaravelAdmin\Entities\Permission;
 use Joselfonseca\LaravelAdmin\Repositories\UserRepository;
+use Joselfonseca\LaravelAdmin\Repositories\RoleRepository;
 use Joselfonseca\LaravelAdmin\Contracts\UserRepositoryContract;
+use Joselfonseca\LaravelAdmin\Contracts\RoleRepositoryContract;
 
 /**
  * Class LaravelAdminServiceProvider
@@ -58,6 +62,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(UserRepositoryContract::class, UserRepository::class);
+        $this->app->bind(RoleRepositoryContract::class, RoleRepository::class);
         $this->registerCommands()
             ->registerOtherProviders()
             ->registerAliases();
@@ -90,8 +95,8 @@ class LaravelAdminServiceProvider extends ServiceProvider
             __DIR__.'/../../config/config.php',
             'laravel-admin'
         );
-        Config::set('entrust.role', 'Joselfonseca\LaravelAdmin\Services\Users\Role');
-        Config::set('entrust.permission', 'Joselfonseca\LaravelAdmin\Services\Users\Permission');
+        Config::set('entrust.role', Role::class);
+        Config::set('entrust.permission', Permission::class);
         Config::set('javascript.bind_js_vars_to_this_view', 'LaravelAdmin::layouts.withsidebar');
         $this->setLangJs();
     }

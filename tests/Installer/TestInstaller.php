@@ -2,10 +2,10 @@
 
 namespace Joselfonseca\LaravelAdmin\Tests\Installer;
 
-use Joselfonseca\LaravelAdmin\Services\Users\Permission;
-use Joselfonseca\LaravelAdmin\Services\Users\Role;
+use Joselfonseca\LaravelAdmin\Entities\User;
+use Joselfonseca\LaravelAdmin\Entities\Role;
 use Joselfonseca\LaravelAdmin\Tests\TestCase;
-use Joselfonseca\LaravelAdmin\Services\Users\User;
+use Joselfonseca\LaravelAdmin\Entities\Permission;
 
 /**
  * Class TestInstaller
@@ -67,8 +67,6 @@ class TestInstaller extends TestCase{
     public function test_it_creates_acl_permissions()
     {
         $this->bootstrapInstallation();
-        $permission = Permission::where('name', 'permissions-crud')->first();
-        $this->assertEquals('permissions-crud', $permission->name);
         $permission = Permission::where('name', 'roles-crud')->first();
         $this->assertEquals('roles-crud', $permission->name);
     }
@@ -80,7 +78,7 @@ class TestInstaller extends TestCase{
     {
         $this->bootstrapInstallation();
         $user = User::first();
-        $this->assertTrue($user->can('permissions-crud'));
+        $this->assertTrue($user->can('roles-crud'));
     }
 
 }

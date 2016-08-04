@@ -53,7 +53,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
     public function update(array $attributes, $id)
     {
         $user = $this->find($id);
-        if($user->email === $attributes['email']){
+        if ($user->email === $attributes['email']) {
             unset($attributes['email']);
         }
         $user = parent::update($attributes, $id);

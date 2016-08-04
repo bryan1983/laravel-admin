@@ -13,9 +13,35 @@
             </div>
         </div>
         <div class="box-body">
-            {!! $table !!}
+            <table id="roles-table" class="table table-condensed">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-
+@endsection
+@section('scripts')
+    <script>
+        $(function() {
+            $('#roles-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('LaravelAdminRoles') }}',
+                columns: [
+                    {data: 0, name: 'id'},
+                    {data: 1, name: 'name'},
+                    {data: 2, name: 'action', orderable: false, searchable: false}
+                ]
+            });
+        });
+    </script>
 @endsection

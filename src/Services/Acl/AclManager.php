@@ -2,8 +2,9 @@
 
 namespace Joselfonseca\LaravelAdmin\Services\Acl;
 
+use Auth;
 use Joselfonseca\LaravelAdmin\Entities\User;
-use Joselfonseca\LaravelAdmin\Services\Users\Role;
+use Joselfonseca\LaravelAdmin\Entities\Role;
 
 /**
  * Class AclManager
@@ -14,7 +15,8 @@ class AclManager
 {
 
     /**
-     * Get the user model from config
+     * AclManager constructor.
+     * @param User $user
      */
     public function __construct(User $user)
     {
@@ -30,7 +32,7 @@ class AclManager
     public function canSee($permissions, $user = null)
     {
         if (is_null($user)) {
-            $user = \Auth::user();
+            $user = Auth::user();
         }
         if (!empty($permissions)) {
             return $user->can($permissions);

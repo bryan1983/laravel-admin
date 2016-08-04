@@ -2,6 +2,14 @@
 
 All Notable changes to `laravel-admin` will be documented in this file
 
+# 1.0.0 Official release
+
+This is the first official stable release of the package, here are the changes and upgrades made.
+
+- PSR2 Fixes, see [This commit](https://github.com/joselfonseca/laravel-admin/commit/e96eafc3b18e9f1b0ff48c6bde5770e9acba79f3)
+- Refactor users administration to use repositories and lots of cleanup, see [This commit](https://github.com/joselfonseca/laravel-admin/commit/1d5c4b56561ce504e40b73b224fb206e494626a9)
+- Refactor users administration to use repositories and lots of cleanup, see [This commit](https://github.com/joselfonseca/laravel-admin/commit/1d5c4b56561ce504e40b73b224fb206e494626a9)
+
 # 0.6
 
 - Update Permissions assignation View, see [This Commit](https://github.com/joselfonseca/laravel-admin/commit/b6c4481c61bd43c187179db9316e7bc83f49c4f8)

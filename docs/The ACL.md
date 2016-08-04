@@ -31,7 +31,7 @@ You can give it multiple permissions also separating them with a coma (,):
 Say you want to protect a route so only users with the correct permission are able to access it, use the Entrust alias for that in a service provider or bootstrap file.
 
 ```php 
-    \Entrust::routeNeedsPermission('backend/permissions*', array('permissions-crud'), view('LaravelAdmin::errors.unauthorized'), false);
+    \Entrust::routeNeedsPermission('backend/permissions*', array('roles-crud'), view('LaravelAdmin::errors.unauthorized'), false);
 ```
 First parameter is the route you want to protect, the second receives an array of permissions required to see the route, third would be the return, this can be a view or a text, its up to you, laravel admin gives you a simple view for that, and last parameter will tell Entrust if all of the permissions are required to access the route. [More info.](https://github.com/Zizaco/entrust/blob/master/README.md#short-syntax-route-filter)
 

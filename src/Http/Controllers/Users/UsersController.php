@@ -7,7 +7,6 @@ use Auth;
 use Datatables;
 use SweetAlert;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Joselfonseca\LaravelAdmin\Http\Requests;
 use Joselfonseca\LaravelAdmin\Services\Acl\AclManager;
 use Joselfonseca\LaravelAdmin\Http\Controllers\Controller;
@@ -42,7 +41,7 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->ajax()){
+        if ($request->ajax()) {
             return Datatables::of($this->repository->all(['id', 'name', 'email']))
                 ->addColumn('action', function ($user) {
                     return '<a href="'.route('LaravelAdminUsersEdit', [$user->id]).'" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i> '.trans('laravel-admin.edit').'</a> &nbsp;&nbsp;<a href="'.route('deleteUser', [$user->id]).'" class="btn btn-sm btn-danger confirm-delete"><i class="fa fa-times"></i> '.trans('laravel-admin.delete').'</a>';
@@ -83,11 +82,11 @@ class UsersController extends Controller
      */
     public function store(Requests\CreateUserRequest $request)
     {
-        DB::transaction(function() use ($request){
+        DB::transaction(function () use ($request) {
             $this->repository->create($request->all());
         });
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.userCreated'));
-        return Redirect::to(config('laravel-admin.routePrefix', 'backend').'/users');
+        return redirect(config('laravel-admin.routePrefix', 'backend').'/users');
     }
 
     /**
@@ -97,11 +96,11 @@ class UsersController extends Controller
      */
     public function update(Requests\UpdateUserRequest $request, $id)
     {
-        try{
-            DB::transaction(function() use ($request, $id){
+        try {
+            DB::transaction(function () use ($request, $id) {
                 $this->repository->update($request->all(), $id);
             });
-        }catch (EmailTakenException $e){
+        } catch (EmailTakenException $e) {
             SweetAlert::error(trans('LaravelAdmin::laravel-admin.emailTaken'));
             return redirect()->back()->withInput();
         }
@@ -116,11 +115,11 @@ class UsersController extends Controller
      */
     public function updatePassword(Requests\UpdatePasswordRequest $request, $id)
     {
-        DB::transaction(function() use ($request, $id){
+        DB::transaction(function () use ($request, $id) {
             $this->repository->updatePassword($id, $request->get('password'));
         });
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.passwordUpdated'));
-        return Redirect::back();
+        return redirect()->back();
     }
 
     /**
@@ -131,7 +130,7 @@ class UsersController extends Controller
     {
         $this->repository->delete($id);
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.userDeleted'));
-        return Redirect::back();
+        return redirect()->back();
     }
 
     /**

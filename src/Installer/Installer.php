@@ -2,9 +2,9 @@
 
 namespace Joselfonseca\LaravelAdmin\Installer;
 
-use Joselfonseca\LaravelAdmin\Services\Users\Role;
-use Joselfonseca\LaravelAdmin\Services\Users\Permission;
-use Joselfonseca\LaravelAdmin\Services\Users\User;
+use Joselfonseca\LaravelAdmin\Entities\Role;
+use Joselfonseca\LaravelAdmin\Entities\User;
+use Joselfonseca\LaravelAdmin\Entities\Permission;
 
 /**
  * Class Installer
@@ -109,12 +109,6 @@ class Installer
      */
     private function createAclPermissions()
     {
-        /** Permissions crud **/
-        $permissionsCrud = new Permission();
-        $permissionsCrud->name = 'permissions-crud';
-        $permissionsCrud->display_name = 'Permissions Crud';
-        $permissionsCrud->description = 'Create, update and delete Permissions';
-        $permissionsCrud->save();
         /** roles crud **/
         $rolesCrud = new Permission();
         $rolesCrud->name = 'roles-crud';
@@ -122,7 +116,6 @@ class Installer
         $rolesCrud->description = 'Create, update and delete roles';
         $rolesCrud->save();
         return [
-            $permissionsCrud,
             $rolesCrud
         ];
     }

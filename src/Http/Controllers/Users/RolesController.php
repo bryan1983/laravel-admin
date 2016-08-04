@@ -2,96 +2,135 @@
 
 namespace Joselfonseca\LaravelAdmin\Http\Controllers\Users;
 
+use DB;
+use Datatables;
 use SweetAlert;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-use Joselfonseca\LaravelAdmin\Services\Users\Role;
+use Joselfonseca\LaravelAdmin\Entities\Permission;
+use Prettus\Validator\Exceptions\ValidatorException;
 use Joselfonseca\LaravelAdmin\Http\Requests\RoleRequest;
-use Joselfonseca\LaravelAdmin\Services\Users\Permission;
 use Joselfonseca\LaravelAdmin\Http\Controllers\Controller;
 use Joselfonseca\LaravelAdmin\Http\Requests\UpdateRoleRequest;
-use Joselfonseca\LaravelAdmin\Services\TableBuilder\TableBuilder;
+use Joselfonseca\LaravelAdmin\Contracts\RoleRepositoryContract;
 
+/**
+ * Class RolesController
+ * @package Joselfonseca\LaravelAdmin\Http\Controllers\Users
+ */
 class RolesController extends Controller
 {
 
-    private $model;
+    /**
+     * @var RoleRepositoryContract
+     */
+    private $repository;
 
-    public function __construct(Role $r)
+    /**
+     * RolesController constructor.
+     * @param RoleRepositoryContract $repository
+     */
+    public function __construct(RoleRepositoryContract $repository)
     {
-        $this->model = $r;
+        $this->repository = $repository;
     }
 
-    public function index(TableBuilder $table)
+    /**
+     * @param Request $request
+     * @return $this
+     */
+    public function index(Request $request)
     {
-        $table->setActions([
-            'edit' => [
-                'link' => url(config('laravel-admin.routePrefix', 'backend') . '/roles/-id-/edit/'),
-                'text' => '<i class="fa fa-pencil"></i> ' . trans('LaravelAdmin::laravel-admin.edit'),
-                'class' => 'btn btn-primary btn-sm',
-            ],
-            'permissions' => [
-                'link' => url(config('laravel-admin.routePrefix', 'backend') . '/roles/-id-/permissions'),
-                'text' => '<i class="fa fa-lock"></i> ' . trans('LaravelAdmin::laravel-admin.permissions'),
-                'class' => 'btn btn-default btn-sm',
-            ],
-            'delete' => [
-                'link' => url(config('laravel-admin.routePrefix', 'backend') . '/roles/-id-/delete'),
-                'text' => '<i class="fa fa-times"></i> ' . trans('LaravelAdmin::laravel-admin.delete'),
-                'class' => 'btn btn-danger btn-sm confirm-delete',
-                'confirm' => true,
-            ],
-        ]);
-        return view('LaravelAdmin::roles.index')
-            ->with('table', $table->setModel($this->model)->render())
-            ->with('activeMenu', 'sidebar.Users.Roles');
+        if ($request->ajax()) {
+            return Datatables::of($this->repository->all(['id', 'display_name']))
+                ->addColumn('action', function ($role) {
+                    $buttons = '<a href="'.route('LaravelAdminRolesEdit', [$role->id]).'" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i> '.trans('laravel-admin.edit').'</a> &nbsp;&nbsp;';
+                    $buttons .= '<a href="'.route('LaravelAdminRolesPermissions', [$role->id]).'" class="btn btn-sm btn-default"><i class="fa fa-lock"></i> '.trans('laravel-admin.permissions').'</a> &nbsp;&nbsp;';
+                    $buttons .= '<a href="'.route('LaravelAdminRolesDelete', [$role->id]).'" class="btn btn-sm btn-danger confirm-delete"><i class="fa fa-times"></i> '.trans('laravel-admin.delete').'</a>';
+                    return $buttons;
+                })
+                ->make();
+        }
+        return view('LaravelAdmin::roles.index')->with('activeMenu', 'sidebar.Users.Roles');
     }
 
+    /**
+     * @return $this
+     */
     public function create()
     {
         return view('LaravelAdmin::roles.create')->with('activeMenu', 'sidebar.Users.Roles');
     }
 
+    /**
+     * @param RoleRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(RoleRequest $request)
     {
-        $this->model->create($request->all());
+        try {
+            DB::transaction(function () use ($request) {
+                $this->repository->create($request->all());
+            });
+        } catch (ValidatorException $e) {
+            return redirect()->back()->withErrors($e->getMessageBag());
+        }
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.rolCreationSuccess'));
-        return Redirect::to(config('laravel-admin.routePrefix', 'backend') . '/roles');
+        return redirect()->to(config('laravel-admin.routePrefix', 'backend') . '/roles');
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function edit($id)
     {
-        $role = $this->model->findOrFail($id);
         return view('LaravelAdmin::roles.edit')
-            ->with('role', $role)
+            ->with('role', $this->repository->find($id))
             ->with('activeMenu', 'sidebar.Users.Roles');
     }
 
+    /**
+     * @param UpdateRoleRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(UpdateRoleRequest $request, $id)
     {
-        $role = $this->model->findOrFail($id);
-        if ($role->name !== $request->get('name')) {
-            if ($this->model->where('name', $request->get('name'))->count() > 0) {
-                return Redirect::back()->withInput()->withErrors(['name' => trans('LaravelAdmin::laravel-admin.slugAlreadyExisits')]);
-            }
+        try {
+            DB::transaction(function () use ($request, $id) {
+                $this->repository->update($request->all(), $id);
+            });
+        } catch (ValidatorException $e) {
+            return redirect()->back()->withErrors($e->getMessageBag());
         }
-        $role->fill($request->all());
-        $role->save();
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.rolEditionSuccess'));
-        return Redirect::to(config('laravel-admin.routePrefix', 'backend') . '/roles');
+        return redirect()->to(config('laravel-admin.routePrefix', 'backend') . '/roles');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($id)
     {
-        $role = $this->model->findOrFail($id);
-        $role->delete();
+        try {
+            DB::transaction(function () use ($id) {
+                $this->repository->delete($id);
+            });
+        } catch (ValidatorException $e) {
+            return redirect()->back()->withErrors($e->getMessageBag());
+        }
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.rolDeleteSuccess'));
-        return Redirect::to(config('laravel-admin.routePrefix', 'backend') . '/roles');
+        return redirect()->to(config('laravel-admin.routePrefix', 'backend') . '/roles');
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function permissions($id)
     {
-        $role = $this->model->findOrFail($id);
+        $role = $this->repository->find($id);
         $permissions = Permission::all()->pluck('display_name', 'id')->toArray();
         return view('LaravelAdmin::permissions.assign')
             ->with('type', 'role')
@@ -101,19 +140,29 @@ class RolesController extends Controller
             ->with('activeMenu', 'sidebar.Users.Roles');
     }
 
+    /**
+     * @param $id
+     * @param $permission
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function permissionsDelete($id, $permission)
     {
-        $role = $this->model->findOrFail($id);
+        $role = $this->repository->find($id);
         $role->perms()->detach($permission);
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.permissionsDetachedSuccess'));
-        return Redirect::back();
+        return redirect()->back();
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function permissionsUpdate(Request $request, $id)
     {
-        $role = $this->model->findOrFail($id);
+        $role = $this->repository->find($id);
         $role->perms()->sync($request->get('permissions'));
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.permissionsAttachSuccess'));
-        return Redirect::back();
+        return redirect()->to(config('laravel-admin.routePrefix', 'backend') . '/roles');
     }
 }

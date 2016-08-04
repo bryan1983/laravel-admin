@@ -5,7 +5,7 @@ To install this package, open your composer.json file and add "joselfonseca/lara
 ```json
     "require": {
         "laravel/framework": "5.1.*",
-        "joselfonseca/laravel-admin" : "0.6.*"
+        "joselfonseca/laravel-admin" : "1.0.*"
     }
 ```
 Then run composer update and wait until it installs the dependencies.
@@ -19,13 +19,13 @@ Once all the dependencies are installed, open the config/app.php file and add th
     ]
 ```
 
-Once the service provider has been added, make sure your user model extends the class `Joselfonseca\LaravelAdmin\Services\Users\User` like the following example
+Once the service provider has been added, make sure your user model extends the class `Joselfonseca\LaravelAdmin\Entities\User` like the following example
 
 ```php
 
     namespace JarvisPlatform;
 
-    use Joselfonseca\LaravelAdmin\Services\Users\User as Model;
+    use Joselfonseca\LaravelAdmin\Entities\User as Model;
 
     class User extends Model {
 
