@@ -239,15 +239,6 @@
           
             
   <li>
-    <a class="" title="Simple Table Builder" href="../Simple Table Builder/">
-      Simple Table Builder
-    </a>
-    
-  </li>
-
-          
-            
-  <li>
     <a class="" title="Flash Messages" href="../Flash Messages/">
       Flash Messages
     </a>
@@ -311,6 +302,25 @@
           
           <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">#</a></h1>
 <p>All Notable changes to <code>laravel-admin</code> will be documented in this file</p>
+<h1 id="100-official-release">1.0.0 Official release<a class="headerlink" href="#100-official-release" title="Permanent link">#</a></h1>
+<p>This is the first official stable release of the package, here are the changes and upgrades made, please keep in mind this is a major release and it introduces braking changes.</p>
+<ul>
+<li>PSR2 Fixes, see <a href="https://github.com/joselfonseca/laravel-admin/commit/e96eafc3b18e9f1b0ff48c6bde5770e9acba79f3">This commit</a>.</li>
+<li>Refactor users administration to use repositories and lots of cleanup, see <a href="https://github.com/joselfonseca/laravel-admin/commit/1d5c4b56561ce504e40b73b224fb206e494626a9">This commit</a>.</li>
+<li>Refactor roles and permissions administration to use repositories and lots of cleanup, see [https://github.com/joselfonseca/laravel-admin/commit/52df0c48e9a3d41aba7b0f53398085b5a66f8eaf).</li>
+<li>Some Layout improvements.</li>
+<li>Table Builder was removed.</li>
+<li>Change users and roles tables to use Laravel DataTables.</li>
+</ul>
+<p>Upgrade guide: To upgrade from previous versions please:</p>
+<ul>
+<li>Change the package version in composer.json to match 1.0.* and run composer update.</li>
+<li>Most of the views where changed, if you made changes yourself please check the changes made in the repository and try to merge them to fit your needs</li>
+<li>User Model was changed to namespace <code>Joselfonseca\LaravelAdmin\Entities\User</code>, so make sure your User model extends the new namespace.</li>
+<li>Role and Permission model were also changed to a new namespace <code>Joselfonseca\LaravelAdmin\Entities\Role</code> and <code>Joselfonseca\LaravelAdmin\Entities\Permission</code> so update your models accordingly.</li>
+<li>Table builder was removed so replace it for Laravel Data Tables where ever you used it.</li>
+<li>Update your config file to reflect the new one <a href="https://github.com/joselfonseca/laravel-admin/blob/master/config/config.php">https://github.com/joselfonseca/laravel-admin/blob/master/config/config.php</a></li>
+</ul>
 <h1 id="06">0.6<a class="headerlink" href="#06" title="Permanent link">#</a></h1>
 <ul>
 <li>Update Permissions assignation View, see <a href="https://github.com/joselfonseca/laravel-admin/commit/b6c4481c61bd43c187179db9316e7bc83f49c4f8">This Commit</a></li>

@@ -254,15 +254,6 @@
           
             
   <li>
-    <a class="" title="Simple Table Builder" href="../Simple Table Builder/">
-      Simple Table Builder
-    </a>
-    
-  </li>
-
-          
-            
-  <li>
     <a class="" title="Flash Messages" href="../Flash Messages/">
       Flash Messages
     </a>
@@ -329,25 +320,87 @@
 <h2 id="the-file">The file<a class="headerlink" href="#the-file" title="Permanent link">#</a></h2>
 <div class="code"><pre><span></span><span class="x">    </span><span class="cp">&lt;?php</span>
     <span class="k">return</span> <span class="p">[</span>
-        <span class="sd">/**</span>
-<span class="sd">         * The App name</span>
-<span class="sd">         * */</span>
+        <span class="cm">/*</span>
+<span class="cm">        |--------------------------------------------------------------------------</span>
+<span class="cm">        | App Name</span>
+<span class="cm">        |--------------------------------------------------------------------------</span>
+<span class="cm">        |</span>
+<span class="cm">        | Name of your app, will be displayed in the top left corner</span>
+<span class="cm">        |</span>
+<span class="cm">        */</span>
+
         <span class="s1">&#39;appName&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Laravel Admin Panel&quot;</span><span class="p">,</span>
-        <span class="sd">/**</span>
-<span class="sd">         * Route to go after login</span>
-<span class="sd">        **/</span> 
+
+        <span class="cm">/*</span>
+<span class="cm">        |--------------------------------------------------------------------------</span>
+<span class="cm">        | Route After Login</span>
+<span class="cm">        |--------------------------------------------------------------------------</span>
+<span class="cm">        |</span>
+<span class="cm">        | Name of the route where you want to go after the login</span>
+<span class="cm">        |</span>
+<span class="cm">        */</span>
+
         <span class="s1">&#39;afterLoginRoute&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;users&#39;</span><span class="p">,</span>
-        <span class="sd">/**</span>
-<span class="sd">         * Route prefix for admin routes</span>
-<span class="sd">         */</span>
-        <span class="s1">&#39;routePrefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;backend&#39;</span>
+
+        <span class="cm">/*</span>
+<span class="cm">        |--------------------------------------------------------------------------</span>
+<span class="cm">        | Route Prefix</span>
+<span class="cm">        |--------------------------------------------------------------------------</span>
+<span class="cm">        |</span>
+<span class="cm">        | Prefix for admin routes, it defaults to backend but you can change it to admin</span>
+<span class="cm">        | This will make the routes have a prefix of admin like http://example.com/admin/</span>
+<span class="cm">        |</span>
+<span class="cm">        */</span>
+
+        <span class="s1">&#39;routePrefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;backend&#39;</span><span class="p">,</span>
+
+        <span class="cm">/*</span>
+<span class="cm">        |--------------------------------------------------------------------------</span>
+<span class="cm">        | Middleware Stack</span>
+<span class="cm">        |--------------------------------------------------------------------------</span>
+<span class="cm">        |</span>
+<span class="cm">        | Middleware Stack to apply to the package routes, this will be applied to</span>
+<span class="cm">        | all routes in the package</span>
+<span class="cm">        |</span>
+<span class="cm">        */</span>
+
+        <span class="s1">&#39;middleware&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+
+        <span class="p">],</span>
+
+        <span class="cm">/*</span>
+<span class="cm">        |--------------------------------------------------------------------------</span>
+<span class="cm">        | Application Version</span>
+<span class="cm">        |--------------------------------------------------------------------------</span>
+<span class="cm">        |</span>
+<span class="cm">        | Your application version, it will be displayed in the footer</span>
+<span class="cm">        |</span>
+<span class="cm">        */</span>
+
+        <span class="s1">&#39;version&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;1.0&#39;</span><span class="p">,</span>
+
+        <span class="cm">/*</span>
+<span class="cm">        |--------------------------------------------------------------------------</span>
+<span class="cm">        | Application copyright</span>
+<span class="cm">        |--------------------------------------------------------------------------</span>
+<span class="cm">        |</span>
+<span class="cm">        | Your application copyright, it will be displayed in the footer</span>
+<span class="cm">        |</span>
+<span class="cm">        */</span>
+
+        <span class="s1">&#39;copyright&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Copyright © Laravel Admin - All rights reserved.&#39;</span>
     <span class="p">];</span>
 </pre></div>
 
 
-<p>You can change your App name updating the <code>appName</code> option<br />
-You can modify where the user is taken after the successful login with the <code>'afterLoginRoute'</code> option. <br />
-You can also set <code>routePrefix</code> to change the prefix of the panel routes for something like <code>admin</code>. <br /></p>
+<ul>
+<li>You can change your App name updating the <code>appName</code> option.</li>
+<li>You can modify where the user is taken after the successful login with the <code>'afterLoginRoute'</code> option.</li>
+<li>You can also set <code>routePrefix</code> to change the prefix of the panel routes for something like <code>admin</code>.</li>
+<li>You can apply a Middleware stack to the package routes by providing the middleware classes in the <code>middleware</code> array</li>
+<li>You can change the application version number that is shown in the footer by changing the value in the <code>version</code> key</li>
+<li>You can change the copyright message that is shown in the footer by changing the value in the <code>copyright</code> key</li>
+</ul>
           <aside class="copyright" role="note">
             
               Copyright (c) 2016 Jose Fonseca &ndash;

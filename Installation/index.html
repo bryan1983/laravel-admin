@@ -244,15 +244,6 @@
           
             
   <li>
-    <a class="" title="Simple Table Builder" href="../Simple Table Builder/">
-      Simple Table Builder
-    </a>
-    
-  </li>
-
-          
-            
-  <li>
     <a class="" title="Flash Messages" href="../Flash Messages/">
       Flash Messages
     </a>
@@ -310,10 +301,10 @@
         <div class="wrapper">
           
           <h1 id="laravel-admin-panel-installation">Laravel Admin Panel Installation<a class="headerlink" href="#laravel-admin-panel-installation" title="Permanent link">#</a></h1>
-<p>To install this package, open your composer.json file and add "joselfonseca/laravel-admin" : "0.6.*"</p>
+<p>To install this package, open your composer.json file and add "joselfonseca/laravel-admin" : "1.0.*"</p>
 <div class="code"><pre><span></span>    <span class="s2">&quot;require&quot;</span><span class="err">:</span> <span class="p">{</span>
     <span class="err">    </span><span class="nt">&quot;laravel/framework&quot;</span><span class="p">:</span> <span class="s2">&quot;5.1.*&quot;</span><span class="p">,</span>
-    <span class="err">    </span><span class="nt">&quot;joselfonseca/laravel-admin&quot;</span> <span class="p">:</span> <span class="s2">&quot;0.6.*&quot;</span>
+    <span class="err">    </span><span class="nt">&quot;joselfonseca/laravel-admin&quot;</span> <span class="p">:</span> <span class="s2">&quot;1.0.*&quot;</span>
     <span class="p">}</span>
 </pre></div>
 
@@ -328,10 +319,10 @@ Once all the dependencies are installed, open the config/app.php file and add th
 </pre></div>
 
 
-<p>Once the service provider has been added, make sure your user model extends the class <code>Joselfonseca\LaravelAdmin\Services\Users\User</code> like the following example</p>
+<p>Once the service provider has been added, make sure your user model extends the class <code>Joselfonseca\LaravelAdmin\Entities\User</code> like the following example</p>
 <div class="code"><pre><span></span><span class="x">    namespace JarvisPlatform;</span>
 
-<span class="x">    use Joselfonseca\LaravelAdmin\Services\Users\User as Model;</span>
+<span class="x">    use Joselfonseca\LaravelAdmin\Entities\User as Model;</span>
 
 <span class="x">    class User extends Model {</span>
 

@@ -266,15 +266,6 @@
           
             
   <li>
-    <a class="" title="Simple Table Builder" href="../Simple Table Builder/">
-      Simple Table Builder
-    </a>
-    
-  </li>
-
-          
-            
-  <li>
     <a class="" title="Flash Messages" href="../Flash Messages/">
       Flash Messages
     </a>
@@ -355,7 +346,7 @@
 
 <h2 id="protecting-routes">Protecting Routes<a class="headerlink" href="#protecting-routes" title="Permanent link">#</a></h2>
 <p>Say you want to protect a route so only users with the correct permission are able to access it, use the Entrust alias for that in a service provider or bootstrap file.</p>
-<div class="code"><pre><span></span><span class="x">    \Entrust::routeNeedsPermission(&#39;backend/permissions*&#39;, array(&#39;permissions-crud&#39;), view(&#39;LaravelAdmin::errors.unauthorized&#39;), false);</span>
+<div class="code"><pre><span></span><span class="x">    \Entrust::routeNeedsPermission(&#39;backend/permissions*&#39;, array(&#39;roles-crud&#39;), view(&#39;LaravelAdmin::errors.unauthorized&#39;), false);</span>
 </pre></div>
 
 

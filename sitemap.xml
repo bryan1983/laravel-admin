@@ -4,7 +4,7 @@
     
     <url>
      <loc>https://github.com/joselfonseca/laravel-admin/</loc>
-     <lastmod>2016-05-24</lastmod>
+     <lastmod>2016-08-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,7 +12,7 @@
     
     <url>
      <loc>https://github.com/joselfonseca/laravel-admin/Installation/</loc>
-     <lastmod>2016-05-24</lastmod>
+     <lastmod>2016-08-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -20,7 +20,7 @@
     
     <url>
      <loc>https://github.com/joselfonseca/laravel-admin/config/</loc>
-     <lastmod>2016-05-24</lastmod>
+     <lastmod>2016-08-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -28,7 +28,7 @@
     
     <url>
      <loc>https://github.com/joselfonseca/laravel-admin/Authentication/</loc>
-     <lastmod>2016-05-24</lastmod>
+     <lastmod>2016-08-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -36,7 +36,7 @@
     
     <url>
      <loc>https://github.com/joselfonseca/laravel-admin/The ACL/</loc>
-     <lastmod>2016-05-24</lastmod>
+     <lastmod>2016-08-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -44,7 +44,7 @@
     
     <url>
      <loc>https://github.com/joselfonseca/laravel-admin/Master View/</loc>
-     <lastmod>2016-05-24</lastmod>
+     <lastmod>2016-08-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -52,15 +52,7 @@
     
     <url>
      <loc>https://github.com/joselfonseca/laravel-admin/The Menu/</loc>
-     <lastmod>2016-05-24</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    
-
-    
-    <url>
-     <loc>https://github.com/joselfonseca/laravel-admin/Simple Table Builder/</loc>
-     <lastmod>2016-05-24</lastmod>
+     <lastmod>2016-08-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -68,7 +60,7 @@
     
     <url>
      <loc>https://github.com/joselfonseca/laravel-admin/Flash Messages/</loc>
-     <lastmod>2016-05-24</lastmod>
+     <lastmod>2016-08-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -76,7 +68,7 @@
     
     <url>
      <loc>https://github.com/joselfonseca/laravel-admin/license/</loc>
-     <lastmod>2016-05-24</lastmod>
+     <lastmod>2016-08-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -84,7 +76,7 @@
     
     <url>
      <loc>https://github.com/joselfonseca/laravel-admin/changelog/</loc>
-     <lastmod>2016-05-24</lastmod>
+     <lastmod>2016-08-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
