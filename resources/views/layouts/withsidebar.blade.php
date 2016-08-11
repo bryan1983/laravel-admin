@@ -38,6 +38,9 @@
                 @include('LaravelAdmin::partials.sidebar')
             </aside>
             <div class="content-wrapper">
+                <section class="content-header">
+                    @yield('contentHeader')
+                </section>
                 <section class="content">
                     @yield('content')
                     <!-- delete form for elements -->
