@@ -39,7 +39,8 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
     public function create(array $attributes)
     {
         $attributes['password'] = bcrypt($attributes['password']);
-        $user = parent::create($attributes);
+        $attributes = collect($attributes);
+        $user = parent::create($attributes->only('email', 'name', 'password')->all());
         $this->updateRoles($user, $attributes);
         event(new UserWasCreated($user, $attributes));
         return $this->parserResult($user);
@@ -72,6 +73,11 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
         $user->roles()->sync($roles->toArray());
     }
 
+    /**
+     * @param $user
+     * @param $password
+     * @return mixed
+     */
     public function updatePassword($user, $password)
     {
         $password = bcrypt($password);

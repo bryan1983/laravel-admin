@@ -5,6 +5,7 @@ namespace Joselfonseca\LaravelAdmin\Http\Controllers\Users;
 use DB;
 use Auth;
 use Datatables;
+use Prettus\Validator\Exceptions\ValidatorException;
 use SweetAlert;
 use Illuminate\Http\Request;
 use Joselfonseca\LaravelAdmin\Http\Requests;
@@ -82,9 +83,13 @@ class UsersController extends Controller
      */
     public function store(Requests\CreateUserRequest $request)
     {
-        DB::transaction(function () use ($request) {
-            $this->repository->create($request->all());
-        });
+        try{
+            DB::transaction(function () use ($request) {
+                $this->repository->create($request->all());
+            });
+        }catch (ValidatorException $e){
+            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+        }
         SweetAlert::success(trans('LaravelAdmin::laravel-admin.userCreated'));
         return redirect(config('laravel-admin.routePrefix', 'backend').'/users');
     }

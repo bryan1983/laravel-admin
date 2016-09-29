@@ -19,7 +19,7 @@ class UserValidator extends LaravelValidator
         ValidatorInterface::RULE_CREATE => [
             'name' => 'required',
             'email'  => 'required|unique:users',
-            'password'=> 'required|min:8|confirmed'
+            'password' => 'required|min:8'
         ],
         ValidatorInterface::RULE_UPDATE => [
             'name' => 'required',
