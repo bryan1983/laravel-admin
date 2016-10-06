@@ -106,16 +106,6 @@ Route::group(['prefix' => config('laravel-admin.routePrefix', 'backend'), 'middl
                 'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\RolesController@permissionsDelete',
                 'middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AclMiddleware:roles-crud'
             ]);
-            Route::get('/permissions/get', [
-                'as' => 'LaravelAdminPermissionsForSelect',
-                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@getForSelect',
-                'middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AclMiddleware:roles-crud'
-            ]);
-            Route::post('/permissions/assign/', [
-                'as' => 'LaravelAdminAssignPermission',
-                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Users\PermissionsController@permissionsAssign',
-                'middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AclMiddleware:roles-crud'
-            ]);
         });
     });
 });
