@@ -30,6 +30,8 @@ class Installer
         $role->attachPermissions($userPerms);
         $adminperms = $this->createAclPermissions();
         $role->attachPermissions($adminperms);
+        $logsPermission = $this->createLogsPermission();
+        $role->attachPermissions($logsPermission);
     }
 
     /**
@@ -117,6 +119,22 @@ class Installer
         $rolesCrud->save();
         return [
             $rolesCrud
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    private function createLogsPermission()
+    {
+        /** roles crud **/
+        $logs = new Permission();
+        $logs->name = 'system-logs';
+        $logs->display_name = 'System Logs';
+        $logs->description = 'See system logs';
+        $logs->save();
+        return [
+            $logs
         ];
     }
 }

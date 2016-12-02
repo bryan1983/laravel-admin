@@ -34,6 +34,7 @@ class RolesController extends Controller
         $this->repository = $repository;
     }
 
+
     /**
      * @param Request $request
      * @return $this
@@ -50,20 +51,22 @@ class RolesController extends Controller
                 })
                 ->make();
         }
-        return view('LaravelAdmin::roles.index')->with('activeMenu', 'sidebar.Users.Roles');
+        return view('LaravelAdmin::roles.index')->with('activeMenu', 'sidebar.users.roles');
     }
+
 
     /**
      * @return $this
      */
     public function create()
     {
-        return view('LaravelAdmin::roles.create')->with('activeMenu', 'sidebar.Users.Roles');
+        return view('LaravelAdmin::roles.create')->with('activeMenu', 'sidebar.users.roles');
     }
+
 
     /**
      * @param RoleRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return $this|\Illuminate\Http\RedirectResponse
      */
     public function store(RoleRequest $request)
     {
@@ -86,7 +89,7 @@ class RolesController extends Controller
     {
         return view('LaravelAdmin::roles.edit')
             ->with('role', $this->repository->find($id))
-            ->with('activeMenu', 'sidebar.Users.Roles');
+            ->with('activeMenu', 'sidebar.users.roles');
     }
 
     /**
@@ -137,7 +140,7 @@ class RolesController extends Controller
             ->with('model', $role)
             ->with('permissions', $role->perms->pluck('id')->toArray())
             ->with('permissionsList', $permissions)
-            ->with('activeMenu', 'sidebar.Users.Roles');
+            ->with('activeMenu', 'sidebar.users.roles');
     }
 
     /**

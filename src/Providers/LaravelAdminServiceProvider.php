@@ -13,6 +13,7 @@ use Joselfonseca\LaravelAdmin\Repositories\UserRepository;
 use Joselfonseca\LaravelAdmin\Repositories\RoleRepository;
 use Joselfonseca\LaravelAdmin\Contracts\UserRepositoryContract;
 use Joselfonseca\LaravelAdmin\Contracts\RoleRepositoryContract;
+use Joselfonseca\LaravelAdmin\Http\Middleware\LogRequestsMiddleware;
 
 /**
  * Class LaravelAdminServiceProvider
@@ -63,6 +64,7 @@ class LaravelAdminServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserRepositoryContract::class, UserRepository::class);
         $this->app->bind(RoleRepositoryContract::class, RoleRepository::class);
+        $this->app->singleton(LogRequestsMiddleware::class, LogRequestsMiddleware::class);
         $this->registerCommands()
             ->registerOtherProviders()
             ->registerAliases();

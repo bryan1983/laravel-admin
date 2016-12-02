@@ -107,5 +107,18 @@ Route::group(['prefix' => config('laravel-admin.routePrefix', 'backend'), 'middl
                 'middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AclMiddleware:roles-crud'
             ]);
         });
+        /** System Logs Routes **/
+        Route::group(['prefix' => 'system-logs'], function(){
+            Route::get('requests', [
+                'as' => 'LaravelAdminLogsRequests',
+                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Logs\HttpRequestsController@index',
+                'middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AclMiddleware:system-logs'
+            ]);
+            Route::get('requests/{id}', [
+                'as' => 'LaravelAdminLogsRequestsDetail',
+                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Logs\HttpRequestsController@show',
+                'middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AclMiddleware:system-logs'
+            ]);
+        });
     });
 });

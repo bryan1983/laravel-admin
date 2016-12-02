@@ -36,10 +36,7 @@ class UsersController extends Controller
         $this->repository = $repository;
     }
 
-    /**
-     * @param Request $request
-     * @return $this
-     */
+
     public function index(Request $request)
     {
         if ($request->ajax()) {
@@ -49,7 +46,7 @@ class UsersController extends Controller
                 })
                 ->make();
         }
-        return view('LaravelAdmin::users.index')->with('activeMenu', 'sidebar.Users.List');
+        return view('LaravelAdmin::users.index')->with('activeMenu', 'sidebar.users.list');
     }
 
     /**
@@ -63,7 +60,7 @@ class UsersController extends Controller
         return view('LaravelAdmin::users.edit')
             ->with('user', $user)
             ->with('roles', $aclManager->getRolesForSelect())
-            ->with('activeMenu', 'sidebar.Users');
+            ->with('activeMenu', 'sidebar.users');
     }
 
     /**
@@ -74,7 +71,7 @@ class UsersController extends Controller
     {
         return view('LaravelAdmin::users.create')
             ->with('roles', $aclManager->getRolesForSelect())
-            ->with('activeMenu', 'sidebar.Users');
+            ->with('activeMenu', 'sidebar.users');
     }
 
     /**
@@ -147,7 +144,7 @@ class UsersController extends Controller
         return view('LaravelAdmin::users.edit')
             ->with('user', Auth::user())
             ->with('roles', $aclManager->getRolesForSelect())
-            ->with('activeMenu', 'sidebar.Users');
+            ->with('activeMenu', 'sidebar.users');
     }
 
     /**

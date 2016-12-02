@@ -60,5 +60,9 @@ return [
     'alertDelete' => 'Está seguro que desea eliminar esto?',
     'alertDeleteText' => 'Tenga en cuenta que esto no puede revertirse',
     'alertDeleteConfirm' => 'Si, estoy seguro',
-    'alertDeleteCancel' => 'No, cancelar acción!'
+    'alertDeleteCancel' => 'No, cancelar acción!',
+    'logs' => 'Logs del sistema',
+    'requestsLogs' => 'Registro de peticiones HTTP',
+    'httpRequestsTitle' => 'Http Requests Log',
+    'httpRequestsTitleDetails' => 'Http Request Log Detail'
 ];

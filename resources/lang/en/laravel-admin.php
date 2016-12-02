@@ -61,5 +61,9 @@ return [
     'alertDelete' => 'Are you sure you want to delete this?',
     'alertDeleteText' => 'Keep in mind this can\'t be undone.',
     'alertDeleteConfirm' => 'Yes, i am sure',
-    'alertDeleteCancel' => 'No, cancel!'
+    'alertDeleteCancel' => 'No, cancel!',
+    'logs' => 'System Logs',
+    'requestsLogs' => 'HTTP Requests Logs',
+    'httpRequestsTitle' => 'Http Requests Log',
+    'httpRequestsTitleDetails' => 'Http Request Log Detail'
 ];

@@ -144,11 +144,14 @@ class MenuBuilder
     {
         $this->setActiveMenu($active);
         if (!isset($this->items[$group])) {
-            throw new \Exception("The group especified does not exists");
+            throw new \Exception("The group specified does not exists");
         }
-        $menu = $this->items[$group];
+        $menu = collect($this->items[$group]);
         $string = "";
-        foreach ($this->parseMenu($menu) as $m) {
+        $ordered = $menu->sortBy(function($item, $key){
+            return $key;
+        });
+        foreach ($this->parseMenu($ordered) as $m) {
             $string .= $m;
         }
         return $string;
