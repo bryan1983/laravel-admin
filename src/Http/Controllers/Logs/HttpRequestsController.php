@@ -25,7 +25,7 @@ class HttpRequestsController extends Controller
         $logs = AppRequest::orderBy('created_at', 'desc');
         list($logs, $date) = $this->applyFilter($request, $logs);
         return view('LaravelAdmin::logs.index', compact('statusCodes', 'date'))
-            ->with('logs', $logs->paginate(2))
+            ->with('logs', $logs->paginate(50))
             ->with('status_code', $request->get('status-code', null))
             ->with('activeMenu', 'sidebar.logs.requests');
     }
