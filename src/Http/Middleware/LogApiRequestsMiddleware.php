@@ -6,10 +6,10 @@ use Closure;
 use Joselfonseca\LaravelAdmin\Entities\AppRequest;
 
 /**
- * Class LogRequestsMiddleware
+ * Class LogApiRequestsMiddleware
  * @package Joselfonseca\LaravelAdmin\Http\Middleware
  */
-class LogRequestsMiddleware
+class LogApiRequestsMiddleware
 {
 
     /**
@@ -41,7 +41,7 @@ class LogRequestsMiddleware
             'url' => $request->fullUrl(),
             'request_method' => $request->method(),
             'request_headers' => json_encode($request->headers->all()),
-            'request_body' => $request->getContent(),
+            'request_body' => json_encode($request->all()),
             'response_headers' => json_encode($response->headers->all()),
             'response_body' => $response->getContent(),
             'status_code' => $response->getStatusCode()
