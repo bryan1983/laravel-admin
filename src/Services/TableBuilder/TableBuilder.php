@@ -38,11 +38,7 @@ class TableBuilder
         if (!is_dir(storage_path('twig'))) {
             mkdir(storage_path('twig'), 777);
         }
-        $this->loader = new \Twig_Loader_Filesystem([__DIR__.'/Templates'],
-            [
-            'cache' => storage_path('twig'),
-            'debug' => true
-        ]);
+        $this->loader = new \Twig_Loader_Filesystem([__DIR__.'/Templates']);
         $this->twig   = new \Twig_Environment($this->loader);
         $function     = new \Twig_SimpleFunction('replace_id',
             function ($subject, $value) {
