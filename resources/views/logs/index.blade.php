@@ -14,13 +14,24 @@
                 {!! Field::select('status-code', $statusCodes, request('status-code'), ['label' => 'Status Code', 'class' => 'select2']) !!}
             </div>
             <div class="col-md-4">
+                {!! Field::text('uri', request('uri'), ['label' => 'Uri (without domain and protocol)']) !!}
+            </div>
+            <div class="col-md-2">
+                {!! Field::select('method', ['GET' => 'GET', 'POST' => 'POST', 'PATCH' => 'PATCH', 'PUT' => 'PUT', 'DELETE' => 'DELETE'], request('method'), ['label' => 'Method', 'class' => 'select2']) !!}
+            </div>
+            <div class="col-md-4">
                 {!! Field::text('date', $date, ['label' => 'Date range', 'class' => 'rangepicker']) !!}
             </div>
             <div class="col-md-2">
-                <button class="btn btn-primary btn-block" type="submit" style="margin-top: 25px;"><i class="fa fa-search"></i> Filter</button>
+                <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-search"></i> Filter</button>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-danger btn-block cleanup-logs" type="button"><i class="fa fa-trash-o"></i> Clean up old logs</button>
             </div>
         </div>
         {!! Form::close() !!}
+        <hr />
+        Total Records: {{ $logs->total() }}
         <div class="box">
             <div class="box-body no-padding">
                 <table class="table table-condensed text-center">
@@ -51,7 +62,7 @@
                 </table>
             </div>
             <div class="box-footer text-center">
-                {!! $logs->appends(['status-code' => $status_code, 'date' => $date])->render() !!}
+                {!! $logs->appends(['status-code' => $status_code, 'date' => $date, 'uri' => request('uri'), 'method' => request('method')])->render() !!}
             </div>
         </div>
     </div>
@@ -65,6 +76,32 @@
                 locale: {
                     format: 'MM/DD/YYYY h:mm A'
                 }
+            });
+
+            $(document).on('click', '.cleanup-logs', function(){
+                swal({
+                    title: "Are you sure?",
+                    text: "We will only keep the last month of API requests",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, delete it!",
+                    closeOnConfirm: false,
+                    showLoaderOnConfirm: true
+                },
+                function(){
+                    $.ajax({
+                        type: 'DELETE',
+                        url: GLOBALS.site_url+'/'+'{{ config('laravel-admin.routePrefix', 'backend') }}'+'/system-logs/requests',
+                        dataType: 'JSON',
+                        data: {
+                            '_token': GLOBALS.token
+                        },
+                        complete: function() {
+                            window.location.reload();
+                        }
+                    });
+                });
             });
         })
     </script>

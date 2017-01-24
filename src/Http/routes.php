@@ -114,6 +114,11 @@ Route::group(['prefix' => config('laravel-admin.routePrefix', 'backend'), 'middl
                 'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Logs\HttpRequestsController@index',
                 'middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AclMiddleware:system-logs'
             ]);
+            Route::delete('requests', [
+                'as' => 'LaravelAdminLogsRequestsDelete',
+                'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Logs\HttpRequestsController@destroy',
+                'middleware' => 'Joselfonseca\LaravelAdmin\Http\Middleware\AclMiddleware:system-logs'
+            ]);
             Route::get('requests/{id}', [
                 'as' => 'LaravelAdminLogsRequestsDetail',
                 'uses' => 'Joselfonseca\LaravelAdmin\Http\Controllers\Logs\HttpRequestsController@show',
