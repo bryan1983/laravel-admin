@@ -69,8 +69,7 @@ class UserRepository extends BaseRepository implements UserRepositoryContract
      */
     public function updateRoles($user, $data)
     {
-        $roles = collect(isset($data['roles']) ?: []);
-        $user->roles()->sync($roles->toArray());
+        $user->roles()->sync($data['roles']);
     }
 
     /**
